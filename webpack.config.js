@@ -7,6 +7,9 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 module.exports = {
   mode: 'production',
+  devServer: {
+    port: 3000
+  },
   module: {
     rules: [
       {
