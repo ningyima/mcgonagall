@@ -1,31 +1,41 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Container, Icon, Image, Menu, Sidebar, Responsive } from 'semantic-ui-react';
+import {
+  Container,
+  Icon,
+  Image,
+  Menu,
+  Sidebar,
+  Responsive,
+} from 'semantic-ui-react';
 
 class NavBar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: false
+      visible: false,
     };
+
+    this.handleToggle = this.handleToggle.bind(this);
+    this.handlePusher = this.handlePusher.bind(this);
   }
 
   handlePusher() {
     const { visible } = this.state;
     if (visible) this.setState({ visible: false });
-  };
+  }
 
   handleToggle() {
-    this.setState({ visible: !this.state.visible });
-  };
+    this.setState(prevState => ({ visible: !prevState.visible }));
+  }
 
   render() {
     const { children, leftItems, rightItems } = this.props;
     const { visible } = this.state;
-      return (
-        <div>
-        <Responsive {...Responsive.onlyMobile}>
+    return (
+      <div>
+      <Responsive {...Responsive.onlyMobile}>
           <NavBarMobile
             leftItems={leftItems}
             onPusherClick={this.handlePusher}
