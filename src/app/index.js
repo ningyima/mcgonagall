@@ -15,6 +15,7 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react';
+import SearchExampleStandard from './search.js';
 
 
 /*HEADING*/
@@ -24,8 +25,9 @@ const HomepageHeading = ({ mobile }) => (
     <Header
       as='h1'
       content='Greenfield -project'
-      inverted
       style={{
+        color: 'green',
+        position: 'relative',
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
         marginBottom: 0,
@@ -35,14 +37,15 @@ const HomepageHeading = ({ mobile }) => (
     <Header
       as='h2'
       content='Place quote here...'
-      inverted
       style={{
+        color: 'green',
+        position:'relative',
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge' animated>
+    <Button primary size='huge' inverted color="green" animated>
       <Button.Content visible>
       Get Started
       </Button.Content>
@@ -63,7 +66,9 @@ class DesktopContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    }
+    };
+    this.hideFixedMenu = this.hideFixedMenu.bind(this);
+    this.showFixedMenu = this.showFixedMenu.bind(this);
   }
 
   hideFixedMenu() {
@@ -85,14 +90,12 @@ class DesktopContainer extends Component {
           onBottomPassedReverse={this.hideFixedMenu}
         >
           <Segment
-            inverted
             textAlign='center'
             style={{ minHeight: 700, padding: '1em 0em' }}
             vertical
           >
             <Menu
               fixed={fixed ? 'top' : null}
-              inverted={!fixed}
               pointing={!fixed}
               secondary={!fixed}
               size='large'
@@ -104,10 +107,11 @@ class DesktopContainer extends Component {
                 <Menu.Item as='a'>About</Menu.Item>
                 <Menu.Item as='a'>Search</Menu.Item>
                 <Menu.Item position='right'>
-                  <Button as='a' inverted={!fixed}>
+                  <SearchExampleStandard fluid/>
+                  <Button as='a' color="green" inverted={!fixed}>
                     Log in
                   </Button>
-                  <Button as='a' inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
+                  <Button as='a' color="green" inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
                     Sign Up
                   </Button>
                 </Menu.Item>
@@ -131,7 +135,9 @@ class MobileContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    }
+    },
+    this.handlePusherClick = this.handlePusherClick.bind(this);
+    this.handleToggle = this.handleToggle.bind(this);
   }
 
   handlePusherClick() {
@@ -167,21 +173,20 @@ class MobileContainer extends Component {
             style={{ minHeight: '100vh' }}
           >
             <Segment
-              inverted
               textAlign='center'
               style={{ minHeight: 350, padding: '1em 0em' }}
               vertical
             >
               <Container>
-                <Menu inverted pointing secondary size='large'>
+                <Menu pointing secondary size='large'>
                   <Menu.Item onClick={this.handleToggle}>
                     <Icon name='sidebar' />
                   </Menu.Item>
                   <Menu.Item position='right'>
-                    <Button as='a' inverted>
+                    <Button as='a' >
                       Log in
                     </Button>
-                    <Button as='a' inverted style={{ marginLeft: '0.5em' }}>
+                    <Button as='a'  style={{ marginLeft: '0.5em' }}>
                       Sign Up
                     </Button>
                   </Menu.Item>
@@ -215,6 +220,7 @@ ResponsiveContainer.propTypes = {
 
 const HomepageLayout = () => (
   <ResponsiveContainer>
+    <Divider section />
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
@@ -233,7 +239,7 @@ const HomepageLayout = () => (
             </p>
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
-            <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
+            <Image bordered rounded size='large' src='' />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
