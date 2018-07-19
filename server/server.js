@@ -37,7 +37,6 @@ app.get('/login/write', (req, res) => {
     if (err) {
       res.send(err);
     } else {
-      console.log('user found');
       res.send(user);
     }
   });
