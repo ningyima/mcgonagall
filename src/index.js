@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import HomepageLayout from './app/index.js';
 
-const Index = () => (
+
+const App = () => (
   <div>
-Hello Team!
+  <HomepageLayout />
   </div>
 );
 
-ReactDOM.render(<Index />, document.getElementById('index'));
+ReactDOM.render(<App />, document.getElementById('index'));
