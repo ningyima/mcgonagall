@@ -17,11 +17,15 @@ import {
 } from 'semantic-ui-react';
 import SearchExampleStandard from './search.js';
 
-
 /*HEADING*/
 
 const HomepageHeading = ({ mobile }) => (
   <Container text>
+  <Image src='https://png.pngtree.com/thumb_back/fw800/back_pic/05/05/68/9859685b678ea96.jpg' style={{
+    position: 'relative',
+    backgroundsize: 'cover',
+    bottom: 0,
+  }} />
     <Header
       as='h1'
       content='Greenfield -project'

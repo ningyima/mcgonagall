@@ -8,13 +8,16 @@ import {
 } from 'semantic-ui-react';
 
 class SearchExampleStandard extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       'isLoading': false,
       'results': [],
       'value': '',
-    }
+    };
+    this.resetComponent = this.resetComponent.bind(this);
+    this.handleResultSelect = this.handleResultSelect.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
   }
   componentWillMount() {
     this.resetComponent();
@@ -39,7 +42,7 @@ class SearchExampleStandard extends Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(source, isMatch),
+        results: _.filter({ value }, isMatch),
       });
     }, 300);
   }
@@ -58,14 +61,6 @@ class SearchExampleStandard extends Component {
             value={value}
             {...this.props}
           />
-        </Grid.Column>
-        <Grid.Column width={10}>
-          <Segment>
-            <Header>State</Header>
-            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(this.state, null, 2)}</pre>
-            <Header>Options</Header>
-            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(source, null, 2)}</pre>
-          </Segment>
         </Grid.Column>
       </Grid>
     )
