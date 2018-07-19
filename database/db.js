@@ -6,8 +6,6 @@ mongoose.connect('mongodb://localhost:27017/test?connectTimeoutMS=5000&bufferCom
     (err) => { console.log('DB connection error: ', err); },
   );
 
-const db = mongoose.connection;
-
 const userSchema = mongoose.Schema({
   // email: { type: String, required: true, unique: true },
   // name: { type: String },
@@ -19,7 +17,7 @@ const userSchema = mongoose.Schema({
   created: Date,
 });
 
-let Users = mongoose.model('User', userSchema);
+const Users = mongoose.model('User', userSchema);
 const findAllUsers = function (callback) {
   Users.find({}, (err, users) => {
     if (err) {
