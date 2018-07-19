@@ -105,11 +105,11 @@ const NavBarChildren = ({ children }) => (
 
 const leftItems = [
   { as: "a", content: "Home", key: "home" },
-  { as: "a", content: "Users", key: "users" }
+  { as: "a", content: "About", key: "about" }
 ];
 const rightItems = [
   { as: "a", content: "Login", key: "login" },
-  { as: "a", content: "Register", key: "register" }
+  { as: "a", content: "Sign Up", key: "Sign Up" }
 ];
 
 const App = () => (
