@@ -42,9 +42,13 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge'>
+    <Button primary size='huge' animated>
+      <Button.Content visible>
       Get Started
+      </Button.Content>
+      <Button.Content hidden>
       <Icon name='right arrow' />
+      </Button.Content>
     </Button>
   </Container>
 )
@@ -330,4 +334,4 @@ const HomepageLayout = () => (
     </Segment>
   </ResponsiveContainer>
 )
-export default HomepageLayout
+export default HomepageLayout;
