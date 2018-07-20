@@ -56,7 +56,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '1.0em' : '1.5em',
       }}
     />
-    <Button primary size='huge' inverted color="green" animated>
+    <Button href='#' primary size='huge' inverted color="green" animated>
       <Button.Content visible>
       Get Started
       </Button.Content>
@@ -254,7 +254,7 @@ const HomepageLayout = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
+            <Button  href='#'size='huge'>Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -290,7 +290,7 @@ const HomepageLayout = () => (
         - Prices <br />
         Short description...
         </p>
-        <Button as='a' size='large'>
+        <Button href='#' as='a' size='large'>
           Read More
         </Button>
         <Divider
@@ -309,7 +309,7 @@ const HomepageLayout = () => (
           it's really true. It took years of gene splicing and combinatory DNA research, but our
           bananas can really dance.
         </p>
-        <Button as='a' size='large'>
+        <Button  href='#' as='a' size='large'>
           I'm Still Quite Interested
         </Button>
       </Container>
@@ -321,17 +321,17 @@ const HomepageLayout = () => (
             <Grid.Column width={3}>
               <Header inverted as='h4' content='About' />
               <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Team hours</List.Item>
+                <List.Item href='#' as='a'>Sitemap</List.Item>
+                <List.Item href='#' as='a'>Contact Us</List.Item>
+                <List.Item href='#' as='a'>Team hours</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
               <Header inverted as='h4' content='Services' />
               <List link inverted>
-                <List.Item as='a'>Feature List</List.Item>
-                <List.Item as='a'>Membership</List.Item>
-                <List.Item as='a'>Renown recipes</List.Item>
+                <List.Item href='#' as='a'>Feature List</List.Item>
+                <List.Item href='#' as='a'>Membership</List.Item>
+                <List.Item href='#' as='a'>Renown recipes</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
