@@ -21,10 +21,14 @@ import SearchExampleStandard from './search.js';
 
 const HomepageHeading = ({ mobile }) => (
   <Container text>
-  <Image src='https://png.pngtree.com/thumb_back/fw800/back_pic/05/05/68/9859685b678ea96.jpg' style={{
-    position: 'relative',
-    backgroundsize: 'cover',
-    bottom: 0,
+  <Image src="https://www.ppt-backgrounds.net/uploads/food-template-presentation.jpg" style={{
+    position: 'absolute',
+    height: 'auto',
+    width: '90%',
+    top:'100px',
+    right:  '104px',
+    'max-width': '1050px',
+    'max-height': '608px',
   }} />
     <Header
       as='h1'
@@ -137,6 +141,8 @@ class DesktopContainer extends Component {
 DesktopContainer.propTypes = {
   children: PropTypes.node,
 }
+
+/*MOBILE*/
 
 class MobileContainer extends Component {
   constructor(props) {
@@ -323,17 +329,15 @@ const HomepageLayout = () => (
               <List link inverted>
                 <List.Item as='a'>Sitemap</List.Item>
                 <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Religious Ceremonies</List.Item>
-                <List.Item as='a'>Gazebo Plans</List.Item>
+                <List.Item as='a'>Team hours</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
               <Header inverted as='h4' content='Services' />
               <List link inverted>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
-                <List.Item as='a'>DNA FAQ</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-                <List.Item as='a'>Favorite X-Men</List.Item>
+                <List.Item as='a'>Feature List</List.Item>
+                <List.Item as='a'>Membership</List.Item>
+                <List.Item as='a'>Renown recipes</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
