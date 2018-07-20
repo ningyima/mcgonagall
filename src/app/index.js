@@ -16,6 +16,8 @@ import {
   Visibility,
 } from 'semantic-ui-react';
 import SearchExampleStandard from './search.js';
+import ModalSignupForm from './signup.js';
+import ModalLoginForm from './login.js';
 
 /*HEADING*/
 
@@ -87,8 +89,8 @@ class DesktopContainer extends Component {
   }
 
   render() {
-    const { children } = this.props
-    const { fixed } = this.state
+    const { children } = this.props;
+    const { fixed } = this.state;
 
     return (
       <Responsive minWidth={Responsive.onlyTablet.minWidth}>
@@ -119,12 +121,8 @@ class DesktopContainer extends Component {
                 <Menu.Item as='a'>Features</Menu.Item>
                 <Menu.Item position='right'>
                   <SearchExampleStandard fluid/>
-                  <Button as='a' color="green" inverted={!fixed}>
-                    Log in
-                  </Button>
-                  <Button as='a' color="green" inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
-                    Sign Up
-                  </Button>
+                  <ModalLoginForm />
+                  <ModalSignupForm />
                 </Menu.Item>
               </Container>
             </Menu>
@@ -202,7 +200,7 @@ class MobileContainer extends Component {
                     <Button as='a' >
                       Log in
                     </Button>
-                    <Button as='a'  style={{ marginLeft: '0.5em' }}>
+                    <Button as='a'  color="green" style={{ marginLeft: '0.5em' }}>
                       Sign Up
                     </Button>
                   </Menu.Item>

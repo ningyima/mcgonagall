@@ -1,21 +1,36 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-app.set('views', __dirname + '/../src');
+const express = require('express');
+const bodyParser = require('body-parser');
+const db = require('../database/db');
+
+const app = express();
+
 app.engine('html', require('ejs').renderFile);
+
+app.set('views', `${__dirname}/../src`);
 app.set('view engine', 'html');
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
 }));
 
-app.get('/', function(req, res){
+app.get('/', (req, res) => {
   res.render('index');
-})
+  console.log('inside index');
+});
 
+app.get('/login/write', (req, res) => {
+  db.checkUser(req.query.email, (err, user) => {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(user);
+    }
+  });
+});
 
-var port = 3000;
+const port = 3000;
 
-app.listen(port, function(){
-  console.log('BudgetLife listening on port: ', port);
-})
+app.listen(port, () => {
+  console.log(`BudgetLife listening on port: ${port}`);
+});
