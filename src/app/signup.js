@@ -13,7 +13,7 @@ import {
 
 import HomepageLayout from './index.js';
 
-class ModalLoginForm extends Component {
+class ModalSignupForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,12 +39,12 @@ class ModalLoginForm extends Component {
     const { open, dimmer } = this.state;
     return (
       <div>
-       <Button color='green' inverted primary content='Log In' onClick={this.open} style={{ marginLeft: '0.5em' }} />
+      <Button color='green' inverted primary content='Sign Up' onClick={this.open} style={{ marginLeft: '0.5em' }} />
        <Modal open={this.state.open} onClose={this.close}>
        <Modal.Content>
        <Modal.Description>
        <Header>
-       Log In
+       Sign Up
        </Header>
        </Modal.Description>
        </Modal.Content>
@@ -58,6 +58,21 @@ class ModalLoginForm extends Component {
           <label>Last Name</label>
           <input placeholder='Last Name' ref={this.handleRef}/>
         </Form.Field>
+        <Form.Field>
+          <label>Email</label>
+          <input placeholder='Email' ref={this.handleRef}/>
+        </Form.Field>
+        <Form.Field>
+          <label>Username</label>
+          <input placeholder='Username' ref={this.handleRef}/>
+        </Form.Field>
+        <Form.Field>
+          <label>Password</label>
+          <input placeholder='Password' ref={this.handleRef}/>
+        </Form.Field>
+        <Form.Field>
+          <Checkbox label='I agree to the Terms and Conditions' />
+        </Form.Field>
         <Button type='submit'>Submit</Button>
       </Form>
           </Modal.Content>
@@ -68,4 +83,4 @@ class ModalLoginForm extends Component {
   }
 }
 
-export default ModalLoginForm;
+export default ModalSignupForm;
