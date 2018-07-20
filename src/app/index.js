@@ -34,21 +34,22 @@ const HomepageHeading = ({ mobile }) => (
   }} />
     <Header
       as='h1'
-      content='Greenfield -project'
+      content='BudgetLife'
       style={{
-        color: 'green',
+        fontFamily: 'Lobster' && 'cursive',
+        color: 'white',
         position: 'relative',
-        fontSize: mobile ? '2em' : '4em',
+        fontSize: mobile ? '2em' : '8em',
         fontWeight: 'normal',
         marginBottom: 0,
-        marginTop: mobile ? '2.5em' : '3em',
+        marginTop: mobile ? '2.5em' : '1.5em',
       }}
     />
     <Header
       as='h2'
       content='Place quote here...'
       style={{
-        color: 'green',
+        color: 'white',
         position:'relative',
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',
