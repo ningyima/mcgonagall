@@ -17,13 +17,13 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('./src/index.html');
   console.log('inside index');
 });
 
 app.get('/recipe', (req, res) => {
   utils.getRecipeById(req.query.recipeId, function(error, body) {
-    if (error) { 
+    if (error) {
       res.send(error);
     }
     var temp = utils._filter(JSON.parse(body));
@@ -33,7 +33,7 @@ app.get('/recipe', (req, res) => {
 
 app.get('/recipes', (req, res) => {
   utils.getRecipes(req.query, function(error, body) {
-    if (error) { 
+    if (error) {
       res.send(error);
     }
     res.send(body);
@@ -42,7 +42,7 @@ app.get('/recipes', (req, res) => {
 
 app.get('/ingredients', (req, res) => {
   utils.getRecipesByIngredients(req.query, function(error, body) {
-    if (error) { 
+    if (error) {
       res.send(error);
     }
     res.send(body);
@@ -51,7 +51,7 @@ app.get('/ingredients', (req, res) => {
 
 app.get('/calories', (req, res) => {
   utils.getRecipesByCalories(req.query, function(error, body) {
-    if (error) { 
+    if (error) {
       res.send(error);
     }
     res.send(body);
