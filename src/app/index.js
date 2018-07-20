@@ -24,9 +24,9 @@ const HomepageHeading = ({ mobile }) => (
   <Image src="https://www.ppt-backgrounds.net/uploads/food-template-presentation.jpg" style={{
     position: 'absolute',
     height: 'auto',
-    width: '90%',
-    top:'100px',
-    right:  '104px',
+    width: mobile ? '83%' : '90%',
+    top: mobile ? '73px' :'100px',
+    right: mobile ? '44px' : '104px',
     'max-width': '1050px',
     'max-height': '608px',
   }} />
@@ -39,7 +39,7 @@ const HomepageHeading = ({ mobile }) => (
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
         marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
+        marginTop: mobile ? '2.5em' : '3em',
       }}
     />
     <Header
