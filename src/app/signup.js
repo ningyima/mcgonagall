@@ -39,12 +39,12 @@ class ModalExampleDimmer extends Component {
     const { open, dimmer } = this.state;
     return (
       <div>
-       <Button primary content='Log In' onClick={this.open} />
+       <Button primary content='Sign Up' onClick={this.open} />
        <Modal open={this.state.open} onClose={this.close}>
        <Modal.Content>
        <Modal.Description>
        <Header>
-       Log In
+       Sign Up
        </Header>
        </Modal.Description>
        </Modal.Content>
@@ -72,4 +72,3 @@ class ModalExampleDimmer extends Component {
 }
 
 export default ModalExampleDimmer
-export default LoginForm;
