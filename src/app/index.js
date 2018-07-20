@@ -115,11 +115,11 @@ class DesktopContainer extends Component {
                <Menu.Item>
                 <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
                 </Menu.Item>
-                <Menu.Item as='a' active>
+                <Menu.Item href='#' as='a' active>
                   Home
                 </Menu.Item>
-                <Menu.Item as='a'>About</Menu.Item>
-                <Menu.Item as='a'>Features</Menu.Item>
+                <Menu.Item href='#' as='a'>About</Menu.Item>
+                <Menu.Item href='#' as='a'>Features</Menu.Item>
                 <Menu.Item position='right'>
                   <SearchExampleStandard fluid/>
                   <ModalLoginForm />
@@ -172,12 +172,12 @@ class MobileContainer extends Component {
              <Menu.Item>
                 <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
                 </Menu.Item>
-            <Menu.Item as='a' active>
+            <Menu.Item href='#' as='a' active>
               Home
             </Menu.Item>
-            <Menu.Item as='a'>Our Mission</Menu.Item>
-            <Menu.Item as='a'>Features</Menu.Item>
-            <Menu.Item as='a'>Benefits</Menu.Item>
+            <Menu.Item href='#' as='a'>Our Mission</Menu.Item>
+            <Menu.Item href='#' as='a'>Features</Menu.Item>
+            <Menu.Item href='#' as='a'>Benefits</Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher
