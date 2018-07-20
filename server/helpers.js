@@ -23,6 +23,30 @@ let trimQryObj = (queryObj) => {
   return result;
 }
 
+let _filter = (fullRecipe) => {
+  var minRecipe = {};
+  minRecipe['instructions'] = fullRecipe['instructions'];
+  minRecipe['analyzedInstructions'] = fullRecipe['analyzedInstructions'][0].steps;
+  minRecipe['analyzedInstructions'].forEach(function(step) {
+    for (var key in step) {
+      if (key !== 'number' && key !== 'step') {
+      delete step[key];
+      }
+    }
+  });
+  minRecipe['aggregateLikes'] = fullRecipe['aggregateLikes'];
+  minRecipe['spoonacularScore'] = fullRecipe['spoonacularScore'];
+  minRecipe['extendedIngredients'] = fullRecipe['extendedIngredients'];
+  minRecipe['extendedIngredients'].forEach(function(ingredients) {
+    for (var key in ingredients) {
+      if (key !== 'originalString' && key !== 'id') {
+      delete ingredients[key];
+      }
+    }
+  });
+  return minRecipe;
+}
+
 /**
  * [description]
  * @param  {[type]} ingredientList [description]
@@ -32,21 +56,19 @@ let citeAllergens = (ingredientList) => {
 
   return allergens;
 }
-//recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1'
-let getRecipeByIngredients = (ingredients, cb) => {
+
+let getRecipesByIngredients = (ingredients, cb) => {
   var callback = function(err, res, body) {
-    cb(err, res, body);
+    cb(err, body);
   };
-  console.log(ingredients);
   var queryObj = trimQryObj(ingredients); //remove any uninitialized keys
-  console.log(queryObj);
   let options = setOptions('recipes/findByIngredients?', queryObj);
   request(options, callback);
 }
 
 let getRecipes = (searchObj, cb) => {
   var callback = function(err, res, body) {
-    cb(err, res, body);
+    cb(err, body);
   };
   var queryObj = trimQryObj(searchObj); //remove any uninitialized keys
   let options = setOptions('recipes/search?', queryObj);
@@ -55,8 +77,9 @@ let getRecipes = (searchObj, cb) => {
 
 let getRecipesByCalories = (calories, cb) => {
   var callback = function(err, res, body) {
-    cb(err, res, body);
+    cb(err, body);
   };
+  console.log('inside grbc');
   var queryObj = trimQryObj(calories); //remove any uninitialized keys
   let options = setOptions('recipes/mealplans/generate?', queryObj);
   request(options, callback);
@@ -64,55 +87,14 @@ let getRecipesByCalories = (calories, cb) => {
 
 let getRecipeById = (recipeId, cb) => {
   var callback = function(err, res, body) {
-    cb(err, res, body);
+    cb(err, body);
   };
   let options = setOptions('recipes/'+recipeId+'/information?', {includeNutrition: false });
   request(options, callback);
 }
-
-//====================================================
-//TEMPORARY TESTING DATA UNTIL SERVER.JS CAN BE UPDATED
-//
-
-let recipeId = 507593;
-
-let search = {
-      diet: 'vegetarian',
-      instructionsRequired: true,
-      excludeIngredients: 'coconut',
-      intolerances: ['egg', 'gluten'],
-      number: 12,
-      offset: 0,
-      query: 'burger',
-      type: 'main course'
-  };
-
-let calSearch = {
-      targetCalories: 2000,
-      timeFrame: 'week'
-  };
-
-let ingredients = {
-  fillIngredients: false,
-  ingredients: 'apples,flour,sugar'
-};
-
-// getRecipes(search, function(error, res, body){
-// if (error) { console.log('SEARCH ERROR ', error);}
-//   console.log(body);
-// });
-// getRecipeByIngredients(ingredients, function(error, res, body) {
-//   if (error) { console.log('INGREDIENTS ERROR ', error);}
-//   console.log(body);
-// });
-// getRecipesByCalories(calSearch, function(error, res, body) {
-//   if (error) { console.log('CALORIE ERROR ', error);}
-//   console.log(body);
-// }); 
-
-// getRecipeById(recipeId, function(error, res, body) {
-//   if (error) { console.log('RECIPE ID ERROR ', error);}
-//   console.log(body);
-// });
-
+module.exports._filter = _filter;
+module.exports.getRecipeById = getRecipeById;
+module.exports.getRecipesByCalories = getRecipesByCalories;
+module.exports.getRecipesByIngredients = getRecipesByIngredients;
+module.exports.citeAllergens = citeAllergens;
 module.exports.getRecipes = getRecipes;
