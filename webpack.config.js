@@ -6,7 +6,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   devServer: {
     port: 3000,
   },
@@ -20,6 +20,11 @@ module.exports = {
         },
       },
     ],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   plugins: [htmlPlugin],
 };
