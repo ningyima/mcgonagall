@@ -39,21 +39,21 @@ const HomepageHeading = ({ mobile }) => (
         fontFamily: 'Lobster' && 'cursive',
         color: 'white',
         position: 'relative',
-        fontSize: mobile ? '2em' : '8em',
+        fontSize: mobile ? '3em' : '8em',
         fontWeight: 'normal',
         marginBottom: 0,
-        marginTop: mobile ? '2.5em' : '1.5em',
+        marginTop: mobile ? '1.5em' : '1.5em',
       }}
     />
     <Header
       as='h2'
-      content='Place quote here...'
+      content='Save money. Eat Healthier.'
       style={{
         color: 'white',
         position:'relative',
-        fontSize: mobile ? '1.5em' : '1.7em',
+        fontSize: mobile ? '1.0em' : '1.7em',
         fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
+        marginTop: mobile ? '1.0em' : '1.5em',
       }}
     />
     <Button primary size='huge' inverted color="green" animated>
@@ -196,6 +196,7 @@ class MobileContainer extends Component {
                     <Icon name='sidebar' />
                   </Menu.Item>
                   <Menu.Item position='right'>
+                  <SearchExampleStandard size='mini' fluid/>
                     <ModalLoginForm />
                     <ModalSignupForm />
                   </Menu.Item>
