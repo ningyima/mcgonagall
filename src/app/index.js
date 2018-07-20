@@ -147,7 +147,7 @@ class MobileContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    },
+    };
     this.handlePusherClick = this.handlePusherClick.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
   }
@@ -254,7 +254,7 @@ const HomepageLayout = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button  href='#'size='huge'>Check Them Out</Button>
+            <Button  color="green" href='#'size='huge'>Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -290,7 +290,7 @@ const HomepageLayout = () => (
         - Prices <br />
         Short description...
         </p>
-        <Button href='#' as='a' size='large'>
+        <Button color="green" href='#' as='a' size='large'>
           Read More
         </Button>
         <Divider
@@ -309,7 +309,7 @@ const HomepageLayout = () => (
           it's really true. It took years of gene splicing and combinatory DNA research, but our
           bananas can really dance.
         </p>
-        <Button  href='#' as='a' size='large'>
+        <Button color="green" href='#' as='a' size='large'>
           I'm Still Quite Interested
         </Button>
       </Container>

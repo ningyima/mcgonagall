@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost:27017/test?connectTimeoutMS=5000&bufferCommands=false')
+const mlab = require('../config.js');
+//This could also be || if config doesnt exist;
+mongoose.connect(mlab.mlab)
   .then(
     () => { console.log('mongoose connected'); },
     (err) => { console.log('DB connection error: ', err); },
