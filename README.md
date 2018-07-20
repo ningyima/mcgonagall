@@ -1,6 +1,10 @@
 # Project Name
 # mcgonagall
-greenfield project
+greenfield project BudgetLife
+
+https://budgetlife.herokuapp.com/
+
+https://git.heroku.com/budgetlife.git
 
 > Pithy project description
 
