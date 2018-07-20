@@ -105,11 +105,14 @@ class DesktopContainer extends Component {
               size='large'
             >
               <Container>
+               <Menu.Item>
+                <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
+                </Menu.Item>
                 <Menu.Item as='a' active>
                   Home
                 </Menu.Item>
                 <Menu.Item as='a'>About</Menu.Item>
-                <Menu.Item as='a'>Search</Menu.Item>
+                <Menu.Item as='a'>Features</Menu.Item>
                 <Menu.Item position='right'>
                   <SearchExampleStandard fluid/>
                   <Button as='a' color="green" inverted={!fixed}>
@@ -161,12 +164,15 @@ class MobileContainer extends Component {
       <Responsive maxWidth={Responsive.onlyMobile.maxWidth}>
         <Sidebar.Pushable>
           <Sidebar as={Menu} animation='uncover' inverted vertical visible={sidebarOpened}>
+             <Menu.Item>
+                <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
+                </Menu.Item>
             <Menu.Item as='a' active>
               Home
             </Menu.Item>
-            <Menu.Item as='a'>Work</Menu.Item>
-            <Menu.Item as='a'>Company</Menu.Item>
-            <Menu.Item as='a'>Careers</Menu.Item>
+            <Menu.Item as='a'>Our Mission</Menu.Item>
+            <Menu.Item as='a'>Features</Menu.Item>
+            <Menu.Item as='a'>Benefits</Menu.Item>
             <Menu.Item as='a'>Log in</Menu.Item>
             <Menu.Item as='a'>Sign Up</Menu.Item>
           </Sidebar>
