@@ -13,7 +13,7 @@ import {
 
 import HomepageLayout from './index.js';
 
-class ModalExampleDimmer extends Component {
+class ModalLoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,7 +39,7 @@ class ModalExampleDimmer extends Component {
     const { open, dimmer } = this.state;
     return (
       <div>
-       <Button primary content='Log In' onClick={this.open} />
+       <Button color='green' inverted primary content='Log In' onClick={this.open} style={{ marginLeft: '0.5em' }} />
        <Modal open={this.state.open} onClose={this.close}>
        <Modal.Content>
        <Modal.Description>
@@ -58,9 +58,6 @@ class ModalExampleDimmer extends Component {
           <label>Last Name</label>
           <input placeholder='Last Name' ref={this.handleRef}/>
         </Form.Field>
-        <Form.Field>
-          <Checkbox label='I agree to the Terms and Conditions' />
-        </Form.Field>
         <Button type='submit'>Submit</Button>
       </Form>
           </Modal.Content>
@@ -71,5 +68,4 @@ class ModalExampleDimmer extends Component {
   }
 }
 
-export default ModalExampleDimmer
-export default LoginForm;
+export default ModalLoginForm;

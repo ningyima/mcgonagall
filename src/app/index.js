@@ -16,7 +16,8 @@ import {
   Visibility,
 } from 'semantic-ui-react';
 import SearchExampleStandard from './search.js';
-import ModalExampleDimmer from './signup.js';
+import ModalSignupForm from './signup.js';
+import ModalLoginForm from './login.js';
 
 /*HEADING*/
 
@@ -120,10 +121,8 @@ class DesktopContainer extends Component {
                 <Menu.Item as='a'>Features</Menu.Item>
                 <Menu.Item position='right'>
                   <SearchExampleStandard fluid/>
-                  <Button as='a' color="green" inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
-                    Log In
-                  </Button>
-                  <ModalExampleDimmer />
+                  <ModalLoginForm />
+                  <ModalSignupForm />
                 </Menu.Item>
               </Container>
             </Menu>
