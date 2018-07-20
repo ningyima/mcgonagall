@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database/db');
+const utils = require('./helpers.js');
+
 
 const app = express();
 
@@ -19,6 +21,43 @@ app.get('/', (req, res) => {
   console.log('inside index');
 });
 
+app.get('/recipe', (req, res) => {
+  utils.getRecipeById(req.query.recipeId, function(error, body) {
+    if (error) { 
+      res.send(error);
+    }
+    var temp = utils._filter(JSON.parse(body));
+    res.send(temp);
+  });
+});
+
+app.get('/recipes', (req, res) => {
+  utils.getRecipes(req.query, function(error, body) {
+    if (error) { 
+      res.send(error);
+    }
+    res.send(body);
+  });
+});
+
+app.get('/ingredients', (req, res) => {
+  utils.getRecipesByIngredients(req.query, function(error, body) {
+    if (error) { 
+      res.send(error);
+    }
+    res.send(body);
+  });
+});
+
+app.get('/calories', (req, res) => {
+  utils.getRecipesByCalories(req.query, function(error, body) {
+    if (error) { 
+      res.send(error);
+    }
+    res.send(body);
+  });
+});
+
 app.get('/login/write', (req, res) => {
   db.checkUser(req.query.email, (err, user) => {
     if (err) {
@@ -29,6 +68,33 @@ app.get('/login/write', (req, res) => {
   });
 });
 
+
+//====================================================
+//SAMPLE DATA. DATA STRUCTURE
+//
+
+// let recipeId = 507593;
+
+// let search = {
+//       diet: 'vegetarian',
+//       instructionsRequired: true,
+//       excludeIngredients: 'coconut',
+//       intolerances: ['egg', 'gluten'],
+//       number: 12,
+//       offset: 0,
+//       query: 'burger',
+//       type: 'main course'
+//   };
+
+// let calSearch = {
+//       targetCalories: 2000,
+//       timeFrame: 'week'
+//   };
+
+// let ingredients = {
+//   fillIngredients: false,
+//   ingredients: 'apples,flour,sugar'
+// };
 const port = 3000;
 
 app.listen(port, () => {
