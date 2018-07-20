@@ -177,8 +177,6 @@ class MobileContainer extends Component {
             <Menu.Item as='a'>Our Mission</Menu.Item>
             <Menu.Item as='a'>Features</Menu.Item>
             <Menu.Item as='a'>Benefits</Menu.Item>
-            <Menu.Item as='a'>Log in</Menu.Item>
-            <Menu.Item as='a'>Sign Up</Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher
@@ -197,12 +195,8 @@ class MobileContainer extends Component {
                     <Icon name='sidebar' />
                   </Menu.Item>
                   <Menu.Item position='right'>
-                    <Button as='a' >
-                      Log in
-                    </Button>
-                    <Button as='a'  color="green" style={{ marginLeft: '0.5em' }}>
-                      Sign Up
-                    </Button>
+                    <ModalLoginForm />
+                    <ModalSignupForm />
                   </Menu.Item>
                 </Menu>
               </Container>
@@ -240,13 +234,13 @@ const HomepageLayout = () => (
         <Grid.Row>
           <Grid.Column width={8}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              We Help Companies and Companions
+              Healthier, Informed, Affordable meal prep.
             </Header>
             <p style={{ fontSize: '1.33em' }}>
               Some Description....
             </p>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              Header description...
+              Easy to use on the go!...
             </Header>
             <p style={{ fontSize: '1.33em' }}>
             paragraph description...
@@ -274,11 +268,10 @@ const HomepageLayout = () => (
           </Grid.Column>
           <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
             <Header as='h3' style={{ fontSize: '2em' }}>
-              "I shouldn't have gone with their competitor."
+              "Fake user comment here."
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              <Image avatar src='' />
-              <b>Nan</b> Chief Fun Officer Acme Toys
+              <b>Nan</b> Fake user name and picture
             </p>
           </Grid.Column>
         </Grid.Row>
@@ -287,12 +280,13 @@ const HomepageLayout = () => (
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Container text>
         <Header as='h3' style={{ fontSize: '2em' }}>
-          Breaking The Grid, Grabs Your Attention
+          List of Features
         </Header>
         <p style={{ fontSize: '1.33em' }}>
-          Instead of focusing on content creation and hard work, we have learned how to master the
-          art of doing nothing by providing massive amounts of whitespace and generic content that
-          can seem massive, monolithic and worth your attention.
+        - Allergens <br />
+        - Recipes <br />
+        - Prices <br />
+        Short description...
         </p>
         <Button as='a' size='large'>
           Read More
