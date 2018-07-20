@@ -26,11 +26,11 @@ const HomepageHeading = ({ mobile }) => (
   <Image src="https://www.ppt-backgrounds.net/uploads/food-template-presentation.jpg" style={{
     position: 'absolute',
     height: 'auto',
-    width: mobile ? '83%' : '90%',
-    top: mobile ? '73px' :'100px',
-    right: mobile ? '44px' : '104px',
-    'max-width': '1050px',
-    'max-height': '608px',
+    width: mobile ? '99%' : '104%',
+    top: mobile ? '79px' :'84px',
+    right: mobile ? '2px' : '0px',
+    maxWidth: '2000px',
+    maxHeight: '639px',
   }} />
     <Header
       as='h1'
