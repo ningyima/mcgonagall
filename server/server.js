@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database/db');
 const utils = require('./helpers.js');
-
+const authRoutes = require('../routes/auth-routes');
 
 const app = express();
 
@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
+app.use('/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
@@ -72,16 +73,6 @@ app.get('/calories', (req, res) => {
       res.send(error);
     }
     res.send(body);
-  });
-});
-
-app.get('/login/write', (req, res) => {
-  db.checkUser(req.query.email, (err, user) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(user);
-    }
   });
 });
 
