@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Button,
   Header,
@@ -11,7 +11,7 @@ import {
   Checkbox,
 } from 'semantic-ui-react';
 
-import HomepageLayout from './index.js';
+import HomepageLayout from './index';
 
 class ModalLoginForm extends Component {
   constructor(props) {
@@ -28,11 +28,11 @@ class ModalLoginForm extends Component {
   }
 
   open() {
-    this.setState({open: true}, () => this.ref.focus());
+    this.setState({ open: true }, () => this.ref.focus());
   }
 
   close() {
-    this.setState({open: false})
+    this.setState({ open: false });
   }
 
   render() {
@@ -52,11 +52,11 @@ class ModalLoginForm extends Component {
       <Form>
         <Form.Field>
            <label>First Name</label>
-           <input placeholder='First Name' ref={this.handleRef}/>
+           <input placeholder='First Name' ref={this.handleRef} />
         </Form.Field>
         <Form.Field>
           <label>Last Name</label>
-          <input placeholder='Last Name' ref={this.handleRef}/>
+          <input placeholder='Last Name' ref={this.handleRef} />
         </Form.Field>
         <Button type='submit'>Submit</Button>
         <Button type='submit'>Google</Button>
@@ -66,7 +66,7 @@ class ModalLoginForm extends Component {
        </Modal>
       </div>
 
-    )
+    );
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Button,
   Header,
@@ -11,7 +11,7 @@ import {
   Checkbox,
 } from 'semantic-ui-react';
 
-import HomepageLayout from './index.js';
+import HomepageLayout from './index';
 
 class ModalSignupForm extends Component {
   constructor(props) {
@@ -23,16 +23,17 @@ class ModalSignupForm extends Component {
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
   }
+
   handleRef(component) {
     this.ref = component;
   }
 
   open() {
-    this.setState({open: true}, () => this.ref.focus());
+    this.setState({ open: true }, () => this.ref.focus());
   }
 
   close() {
-    this.setState({open: false})
+    this.setState({ open: false });
   }
 
   render() {
@@ -52,23 +53,23 @@ class ModalSignupForm extends Component {
       <Form>
         <Form.Field>
            <label>First Name</label>
-           <input placeholder='First Name' ref={this.handleRef}/>
+           <input placeholder='First Name' ref={this.handleRef} />
         </Form.Field>
         <Form.Field>
           <label>Last Name</label>
-          <input placeholder='Last Name' ref={this.handleRef}/>
+          <input placeholder='Last Name' ref={this.handleRef} />
         </Form.Field>
         <Form.Field>
           <label>Email</label>
-          <input placeholder='Email' ref={this.handleRef}/>
+          <input placeholder='Email' ref={this.handleRef} />
         </Form.Field>
         <Form.Field>
           <label>Username</label>
-          <input placeholder='Username' ref={this.handleRef}/>
+          <input placeholder='Username' ref={this.handleRef} />
         </Form.Field>
         <Form.Field>
           <label>Password</label>
-          <input placeholder='Password' ref={this.handleRef}/>
+          <input placeholder='Password' ref={this.handleRef} />
         </Form.Field>
         <Form.Field>
           <Checkbox label='I agree to the Terms and Conditions' />
@@ -79,7 +80,7 @@ class ModalSignupForm extends Component {
        </Modal>
       </div>
 
-    )
+    );
   }
 }
 
