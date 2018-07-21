@@ -18,6 +18,7 @@ import {
 import SearchExampleStandard from './search.js';
 import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
+import SearchApiForm from './searchApi.jsx';
 
 /*HEADING*/
 
