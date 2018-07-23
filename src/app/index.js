@@ -18,6 +18,7 @@ import {
 import SearchExampleStandard from './search.js';
 import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
+import SearchApiForm from './searchApi.jsx';
 
 /*HEADING*/
 
@@ -234,7 +235,12 @@ const HomepageLayout = () => (
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
-          <Grid.Column width={8}>
+          <Grid.Column width={12}> 
+            <SearchApiForm />
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={8}> 
             <Header as='h3' style={{ fontSize: '2em' }}>
               Healthier, Informed, Affordable meal prep.
             </Header>
