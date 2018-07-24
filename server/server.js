@@ -26,7 +26,11 @@ app.get('/', (req, res) => {
 
 
 app.get('/recipe', (req, res) => {
+<<<<<<< HEAD
   utils.getRecipeById(req.query.recipeId, function (error, body) {
+=======
+  utils.getRecipeById(req.query.recipeId, function(error, body) {
+>>>>>>> minor text edits
     if (error) {
       res.send(error);
     }
@@ -36,7 +40,11 @@ app.get('/recipe', (req, res) => {
 });
 
 app.get('/recipes', (req, res) => {
+<<<<<<< HEAD
   utils.getRecipes(req.query, function (error, body) {
+=======
+  utils.getRecipes(req.query, function(error, body) {
+>>>>>>> minor text edits
     if (error) {
       res.send(error);
     }
@@ -45,7 +53,11 @@ app.get('/recipes', (req, res) => {
 });
 
 app.get('/ingredients', (req, res) => {
+<<<<<<< HEAD
   utils.getRecipesByIngredients(req.query, function (error, body) {
+=======
+  utils.getRecipesByIngredients(req.query, function(error, body) {
+>>>>>>> minor text edits
     if (error) {
       res.send(error);
     }

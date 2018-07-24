@@ -60,7 +60,11 @@ class ModalLoginForm extends Component {
         </Form.Field>
         <Button type='submit'>Submit</Button>
         <Button type='submit'>Google</Button>
+<<<<<<< HEAD
         <Button type='submit' >Facebook</Button>
+=======
+        <Button type='submit' onClick={this.handleGoogleLogin}>Facebook</Button>
+>>>>>>> minor text edits
       </Form>
           </Modal.Content>
        </Modal>
