@@ -60,7 +60,7 @@ class ModalLoginForm extends Component {
         </Form.Field>
         <Button type='submit'>Submit</Button>
         <Button type='submit'>Google</Button>
-        <Button type='submit' onClick={}>Facebook</Button>
+        <Button type='submit' >Facebook</Button>
       </Form>
           </Modal.Content>
        </Modal>

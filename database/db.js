@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const mlab = require('../config.js');
 // This could also be || if config doesnt exist;
-mongoose.connect(mlab.mlab)
+
+mongoose.connect(mlab.mlabdb.mlab)
   .then(
     () => { console.log('mongoose connected'); },
     (err) => { console.log('DB connection error: ', err); },

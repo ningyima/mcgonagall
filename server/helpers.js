@@ -1,17 +1,16 @@
 const request = require('request');
+const keys = require('../config.js')
 
 
 let setOptions = (url = '', queryString) => {
   let options = {
     url:'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/'+ url,
     qs: queryString,
-    headers: {
-      'X-Mashape-Key': 'F7lzyXR2Olmshk6zl2Sk9qmpQDanp16lHAYjsn1Gmzsv5pxpwe',
-      'X-Mashape-Host': 'spoonacular-recipe-food-nutrition-v1.p.mashape.com'
-    }
+    headers: keys.API_KEYS
   }
   return options;
 }
+
 
 let trimQryObj = (queryObj) => {
   var result = {};
