@@ -59,6 +59,8 @@ class ModalLoginForm extends Component {
           <input placeholder='Last Name' ref={this.handleRef}/>
         </Form.Field>
         <Button type='submit'>Submit</Button>
+        <Button type='submit'>Google</Button>
+        <Button type='submit' onClick={}>Facebook</Button>
       </Form>
           </Modal.Content>
        </Modal>

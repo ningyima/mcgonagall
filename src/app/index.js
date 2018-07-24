@@ -83,6 +83,10 @@ class DesktopContainer extends Component {
     this.showFixedMenu = this.showFixedMenu.bind(this);
   }
 
+  handleGoogleClick(){
+    
+  }
+
   hideFixedMenu() {
     this.setState({ fixed: false })
   }
@@ -232,13 +236,17 @@ ResponsiveContainer.propTypes = {
 const HomepageLayout = () => (
   <ResponsiveContainer>
     <Divider section />
+    <Segment style={{ padding: '0em 8em' }} vertical>
+      <Grid celled='internally' columns='equal' stackable>
+        <Grid.Row >   
+        <Grid.Column width={12}> 
+          <SearchApiForm />
+        </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
-        <Grid.Row>
-          <Grid.Column width={12}> 
-            <SearchApiForm />
-          </Grid.Column>
-        </Grid.Row>
         <Grid.Row>
           <Grid.Column width={8}> 
             <Header as='h3' style={{ fontSize: '2em' }}>

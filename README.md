@@ -26,7 +26,7 @@ https://git.heroku.com/budgetlife.git
 
 ## Usage
 
-> Some usage instructions
+This project is to be used by individuals seeking general recipes, or recipes filtered by cuisine type, caloric value or price.  Also users are able to retrieve recipes based on an ingredient list that they supply.
 
 ## Requirements
 

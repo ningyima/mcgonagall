@@ -44,8 +44,8 @@ class SearchApiForm extends Component {
             </select>
           </div>
           <div className="four wide field">
-            <Button  inverted color="green" size='medium' animated >
-                retrieve recipes
+            <Button  color="green" size='medium' animated >
+                retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp;
             </Button>
           </div>
         </div>
@@ -77,7 +77,7 @@ class SearchApiForm extends Component {
 
             <div className="four wide field">
               <Button  color="green" size='medium' animated >
-                  retrieve meal plan
+                  retrieve meal plan &nbsp; &nbsp; &nbsp; &nbsp;
               </Button>
             </div>
           </div>
@@ -94,14 +94,14 @@ class SearchApiForm extends Component {
             </div>
             <div className="four wide field">
               <Button  color="green" size='medium' animated >
-                  retrieve recipes
+                  retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp;
               </Button>
             </div>
           </div>
         </form>
       </div>
     </div>
-    );
+    )
   }
 }
 

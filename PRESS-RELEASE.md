@@ -17,28 +17,31 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+Recipe Finder.
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+For those of us who want healthy home cooked options without the headache of figuring it all out ourselves.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+Recipe finder is a web app which gives users access to hundreds of thousands of delicious recipes so that they can put together healthy, affordable meals for themselves and their families.  In addition users can request recipes based on the current contents of their pantry!  Simply input your ingredients and our app will return only those recipes which can be made from your current stocks.  Finally, users who choose to become members can have customized allergen info and warnings highlighted when meals are displayed AND have the option of saving their favourite recipes to their user account.
 
 ## Problem ##
-  > Describe the problem your product solves.
+This app solves everyday headaches experienced by the average person:
+- What sould I cook?
+- How can I have healthier meals on a budget?
+- What can I make with what I have in my pantry/refrigerator?
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+All these problems are resolved by allowing users to directly type in their criterion (caloric value/price/variety/pantry contents) into the app and have a list of relevant recipes be returned.The only problem now will be which one of the delicious recipes you should choose!
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+A modern day solution to an age-old problem.
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+Simply go to our [home page] (link to home page) to start getting inspired.
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+Recipe Finder is a life saver!  I can easily do my meal planning for the week and stay within budget, have healthy meals, and keep my entire family happy with the variety of dishes I am preparing. 
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+Recipe finder is here to revolutionalize the way we think about preparing home cooked meals.  [Come] (link to home page) join the revolution!
