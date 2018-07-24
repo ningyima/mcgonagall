@@ -4,6 +4,7 @@ const db = require('../database/db');
 const utils = require('./helpers.js');
 const authRoutes = require('../routes/auth-routes');
 
+
 const app = express();
 
 app.engine('html', require('ejs').renderFile);
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
   res.render('index');
   console.log('inside index');
 });
+
 
 app.get('/recipe', (req, res) => {
 <<<<<<< HEAD
