@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database/db');
 const utils = require('./helpers.js');
+const authRoutes = require('../routes/auth-routes');
 
 
 const app = express();
@@ -16,24 +17,34 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
+app.use('/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
   console.log('inside index');
 });
 
+
 app.get('/recipe', (req, res) => {
+<<<<<<< HEAD
   utils.getRecipeById(req.query.recipeId, function(error, body) {
+=======
+  utils.getRecipeById(req.query.recipeId, function (error, body) {
+>>>>>>> babel error fixes and updates do db.js file.
     if (error) {
       res.send(error);
     }
-    var temp = utils._filter(JSON.parse(body));
+    let temp = utils._filter(JSON.parse(body));
     res.send(temp);
   });
 });
 
 app.get('/recipes', (req, res) => {
+<<<<<<< HEAD
   utils.getRecipes(req.query, function(error, body) {
+=======
+  utils.getRecipes(req.query, function (error, body) {
+>>>>>>> babel error fixes and updates do db.js file.
     if (error) {
       res.send(error);
     }
@@ -42,7 +53,11 @@ app.get('/recipes', (req, res) => {
 });
 
 app.get('/ingredients', (req, res) => {
+<<<<<<< HEAD
   utils.getRecipesByIngredients(req.query, function(error, body) {
+=======
+  utils.getRecipesByIngredients(req.query, function (error, body) {
+>>>>>>> babel error fixes and updates do db.js file.
     if (error) {
       res.send(error);
     }
@@ -51,7 +66,11 @@ app.get('/ingredients', (req, res) => {
 });
 
 app.get('/calories', (req, res) => {
+<<<<<<< HEAD
   utils.getRecipesByCalories(req.query, function(error, body) {
+=======
+  utils.getRecipesByCalories(req.query, function (error, body) {
+>>>>>>> babel error fixes and updates do db.js file.
     if (error) {
       res.send(error);
     }
@@ -59,19 +78,9 @@ app.get('/calories', (req, res) => {
   });
 });
 
-app.get('/login/write', (req, res) => {
-  db.checkUser(req.query.email, (err, user) => {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send(user);
-    }
-  });
-});
 
-
-//====================================================
-//SAMPLE DATA. DATA STRUCTURE
+//= ===================================================
+// SAMPLE DATA. DATA STRUCTURE
 //
 
 // let recipeId = 507593;
