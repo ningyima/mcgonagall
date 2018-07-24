@@ -44,9 +44,7 @@ class SearchApiForm extends Component {
             </select>
           </div>
           <div className="four wide field">
-            <Button  color="green" size='medium' animated >
-                retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp;
-            </Button>
+            <Button  color="green" size='medium' animated content='retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp;' />
           </div>
         </div>
       </form>
@@ -76,9 +74,7 @@ class SearchApiForm extends Component {
             </div>
 
             <div className="four wide field">
-              <Button  color="green" size='medium' animated >
-                  retrieve meal plan &nbsp; &nbsp; &nbsp; &nbsp;
-              </Button>
+              <Button  color="green" size='medium' animated content='retrieve meal plan &nbsp; &nbsp; &nbsp; &nbsp;' />
             </div>
           </div>
         </form>
@@ -93,9 +89,7 @@ class SearchApiForm extends Component {
               <Input fluid placeholder='Ingredients...' />
             </div>
             <div className="four wide field">
-              <Button  color="green" size='medium' animated >
-                  retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp;
-              </Button>
+              <Button  color="green" size='medium' animated content="retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp; " />
             </div>
           </div>
         </form>

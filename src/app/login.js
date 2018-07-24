@@ -8,6 +8,7 @@ import {
   Content,
   Actions,
   Form,
+  Icon,
   Checkbox,
 } from 'semantic-ui-react';
 
@@ -39,30 +40,36 @@ class ModalLoginForm extends Component {
     const { open, dimmer } = this.state;
     return (
       <div>
-       <Button color='green' inverted primary content='Log In' onClick={this.open} style={{ marginLeft: '0.5em' }} />
-       <Modal open={this.state.open} onClose={this.close}>
-       <Modal.Content>
-       <Modal.Description>
-       <Header>
-       Log In
-       </Header>
-       </Modal.Description>
-       </Modal.Content>
-       <Modal.Content>
-      <Form>
-        <Form.Field>
-           <label>First Name</label>
-           <input placeholder='First Name' ref={this.handleRef} />
-        </Form.Field>
-        <Form.Field>
-          <label>Last Name</label>
-          <input placeholder='Last Name' ref={this.handleRef} />
-        </Form.Field>
-        <Button type='submit'>Submit</Button>
-        <Button className='g-signin2' data-onsuccess='onSignIn'>Google Login</Button>
-        <Button type='submit'>Facebook</Button>
-      </Form>
-          </Modal.Content>
+        <Button color='green' inverted primary content='Log In' onClick={this.open} style={{ marginLeft: '0.5em' }} />
+        <Modal open={this.state.open} onClose={this.close}>
+        <Modal.Content>
+        <Modal.Description>
+          <Header>
+            Log In
+          </Header>
+        </Modal.Description>
+        </Modal.Content>
+        <Modal.Content>
+          <Button color='facebook' onClick={() => {this.props.fbHandler();}} >
+            <Icon name='facebook' /> Facebook
+          </Button>
+          <Button color='google plus' onClick={() => {this.props.googleHandler();}}>
+            <Icon name='google plus' /> Google Plus
+          </Button>
+        </Modal.Content>
+        <Modal.Content>
+        <Form>
+          <Form.Field>
+             <label>username</label>
+             <input placeholder='username' ref={this.handleRef} />
+          </Form.Field>
+          <Form.Field>
+            <label>password</label>
+            <input placeholder='password' ref={this.handleRef} />
+          </Form.Field>
+          <Button type='submit' color="green" content="Submit" />
+        </Form>
+        </Modal.Content>
        </Modal>
       </div>
 

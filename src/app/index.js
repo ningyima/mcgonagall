@@ -81,10 +81,16 @@ class DesktopContainer extends Component {
     };
     this.hideFixedMenu = this.hideFixedMenu.bind(this);
     this.showFixedMenu = this.showFixedMenu.bind(this);
+    this.handleGoogleClick = this.handleGoogleClick.bind(this);
+    this.handleFacebookClick = this.handleFacebookClick.bind(this);
   }
 
-  handleGoogleClick(){
-    
+  handleGoogleClick (){
+    alert('google button clicked');
+  }
+
+  handleFacebookClick () {
+  alert('facebook button clicked');
   }
 
   hideFixedMenu() {
@@ -127,7 +133,7 @@ class DesktopContainer extends Component {
                 <Menu.Item href='#' as='a'>Features</Menu.Item>
                 <Menu.Item position='right'>
                   <SearchExampleStandard fluid/>
-                  <ModalLoginForm />
+                  <ModalLoginForm fbHandler={this.handleFacebookClick} googleHandler={this.handleGoogleClick} />
                   <ModalSignupForm />
                 </Menu.Item>
               </Container>
@@ -155,7 +161,11 @@ class MobileContainer extends Component {
     };
     this.handlePusherClick = this.handlePusherClick.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleGoogleClick = this.handleGoogleClick.bind(this);
+    this.handleFacebookClick = this.handleFacebookClick.bind(this);
   }
+
+
 
   handlePusherClick() {
     const { sidebarOpened } = this.state
@@ -166,6 +176,16 @@ class MobileContainer extends Component {
   handleToggle() {
     this.setState({ sidebarOpened: !this.state.sidebarOpened })
   }
+
+  handleGoogleClick (){
+    alert('google button clicked');
+  }
+
+  handleFacebookClick () {
+  alert('facebook button clicked');
+  }
+
+
   render() {
     const { children } = this.props
     const { sidebarOpened } = this.state
@@ -202,7 +222,7 @@ class MobileContainer extends Component {
                   </Menu.Item>
                   <Menu.Item position='right'>
                   <SearchExampleStandard size='mini' fluid/>
-                    <ModalLoginForm />
+                    <ModalLoginForm fbHandler={this.handleFacebookClick} googleHandler={this.handleGoogleClick}/>
                     <ModalSignupForm />
                   </Menu.Item>
                 </Menu>
