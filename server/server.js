@@ -11,6 +11,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('views', `${__dirname}/../src`);
 app.set('view engine', 'html');
 
+app.use(express.static(__dirname + '/../dist'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true,
@@ -23,7 +24,7 @@ app.get('/', (req, res) => {
 
 app.get('/recipe', (req, res) => {
   utils.getRecipeById(req.query.recipeId, function(error, body) {
-    if (error) { 
+    if (error) {
       res.send(error);
     }
     var temp = utils._filter(JSON.parse(body));
@@ -33,7 +34,7 @@ app.get('/recipe', (req, res) => {
 
 app.get('/recipes', (req, res) => {
   utils.getRecipes(req.query, function(error, body) {
-    if (error) { 
+    if (error) {
       res.send(error);
     }
     res.send(body);
@@ -42,7 +43,7 @@ app.get('/recipes', (req, res) => {
 
 app.get('/ingredients', (req, res) => {
   utils.getRecipesByIngredients(req.query, function(error, body) {
-    if (error) { 
+    if (error) {
       res.send(error);
     }
     res.send(body);
@@ -51,7 +52,7 @@ app.get('/ingredients', (req, res) => {
 
 app.get('/calories', (req, res) => {
   utils.getRecipesByCalories(req.query, function(error, body) {
-    if (error) { 
+    if (error) {
       res.send(error);
     }
     res.send(body);
