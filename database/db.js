@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
 const mlab = require('../config.js');
 // This could also be || if config doesnt exist;
 
@@ -8,18 +10,28 @@ mongoose.connect(mlab.mlabdb.mlab)
     (err) => { console.log('DB connection error: ', err); },
   );
 
-const userSchema = mongoose.Schema({
-  email: { type: String, unique: true },
-  name: String,
-  tokenSeed: String,
-  created: Date,
+const userSchema = new Schema({
+  googleId: String,
+  username: String,
+  createdAt: Date,
+  updatedAt: { type: Date, default: Date.now },
 });
 
-const Users = mongoose.model('User', userSchema);
+const User = mongoose.model('user', userSchema);
+userSchema.pre('save', (next) => {
+  let now = Date.now();
+  this.updatedAt = now;
 
-const checkUser = (userEmail, callback) => {
+  // set value for createdAt only if it is null
+  if (!this.createdAt) {
+    this.createdAt = now;
+  }
+  next();
+});
+
+const checkUser = (userId, callback) => {
   // construct query to pass to DB
-  Users.find({ email: userEmail }, (err, user) => {
+  User.find({ googleId: userId }, (err, user) => {
     if (err) {
       callback(err, null);
     } else {
@@ -32,5 +44,5 @@ const checkUser = (userEmail, callback) => {
   // run callback with results
 };
 
-module.exports.checkUser = checkUser;
-module.exports.Users = Users;
+module.exports = checkUser;
+module.exports = User;
