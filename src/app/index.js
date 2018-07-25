@@ -179,6 +179,7 @@ class MobileContainer extends Component {
 
   handleGoogleClick (){
     alert('google button clicked');
+    
   }
 
   handleFacebookClick () {
