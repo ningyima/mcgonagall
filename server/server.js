@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const db = require('../database/db');
 const utils = require('./helpers.js');
 const authRoutes = require('../routes/auth-routes');
-
+const passportSetup = require('../config/passport-setup');
 
 const app = express();
 
@@ -26,11 +26,7 @@ app.get('/', (req, res) => {
 
 
 app.get('/recipe', (req, res) => {
-<<<<<<< HEAD
   utils.getRecipeById(req.query.recipeId, function (error, body) {
-=======
-  utils.getRecipeById(req.query.recipeId, function(error, body) {
->>>>>>> minor text edits
     if (error) {
       res.send(error);
     }
@@ -40,11 +36,7 @@ app.get('/recipe', (req, res) => {
 });
 
 app.get('/recipes', (req, res) => {
-<<<<<<< HEAD
   utils.getRecipes(req.query, function (error, body) {
-=======
-  utils.getRecipes(req.query, function(error, body) {
->>>>>>> minor text edits
     if (error) {
       res.send(error);
     }
@@ -53,11 +45,7 @@ app.get('/recipes', (req, res) => {
 });
 
 app.get('/ingredients', (req, res) => {
-<<<<<<< HEAD
   utils.getRecipesByIngredients(req.query, function (error, body) {
-=======
-  utils.getRecipesByIngredients(req.query, function(error, body) {
->>>>>>> minor text edits
     if (error) {
       res.send(error);
     }
