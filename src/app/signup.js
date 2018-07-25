@@ -8,6 +8,7 @@ import {
   Content,
   Actions,
   Form,
+  Icon,
   Checkbox,
 } from 'semantic-ui-react';
 
@@ -50,27 +51,45 @@ class ModalSignupForm extends Component {
        </Modal.Description>
        </Modal.Content>
        <Modal.Content>
+          <Button color='facebook' onClick={() => {this.props.fbHandler();}} >
+            <Icon name='facebook' /> Facebook
+          </Button>
+          <Button color='google plus' onClick={() => {this.props.googleHandler();}}>
+            <Icon name='google plus' /> Google Plus
+          </Button>
+        </Modal.Content>
+       <Modal.Content>
       <Form>
-        <Form.Field>
-           <label>First Name</label>
-           <input placeholder='First Name' ref={this.handleRef} />
-        </Form.Field>
-        <Form.Field>
-          <label>Last Name</label>
-          <input placeholder='Last Name' ref={this.handleRef} />
-        </Form.Field>
-        <Form.Field>
-          <label>Email</label>
-          <input placeholder='Email' ref={this.handleRef} />
-        </Form.Field>
-        <Form.Field>
-          <label>Username</label>
-          <input placeholder='Username' ref={this.handleRef} />
-        </Form.Field>
-        <Form.Field>
-          <label>Password</label>
-          <input placeholder='Password' ref={this.handleRef} />
-        </Form.Field>
+        <div className="two fields"> 
+          <Form.Field>
+             <label>First Name</label>
+             <input placeholder='First Name' ref={this.handleRef} />
+          </Form.Field>
+          <Form.Field>
+            <label>Last Name</label>
+            <input placeholder='Last Name' ref={this.handleRef} />
+          </Form.Field>
+        </div>
+        <div className="two fields"> 
+          <Form.Field>
+            <label>Email</label>
+            <input placeholder='Email' ref={this.handleRef} />
+          </Form.Field>
+          <Form.Field>
+            <label>Username</label>
+            <input placeholder='Username' ref={this.handleRef} />
+          </Form.Field>
+        </div>
+        <div className="two fields">
+          <Form.Field>
+            <label>Password</label>
+            <input placeholder='Password' ref={this.handleRef} />
+          </Form.Field>
+          <Form.Field>
+            <label>COnmfirm Password</label>
+            <input placeholder='Confirm Password' ref={this.handleRef} />
+          </Form.Field>
+        </div>
         <Form.Field>
           <Checkbox label='I agree to the Terms and Conditions' />
         </Form.Field>
