@@ -21,10 +21,10 @@ class SearchApiForm extends Component {
   render(){
     return (
     <div className="call-to-action">
-      
+
       <form className="ui form">
       <h3>Filter recipes by cuisine, diet and </h3>
-        <div className="three fields"> 
+        <div className="three fields">
           <div className="six wide field">
             <select className="ui fluid search selection dropdown">
               <option>Select Cuisine</option>
@@ -33,7 +33,7 @@ class SearchApiForm extends Component {
             </select>
           </div>
           <div className="six wide field">
-            <select className="ui fluid search selection dropdown"> 
+            <select className="ui fluid search selection dropdown">
               <option>Select Diet Type</option>
               <option>Ketogenic</option>
               <option>Paleo</option>
@@ -44,19 +44,19 @@ class SearchApiForm extends Component {
             </select>
           </div>
           <div className="four wide field">
-            <Button  color="green" size='medium' animated content='retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp;' />
+            <Button  color="green" size='medium' animated content='retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp;'/>
           </div>
         </div>
       </form>
-        
-      
+
+
 
       <div>
         <form className="ui form">
           <h3>Select daily/weekly meal plans by total daily calories</h3>
-          <div className="three fields"> 
+          <div className="three fields">
             <div className="six wide field">
-              <select className="ui fluid search selection dropdown"> 
+              <select className="ui fluid search selection dropdown">
                 <option>Meal Plan by Calories</option>
                   {this.state.calorieRange.map((range) => {
                     return <option key={range} value={range}>{range}</option>})}
@@ -66,7 +66,7 @@ class SearchApiForm extends Component {
             </div>
 
             <div className="six wide field">
-              <select className="ui fluid search selection dropdown"> 
+              <select className="ui fluid search selection dropdown">
                 <option>Plan Type</option>
                 <option>Daily</option>
                 <option>Weekly</option>
@@ -84,7 +84,7 @@ class SearchApiForm extends Component {
       <div>
         <form className="ui form">
         <h3>Select meals by ingredient(s).  Use commas to separete multiple items</h3>
-          <div className="three fields"> 
+          <div className="three fields">
             <div className="twelve wide field">
               <Input fluid placeholder='Ingredients...' />
             </div>

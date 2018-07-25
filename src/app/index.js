@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import React, { Component } from 'react';
 import {
   Button,
@@ -161,11 +162,7 @@ class MobileContainer extends Component {
     };
     this.handlePusherClick = this.handlePusherClick.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
-    this.handleGoogleClick = this.handleGoogleClick.bind(this);
-    this.handleFacebookClick = this.handleFacebookClick.bind(this);
   }
-
-
 
   handlePusherClick() {
     const { sidebarOpened } = this.state
@@ -179,7 +176,7 @@ class MobileContainer extends Component {
 
   handleGoogleClick (){
     alert('google button clicked');
-    
+
   }
 
   handleFacebookClick () {
@@ -259,9 +256,9 @@ const HomepageLayout = () => (
     <Divider section />
     <Segment style={{ padding: '0em 8em' }} vertical>
       <Grid celled='internally' columns='equal' stackable>
-        <Grid.Row >   
-        <Grid.Column width={12}> 
-          <SearchApiForm />
+        <Grid.Row >
+        <Grid.Column width={12}>
+          <SearchApiForm/>
         </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -269,7 +266,7 @@ const HomepageLayout = () => (
     <Segment style={{ padding: '8em 0em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
-          <Grid.Column width={8}> 
+          <Grid.Column width={8}>
             <Header as='h3' style={{ fontSize: '2em' }}>
               Healthier, Informed, Affordable meal prep.
             </Header>
