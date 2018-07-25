@@ -24,4 +24,9 @@ router.get('/google', passport.authenticate('google', {
   scope: ['https://www.googleapis.com/auth/plus.login'],
 }));
 
+// callback route for google to redirect to
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+  res.send('You\'ve reached the Callback URI');
+});
+
 module.exports = router;
