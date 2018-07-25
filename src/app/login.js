@@ -59,8 +59,8 @@ class ModalLoginForm extends Component {
           <input placeholder='Last Name' ref={this.handleRef} />
         </Form.Field>
         <Button type='submit'>Submit</Button>
-        <Button type='submit'>Google</Button>
-        <Button type='submit' >Facebook</Button>
+        <Button className='g-signin2' data-onsuccess='onSignIn'>Google Login</Button>
+        <Button type='submit'>Facebook</Button>
       </Form>
           </Modal.Content>
        </Modal>

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const passport = require('passport');
 
 // auth login
 router.get('/login', (req, res) => {
@@ -20,9 +20,8 @@ router.get('/logout', (req, res) => {
 });
 
 // auth google
-router.get('/google', (req, res) => {
-  // handle with passport
-  res.send('log in with google');
-});
+router.get('/google', passport.authenticate('google', {
+  scope: ['https://www.googleapis.com/auth/plus.login'],
+}));
 
 module.exports = router;

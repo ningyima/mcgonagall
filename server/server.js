@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const db = require('../database/db');
 const utils = require('./helpers.js');
 const authRoutes = require('../routes/auth-routes');
-
+const passportSetup = require('../config/passport-setup');
 
 const app = express();
 
