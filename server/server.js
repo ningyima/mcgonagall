@@ -1,9 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
 const db = require('../database/db');
-const utils = require('./helpers.js');
-const authRoutes = require('../routes/auth-routes');
+const keys = require('../config');
 const passportSetup = require('../config/passport-setup');
+const authRoutes = require('../routes/auth-routes');
+const profileRoutes = require('../routes/profile');
+
+const utils = require('./helpers.js');
 
 const app = express();
 
@@ -17,7 +22,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true,
 }));
+
+// use session key to create session cookie
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [keys.session.cookieKey],
+}));
+
+// initialize passport for app
+app.use(passport.initialize());
+app.use(passport.session());
+
+// setup prefix for routes
 app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
 
 app.get('/', (req, res) => {
   res.render('index');
