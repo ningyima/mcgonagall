@@ -304,6 +304,10 @@ class HomepageLayout extends Component {
   }
 
   getRecipes (path, param, e) {
+    this.setState({
+        recipes:[],
+    });
+
     e.preventDefault();
     axios.get(path, {params: param})
     .then((data) =>  {
