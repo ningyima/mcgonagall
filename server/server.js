@@ -53,7 +53,7 @@ app.get('/recipe', (req, res) => {
     if (error) {
       res.send(error);
     }
-    let temp = utils._filter(JSON.parse(body));
+    const temp = utils._filter(JSON.parse(body));
     res.send(temp);
   });
 });
