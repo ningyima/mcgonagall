@@ -147,7 +147,7 @@ class SearchApiForm extends Component {
             </div>
             <div className="four wide field">
               <Button  name="btnIngredient"
-                onClick={(e) => {this.props.openModal(e)}}
+                onClick={(e) => {this.props.getRecipes('/ingredients',this.state.ingredientQuery,e); this.props.openModal(e)}}
                 color="green" size='medium' animated
                 content="retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp; " />
             </div>

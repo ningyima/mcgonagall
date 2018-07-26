@@ -264,15 +264,16 @@ class HomepageLayout extends Component {
     super(props);
     this.state = {
       data: 25,
-      recipes: data,
+      recipes: [],
       open:false,
-      recipe: ''
+      recipe:{}
     }
 
     // this.handleDemoClick = this.handleDemoClick.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this)
     this.getRecipes = this.getRecipes.bind(this);
+    this.getRecipe = this.getRecipe.bind(this);
   }
 
   close(){
@@ -295,7 +296,7 @@ class HomepageLayout extends Component {
       this.setState({
         recipe: data,
       });
-      console.log('Data successfully retrieved from server. ',this.state.recipes);
+      console.log('Data successfully retrieved from server. ',this.state.recipe);
     })
     .catch((err) => {
       console.log('ERROR=== ', err.response.data);
