@@ -20,6 +20,7 @@ import SearchExampleStandard from './search.js';
 import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
 import SearchApiForm from './searchApi.jsx';
+import $ from 'jquery';
 
 /*HEADING*/
 
@@ -82,16 +83,17 @@ class DesktopContainer extends Component {
     };
     this.hideFixedMenu = this.hideFixedMenu.bind(this);
     this.showFixedMenu = this.showFixedMenu.bind(this);
-    this.handleGoogleClick = this.handleGoogleClick.bind(this);
-    this.handleFacebookClick = this.handleFacebookClick.bind(this);
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleSignupClick = this.handleSignupClick.bind(this);
+    //alert ('in the Desktop COntainer with '+ props.demoTest);
   }
 
-  handleGoogleClick (){
-    alert('google button clicked');
+  handleLoginClick (){
+    alert('login desktop button clicked');
   }
 
-  handleFacebookClick () {
-  alert('facebook button clicked');
+  handleSignupClick () {
+  alert('signup desktop button clicked');
   }
 
   hideFixedMenu() {
@@ -134,8 +136,8 @@ class DesktopContainer extends Component {
                 <Menu.Item href='#' as='a'>Features</Menu.Item>
                 <Menu.Item position='right'>
                   <SearchExampleStandard fluid/>
-                  <ModalLoginForm fbHandler={this.handleFacebookClick} googleHandler={this.handleGoogleClick} />
-                  <ModalSignupForm />
+                  <ModalLoginForm loginHandler={this.handleLoginClick} />
+                  <ModalSignupForm signupHandler={this.handleSignupClick} />
                 </Menu.Item>
               </Container>
             </Menu>
@@ -162,7 +164,11 @@ class MobileContainer extends Component {
     };
     this.handlePusherClick = this.handlePusherClick.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
+    this.handleLoginClick = this.handleLoginClick.bind(this);
+    this.handleSignupClick = this.handleSignupClick.bind(this);
   }
+
+
 
   handlePusherClick() {
     const { sidebarOpened } = this.state
@@ -174,13 +180,13 @@ class MobileContainer extends Component {
     this.setState({ sidebarOpened: !this.state.sidebarOpened })
   }
 
-  handleGoogleClick (){
-    alert('google button clicked');
-
+  handleLoginClick (){
+    alert('mobile login button clicked');
+    
   }
 
-  handleFacebookClick () {
-  alert('facebook button clicked');
+  handleSignupClick () {
+  alert('mobile signup btn clicked');
   }
 
 
@@ -220,8 +226,8 @@ class MobileContainer extends Component {
                   </Menu.Item>
                   <Menu.Item position='right'>
                   <SearchExampleStandard size='mini' fluid/>
-                    <ModalLoginForm fbHandler={this.handleFacebookClick} googleHandler={this.handleGoogleClick}/>
-                    <ModalSignupForm />
+                    <ModalLoginForm loginHandler={this.handleLoginClick} />
+                    <ModalSignupForm signupHandler={this.handleSignupClick} />
                   </Menu.Item>
                 </Menu>
               </Container>
@@ -240,9 +246,9 @@ MobileContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const ResponsiveContainer = ({ children }) => (
+const ResponsiveContainer = ({ demoTest, children }) => (
   <div>
-    <DesktopContainer>{children}</DesktopContainer>
+    <DesktopContainer demoTest={demoTest}>{children}</DesktopContainer>
     <MobileContainer>{children}</MobileContainer>
   </div>
 )
@@ -251,133 +257,164 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const HomepageLayout = () => (
-  <ResponsiveContainer>
-    <Divider section />
-    <Segment style={{ padding: '0em 8em' }} vertical>
-      <Grid celled='internally' columns='equal' stackable>
-        <Grid.Row >
-        <Grid.Column width={12}>
-          <SearchApiForm/>
-        </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-    <Segment style={{ padding: '8em 0em' }} vertical>
-      <Grid container stackable verticalAlign='middle'>
-        <Grid.Row>
-          <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              Healthier, Informed, Affordable meal prep.
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              Some Description....
-            </p>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              Easy to use on the go!...
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-            paragraph description...
-            </p>
+class HomepageLayout extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: 25,
+      recipes: []
+    }
+
+    // this.handleDemoClick = this.handleDemoClick.bind(this);
+    this.getRecipes = this.getRecipes.bind(this);
+  } 
+
+  getRecipes (path, param, e) {
+    e.preventDefault();
+    axios.get(path, {params: param})
+    .then((data) =>  {
+      this.setState({
+      recipes: data.data
+      });
+      console.log('Data successfully retrieved from server. ',this.state.recipes);
+    })
+    .catch((err) => {
+      console.log('ERROR=== ', err.response.data);
+    });
+  }
+
+  render () {
+    return (
+    <ResponsiveContainer demoTest={this.state.data}>
+      <Divider section />
+      <Segment style={{ padding: '10em 2em'}} vertical>
+        <Grid celled='internally' columns='equal' stackable>
+          <Grid.Row >   
+          <Grid.Column > 
+            <SearchApiForm className="call-to-action"
+              getRecipes={this.getRecipes}
+            />
           </Grid.Column>
-          <Grid.Column floated='right' width={6}>
-            <Image bordered rounded size='large' src='' />
-          </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column textAlign='center'>
-            <Button  color="green" href='#'size='huge'>Check Them Out</Button>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-    <Segment style={{ padding: '0em' }} vertical>
-      <Grid celled='internally' columns='equal' stackable>
-        <Grid.Row textAlign='center'>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              "What a Company"
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>That is what they all say about us (We can maybe put a comment stream here)</p>
-          </Grid.Column>
-          <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
-              "Fake user comment here."
-            </Header>
-            <p style={{ fontSize: '1.33em' }}>
-              <b>Nan</b> Fake user name and picture
-            </p>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </Segment>
-    <Segment style={{ padding: '8em 0em' }} vertical>
-      <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>
-          List of Features
-        </Header>
-        <p style={{ fontSize: '1.33em' }}>
-        - Allergens <br />
-        - Recipes <br />
-        - Prices <br />
-        Short description...
-        </p>
-        <Button color="green" href='#' as='a' size='large'>
-          Read More
-        </Button>
-        <Divider
-          as='h4'
-          className='header'
-          horizontal
-          style={{ margin: '3em 0em', textTransform: 'uppercase' }}
-        >
-          <a href='#'>Case Studies</a>
-        </Divider>
-        <Header as='h3' style={{ fontSize: '2em' }}>
-          Did We Tell You About Our Bananas?
-        </Header>
-        <p style={{ fontSize: '1.33em' }}>
-          Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
-          it's really true. It took years of gene splicing and combinatory DNA research, but our
-          bananas can really dance.
-        </p>
-        <Button color="green" href='#' as='a' size='large'>
-          I'm Still Quite Interested
-        </Button>
-      </Container>
-    </Segment>
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
-      <Container>
-        <Grid divided inverted stackable>
+          </Grid.Row>
+        </Grid>
+      </Segment>
+      <Segment style={{ padding: '8em 0em' }} vertical>
+        <Grid container stackable verticalAlign='middle'>
           <Grid.Row>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='About' />
-              <List link inverted>
-                <List.Item href='#' as='a'>Sitemap</List.Item>
-                <List.Item href='#' as='a'>Contact Us</List.Item>
-                <List.Item href='#' as='a'>Team hours</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
-              <List link inverted>
-                <List.Item href='#' as='a'>Feature List</List.Item>
-                <List.Item href='#' as='a'>Membership</List.Item>
-                <List.Item href='#' as='a'>Renown recipes</List.Item>
-              </List>
-            </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as='h4' inverted>
-                Footer Header
+            <Grid.Column width={8}> 
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                Healthier, Informed, Affordable meal prep.
               </Header>
-              <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
+              <p style={{ fontSize: '1.33em' }}>
+                Some Description....
+              </p>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                Easy to use on the go!...
+              </Header>
+              <p style={{ fontSize: '1.33em' }}>
+              paragraph description...
+              </p>
+            </Grid.Column>
+            <Grid.Column floated='right' width={6}>
+              <Image bordered rounded size='large' src='' />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Button  color="green" href='#'size='huge'>Check Them Out</Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
+      <Segment style={{ padding: '0em' }} vertical>
+        <Grid celled='internally' columns='equal' stackable>
+          <Grid.Row textAlign='center'>
+            <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                "What a Company"
+              </Header>
+              <p style={{ fontSize: '1.33em' }}>That is what they all say about us (We can maybe put a comment stream here)</p>
+            </Grid.Column>
+            <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                "Fake user comment here."
+              </Header>
+              <p style={{ fontSize: '1.33em' }}>
+                <b>Nan</b> Fake user name and picture
               </p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Container>
-    </Segment>
-  </ResponsiveContainer>
-)
+      </Segment>
+      <Segment style={{ padding: '8em 0em' }} vertical>
+        <Container text>
+          <Header as='h3' style={{ fontSize: '2em' }}>
+            List of Features
+          </Header>
+          <p style={{ fontSize: '1.33em' }}>
+          - Allergens <br />
+          - Recipes <br />
+          - Prices <br />
+          Short description...
+          </p>
+          <Button color="green" href='#' as='a' size='large'>
+            Read More
+          </Button>
+          <Divider
+            as='h4'
+            className='header'
+            horizontal
+            style={{ margin: '3em 0em', textTransform: 'uppercase' }}
+          >
+            <a href='#'>Case Studies</a>
+          </Divider>
+          <Header as='h3' style={{ fontSize: '2em' }}>
+            Did We Tell You About Our Bananas?
+          </Header>
+          <p style={{ fontSize: '1.33em' }}>
+            Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
+            it's really true. It took years of gene splicing and combinatory DNA research, but our
+            bananas can really dance.
+          </p>
+          <Button color="green" href='#' as='a' size='large'>
+            I'm Still Quite Interested
+          </Button>
+        </Container>
+      </Segment>
+      <Segment inverted vertical style={{ padding: '5em 0em' }}>
+        <Container>
+          <Grid divided inverted stackable>
+            <Grid.Row>
+              <Grid.Column width={3}>
+                <Header inverted as='h4' content='About' />
+                <List link inverted>
+                  <List.Item href='#' as='a'>Sitemap</List.Item>
+                  <List.Item href='#' as='a'>Contact Us</List.Item>
+                  <List.Item href='#' as='a'>Team hours</List.Item>
+                </List>
+              </Grid.Column>
+              <Grid.Column width={3}>
+                <Header inverted as='h4' content='Services' />
+                <List link inverted>
+                  <List.Item href='#' as='a'>Feature List</List.Item>
+                  <List.Item href='#' as='a'>Membership</List.Item>
+                  <List.Item href='#' as='a'>Renown recipes</List.Item>
+                </List>
+              </Grid.Column>
+              <Grid.Column width={7}>
+                <Header as='h4' inverted>
+                  Footer Header
+                </Header>
+                <p>
+                  Extra space for a call to action inside the footer that could help re-engage users.
+                </p>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+      </Segment>
+    </ResponsiveContainer>
+    )
+  }
+}
 export default HomepageLayout;
