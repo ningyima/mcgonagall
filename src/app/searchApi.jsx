@@ -35,11 +35,13 @@ class SearchApiForm extends Component {
         intolerances: [],
         number: 25,
         offset: 0,
-        query: ''
+        query: '', 
+        maxCalories: 0
       }
     }
     this.updateCalQuery = this.updateCalQuery.bind(this);
     this.updateIngredientQuery = this.updateIngredientQuery.bind(this);
+    this.updateMealQuery = this.updateMealQuery.bind(this);
   }
 
   updateCalQuery (event) {
@@ -59,7 +61,14 @@ class SearchApiForm extends Component {
   }
 
   updateMealQuery () {
-
+    const temp = this.state.mealQuery;
+    event.target.name === 'cuisine' ? temp['cuisine'] = event.target.value : 
+    event.target.name === 'diet' ? temp['diet'] = event.target.value : 
+    event.target.name === 'query' ? temp['query'] = event.target.value : 
+    temp['maxCalories'] = event.target.value;
+    this.setState({
+      mealQuery: temp 
+    });
   }
 
   render(){
@@ -75,17 +84,22 @@ class SearchApiForm extends Component {
         <h3>Filter recipes by cuisine, diet, calories and meal interest.</h3>
           <div className="five fields"> 
             <div className="three wide field">
-              <Input onChange={(e) => this.updateMealQuery(e)} fluid placeholder='desired meal e.g. pasta, burger, smoothie, etc...' />
+              <Input name="query" 
+                onChange={(e) => this.updateMealQuery(e)} fluid placeholder='desired meal e.g. pasta, burger, smoothie, etc...' />
             </div>
             <div className="three wide field">
-              <select className="ui fluid search selection dropdown">
+              <select name="cuisine" 
+                className="ui fluid search selection dropdown"
+                onChange={(e) => this.updateMealQuery(e)} >
                 <option>Select Cuisine</option>
                 {this.state.cuisine.map((type) => {
                   return <option key={type} value={type}>{type}</option>})}
               </select>
             </div>
             <div className="three wide field">
-              <select className="ui fluid search selection dropdown"> 
+              <select name="diet" 
+                className="ui fluid search selection dropdown"
+                onChange={(e) => this.updateMealQuery(e)} > 
                 <option>Select Diet Type</option>
                 <option>Ketogenic</option>
                 <option>Paleo</option>
@@ -97,7 +111,7 @@ class SearchApiForm extends Component {
             </div>
             <div className="three wide field">
               <select name="maxCalories" 
-                onChange={(e) => this.updateRecipeQry(e)} 
+                onChange={(e) => this.updateMealQuery(e)} 
                 className="ui fluid search selection dropdown" > 
                 <option>max calories</option>
                   {this.state.mealCalorieRange.map((range) => {
@@ -108,7 +122,9 @@ class SearchApiForm extends Component {
             </div>
 
             <div className="four wide field">
-              <Button  color="green" size='medium' animated content='Retrieve Recipes &nbsp; &nbsp; &nbsp; &nbsp;' />
+              <Button  name="mainBtn" 
+                onClick={(e) => {this.props.getRecipes('/recipes',this.state.mealQuery,e)}} 
+                color="green" size='medium' animated content='Retrieve Recipes &nbsp; &nbsp; &nbsp; &nbsp;' />
             </div>
           </div>
         </form>

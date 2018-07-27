@@ -24,8 +24,23 @@ let trimQryObj = (queryObj) => {
 
 let _filter = (fullRecipe) => {
   var minRecipe = {};
+  minRecipe['id'] = fullRecipe['id'];
+  minRecipe['title'] = fullRecipe['title'];
+  minRecipe['pricePerServing'] = fullRecipe['pricePerServing'];
+  minRecipe['readyInMinutes'] = fullRecipe['readyInMinutes'];
+  minRecipe['servings'] = fullRecipe['servings'];
+  fullRecipe['nutrition']['nutrients'].forEach(function (nutrient) {
+    if(nutrient.title === 'Calories') {
+      minRecipe['calories'] = nutrient.amount;
+      return;
+    }
+  });
+  minRecipe['aggregateLikes'] = fullRecipe['aggregateLikes'];
+  minRecipe['spoonacularScore'] = fullRecipe['spoonacularScore'];
+  minRecipe['extendedIngredients'] = fullRecipe['extendedIngredients'];
   minRecipe['instructions'] = fullRecipe['instructions'];
   minRecipe['analyzedInstructions'] = fullRecipe['analyzedInstructions'][0].steps;
+  
   minRecipe['analyzedInstructions'].forEach(function(step) {
     for (var key in step) {
       if (key !== 'number' && key !== 'step') {
@@ -33,9 +48,6 @@ let _filter = (fullRecipe) => {
       }
     }
   });
-  minRecipe['aggregateLikes'] = fullRecipe['aggregateLikes'];
-  minRecipe['spoonacularScore'] = fullRecipe['spoonacularScore'];
-  minRecipe['extendedIngredients'] = fullRecipe['extendedIngredients'];
   minRecipe['extendedIngredients'].forEach(function(ingredients) {
     for (var key in ingredients) {
       if (key !== 'originalString' && key !== 'id') {
@@ -55,6 +67,16 @@ let citeAllergens = (ingredientList) => {
 
   return allergens;
 }
+
+let getRecipesComplex = (searchObject, cb) => {
+  var callback = function(err, res, body) {
+    cb(err, body);
+  };
+  var queryObj = trimQryObj(searchObj);
+  let options = setOptions('recipes/searchComplex?', queryObj);
+  request(options, callback);
+}
+
 
 let getRecipesByIngredients = (ingredients, cb) => {
   var callback = function(err, res, body) {
@@ -88,7 +110,7 @@ let getRecipeById = (recipeId, cb) => {
   var callback = function(err, res, body) {
     cb(err, body);
   };
-  let options = setOptions('recipes/'+recipeId+'/information?', {includeNutrition: false });
+  let options = setOptions('recipes/'+recipeId+'/information?', {includeNutrition: true });
   request(options, callback);
 }
 module.exports._filter = _filter;
