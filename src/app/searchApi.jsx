@@ -13,14 +13,14 @@ class SearchApiForm extends Component {
     super(props);
     this.state = {
       cuisine: [ 'African', 'American', 'British', 'Cajun', 'Caribbean', 'Chinese', 'Eastern European', 'French', 'German', 'Greek', 'Indian', 'Irish', 'Italian', 'Japanese', 'Jewish', 'Korean', 'Latin American', 'Mexican', 'Middle Eastern', 'Nordic', 'Southern', 'Spanish', 'Thai', 'Vietnamese' ],
-      calorieRange: ['under 400 Cal.', '600', '800', '1000','1200', '1400', '1600', '1800', '2000', '2200', '2400' ],
+      calorieRange: ['400', '600', '800', '1000','1200', '1400', '1600', '1800', '2000', '2200', '2400' ],
       calQuery: {
         diet: '',
         targetCalories: '',
         timeFrame: ''
       },
       mealCalorieRange: [
-          'under 100 Cal.', '200', '300', '400', '500', '600', '700', '800', '900', '1000', '1100', '1200', '1300',  '1400', '1500' 
+          '100', '200', '300', '400', '500', '600', '700', '800', '900', '1000', '1100', '1200', '1300',  '1400', '1500' 
       ],
       ingredientQuery: {
         fillIngredients: false,
@@ -36,7 +36,8 @@ class SearchApiForm extends Component {
         number: 25,
         offset: 0,
         query: '', 
-        maxCalories: 0
+        maxCalories: 0,
+        ranking: 2
       }
     }
     this.updateCalQuery = this.updateCalQuery.bind(this);
@@ -60,7 +61,7 @@ class SearchApiForm extends Component {
     })
   }
 
-  updateMealQuery () {
+  updateMealQuery (event) {
     const temp = this.state.mealQuery;
     event.target.name === 'cuisine' ? temp['cuisine'] = event.target.value : 
     event.target.name === 'diet' ? temp['diet'] = event.target.value : 
@@ -84,7 +85,7 @@ class SearchApiForm extends Component {
         <h3>Filter recipes by cuisine, diet, calories and meal interest.</h3>
           <div className="five fields"> 
             <div className="three wide field">
-              <Input name="query" 
+              <Input name="query" value={this.state.mealQuery.query}
                 onChange={(e) => this.updateMealQuery(e)} fluid placeholder='desired meal e.g. pasta, burger, smoothie, etc...' />
             </div>
             <div className="three wide field">
