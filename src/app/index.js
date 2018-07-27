@@ -20,6 +20,8 @@ import SearchExampleStandard from './search.js';
 import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
 import SearchApiForm from './searchApi.jsx';
+import RecipesList from './recipes.js';
+import data from './data.js';
 import $ from 'jquery';
 
 /*HEADING*/
@@ -182,7 +184,7 @@ class MobileContainer extends Component {
 
   handleLoginClick (){
     alert('mobile login button clicked');
-    
+
   }
 
   handleSignupClick () {
@@ -262,19 +264,55 @@ class HomepageLayout extends Component {
     super(props);
     this.state = {
       data: 25,
-      recipes: []
+      recipes: [],
+      open:false,
+      recipe:{}
     }
 
     // this.handleDemoClick = this.handleDemoClick.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this)
     this.getRecipes = this.getRecipes.bind(this);
-  } 
+    this.getRecipe = this.getRecipe.bind(this);
+  }
+
+  close(){
+    this.setState({
+      open:false
+    })
+  }
+
+  open(e){
+    e.preventDefault();
+    this.setState({
+      open:true
+    })
+  }
+
+  getRecipe(id, e){
+    e.preventDefault();
+    axios.get('/recipe', {params: {recipeId:id}})
+    .then((data) =>  {
+      this.setState({
+        recipe: data,
+      });
+      console.log('Data successfully retrieved from server. ',this.state.recipe);
+    })
+    .catch((err) => {
+      console.log('ERROR=== ', err.response.data);
+    });
+  }
 
   getRecipes (path, param, e) {
+    this.setState({
+        recipes:[],
+    });
+
     e.preventDefault();
     axios.get(path, {params: param})
     .then((data) =>  {
       this.setState({
-      recipes: data.data
+        recipes: data.data,
       });
       console.log('Data successfully retrieved from server. ',this.state.recipes);
     })
@@ -289,11 +327,12 @@ class HomepageLayout extends Component {
       <Divider section />
       <Segment style={{ padding: '10em 2em'}} vertical>
         <Grid celled='internally' columns='equal' stackable>
-          <Grid.Row >   
-          <Grid.Column > 
+          <Grid.Row >
+          <Grid.Column >
             <SearchApiForm className="call-to-action"
-              getRecipes={this.getRecipes}
+              getRecipes={this.getRecipes} openModal = {this.open}
             />
+            <RecipesList recipes={this.state.recipes} open={this.state.open} close={this.close} />
           </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -301,7 +340,7 @@ class HomepageLayout extends Component {
       <Segment style={{ padding: '8em 0em' }} vertical>
         <Grid container stackable verticalAlign='middle'>
           <Grid.Row>
-            <Grid.Column width={8}> 
+            <Grid.Column width={8}>
               <Header as='h3' style={{ fontSize: '2em' }}>
                 Healthier, Informed, Affordable meal prep.
               </Header>

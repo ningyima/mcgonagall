@@ -34,7 +34,7 @@ class SearchApiForm extends Component {
     const temp = this.state.calQuery;
     event.target.name === 'targetCalories' ? temp['targetCalories'] = event.target.value : event.target.name === 'diet' ? temp['diet'] = event.target.value : temp['timeFrame'] = event.target.value;
     this.setState({
-      calQuery: temp 
+      calQuery: temp
     });
   }
 
@@ -49,13 +49,13 @@ class SearchApiForm extends Component {
   render(){
     return (
     <div className="call-to-action">
-      
+
       {/* RECIPES BY DYNAMIC INPUT
           This functionality is still being developed
       */}
       <form className="ui form">
       <h3>Filter recipes by cuisine, diet and </h3>
-        <div className="three fields"> 
+        <div className="three fields">
           <div className="six wide field">
             <select className="ui fluid search selection dropdown">
               <option>Select Cuisine</option>
@@ -64,7 +64,7 @@ class SearchApiForm extends Component {
             </select>
           </div>
           <div className="six wide field">
-            <select className="ui fluid search selection dropdown"> 
+            <select className="ui fluid search selection dropdown">
               <option>Select Diet Type</option>
               <option>Ketogenic</option>
               <option>Paleo</option>
@@ -79,9 +79,9 @@ class SearchApiForm extends Component {
           </div>
         </div>
       </form>
-        
-      
-    {/* RECIPES BY MEAL PLAN 
+
+
+    {/* RECIPES BY MEAL PLAN
         Diet type and maximum daily calories are used to retrieve recipes either for a day or a month so that users can have full mean plan ideas.
         - state variable calQuery is updated based on changes to controls
         - on submit the button name, routing path and event name are sent to the parent comonent to be used in the ajax request
@@ -91,9 +91,9 @@ class SearchApiForm extends Component {
           <h3>Select meal plans by diet type and total daily calories.  Meal plans may be for one day or one full week (21 meals) </h3>
             <div className="four fields">
             <div className="four wide field">
-              <select name="diet" 
+              <select name="diet"
                 onChange={(e) => this.updateCalQuery(e)}
-                className="ui fluid search selection dropdown"> 
+                className="ui fluid search selection dropdown">
                 <option>Select Diet Type</option>
                 <option>Ketogenic</option>
                 <option>Paleo</option>
@@ -104,9 +104,9 @@ class SearchApiForm extends Component {
               </select>
             </div>
             <div className="four wide field">
-              <select name="targetCalories" 
-                onChange={(e) => this.updateCalQuery(e)} 
-                className="ui fluid search selection dropdown" > 
+              <select name="targetCalories"
+                onChange={(e) => this.updateCalQuery(e)}
+                className="ui fluid search selection dropdown" >
                 <option>Meal Plan by Calories</option>
                   {this.state.calorieRange.map((range) => {
                     return <option key={range} value={range}>{range}</option>})}
@@ -116,7 +116,7 @@ class SearchApiForm extends Component {
             </div>
 
             <div className="four wide field">
-              <select name="timeFrame" onChange={(e) => this.updateCalQuery(e)} className="ui fluid search selection dropdown" > 
+              <select name="timeFrame" onChange={(e) => this.updateCalQuery(e)} className="ui fluid search selection dropdown" >
                 <option>Plan Type</option>
                 <option>day</option>
                 <option>week</option>
@@ -124,8 +124,8 @@ class SearchApiForm extends Component {
             </div>
 
             <div className="four wide field">
-              <Button name="calBtn" onClick={(e) => {this.props.getRecipes('/calories',this.state.calQuery,e)}} 
-                color="green" size='medium' 
+              <Button name="calBtn" onClick={(e) => {this.props.getRecipes('/calories',this.state.calQuery,e)}}
+                color="green" size='medium'
                 animated content='retrieve meal plan &nbsp; &nbsp; &nbsp; &nbsp;' />
             </div>
           </div>
@@ -141,14 +141,14 @@ class SearchApiForm extends Component {
       <div>
         <form className="ui form">
         <h3>Select meals by ingredient(s).  Use commas to separete multiple items</h3>
-          <div className="two fields"> 
+          <div className="two fields">
             <div className="twelve wide field">
               <Input onChange={(e) => this.updateIngredientQuery(e)} fluid placeholder='Ingredients...' />
             </div>
             <div className="four wide field">
               <Button  name="btnIngredient"
-                onClick={(e) => {this.props.getRecipes('/ingredients',this.state.ingredientQuery,e)}}
-                color="green" size='medium' animated 
+                onClick={(e) => {this.props.getRecipes('/ingredients',this.state.ingredientQuery,e); this.props.openModal(e)}}
+                color="green" size='medium' animated
                 content="retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp; " />
             </div>
           </div>
