@@ -54,6 +54,25 @@ app.get('/recipe', (req, res) => {
 });
 
 app.get('/recipes', (req, res) => {
+  console.log('logging the query ',req.query);
+  //initialize a session
+  // req.session.user = 'adnagee';
+  // req.session.intolerances = ['peanut', 'wheat'];
+  if (req.session.user/*'user is logged in'*/) {
+    console.log('we are in a session');
+    req.query['intolerances'] = req.session.intolerances
+  }
+  if (req.query.maxCalories !== 0) { //run complexquery
+    utils.getRecipesComplex(req.query, function(error, body) {
+      if (error) {
+        res.send(error);
+      }
+      else {
+        res.send(body);
+      }
+    });//end complex/calorie query handling
+  }
+  else //modify to include path so method can be refactored.
   utils.getRecipes(req.query, function (error, body) {
     if (error) {
       res.send(error);

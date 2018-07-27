@@ -68,7 +68,7 @@ let citeAllergens = (ingredientList) => {
   return allergens;
 }
 
-let getRecipesComplex = (searchObject, cb) => {
+let getRecipesComplex = (searchObj, cb) => {
   var callback = function(err, res, body) {
     cb(err, body);
   };
@@ -116,6 +116,7 @@ let getRecipeById = (recipeId, cb) => {
 module.exports._filter = _filter;
 module.exports.getRecipeById = getRecipeById;
 module.exports.getRecipesByCalories = getRecipesByCalories;
+module.exports.getRecipesComplex = getRecipesComplex;
 module.exports.getRecipesByIngredients = getRecipesByIngredients;
 module.exports.citeAllergens = citeAllergens;
 module.exports.getRecipes = getRecipes;
