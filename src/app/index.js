@@ -21,6 +21,7 @@ import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
 import SearchApiForm from './searchApi.jsx';
 import RecipesList from './recipes.js';
+import RecipeDetails from './RecipeDetails';
 import data from './data.js';
 import $ from 'jquery';
 
@@ -266,12 +267,16 @@ class HomepageLayout extends Component {
       data: 25,
       recipes: [],
       open:false,
-      recipe:{}
+      openDetails:false,
+      recipe:{},
+      image:''
     }
 
     // this.handleDemoClick = this.handleDemoClick.bind(this);
     this.open = this.open.bind(this);
-    this.close = this.close.bind(this)
+    this.close = this.close.bind(this);
+    this.openDetails = this.openDetails.bind(this);
+    this.closeDetails = this.closeDetails.bind(this)
     this.getRecipes = this.getRecipes.bind(this);
     this.getRecipe = this.getRecipe.bind(this);
   }
@@ -289,17 +294,36 @@ class HomepageLayout extends Component {
     })
   }
 
+  closeDetails(){
+    this.setState({
+      openDetails:false
+    })
+  }
+
+  openDetails(e, img){
+    e.preventDefault();
+    this.setState({
+      openDetails:true,
+      image:img
+    })
+  }
+
   getRecipe(id, e){
+
+    this.setState({
+      recipe:{}
+    });
+
     e.preventDefault();
     axios.get('/recipe', {params: {recipeId:id}})
     .then((data) =>  {
       this.setState({
-        recipe: data,
+        recipe: data.data,
       });
       console.log('Data successfully retrieved from server. ',this.state.recipe);
     })
     .catch((err) => {
-      console.log('ERROR=== ', err.response.data);
+      console.log('ERROR=== ', err);
     });
   }
 
@@ -332,7 +356,8 @@ class HomepageLayout extends Component {
             <SearchApiForm className="call-to-action"
               getRecipes={this.getRecipes} openModal = {this.open}
             />
-            <RecipesList recipes={this.state.recipes} open={this.state.open} close={this.close} />
+            <RecipesList recipes={this.state.recipes} open={this.state.open} openDetails={this.openDetails} close={this.close} getRecipe={this.getRecipe} />
+            <RecipeDetails recipe={this.state.recipe} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
           </Grid.Column>
           </Grid.Row>
         </Grid>
