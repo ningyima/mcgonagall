@@ -1,19 +1,11 @@
 import React, { Component } from 'react';
 import HomepageLayout from './index';
-
+import RecipeDetails from './recipeDetails';
 import { Button, Header, Image, Modal } from 'semantic-ui-react';
 
 class RecipeList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      open: false,
-    };
-  }
-
-
-  handleRef(component) {
-    this.ref = component;
   }
 
   render() {
@@ -24,7 +16,7 @@ class RecipeList extends Component {
           <Modal.Header>Ingredients lists</Modal.Header>
             {this.props.recipes.map((recipe)=>{
                 return <Modal.Content image>
-                  <Image wrapped size='medium' src={recipe.image} onClick={(e)=>{this.props.getRecipe(recipe.id,e); this.openDetails(e)}}/>
+                  <Image wrapped size='medium' src={recipe.image} onClick={(e)=>{this.props.getRecipe(recipe.id,e); this.props.openDetails(e, recipe.image)}}/>
                   <Modal.Description>
                     <Header>{recipe.title}</Header>
                     <p>Good flavor</p>
