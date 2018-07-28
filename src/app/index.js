@@ -334,9 +334,12 @@ class HomepageLayout extends Component {
 
     e.preventDefault();
     axios.get(path, {params: param})
-    .then((data) =>  {
+    .then(({data}) =>  {
+      console.log(data);
       this.setState({
-        recipes: data.data,
+        recipes: (data.results !== undefined) ? data.results : 
+        (data.meals !== undefined) ? data.meals : 
+        (data.items !== undefined) ? data.items : data,
       });
       console.log('Data successfully retrieved from server. ',this.state.recipes);
     })
