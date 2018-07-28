@@ -69,7 +69,7 @@ app.get('/recipes', (req, res) => {
     console.log('we are in a session');
     req.query['intolerances'] = req.session.intolerances
   }
-  if (req.query.maxCalories !== 0) { //run complexquery
+  if (req.query.maxCalories !== '') { //run complexquery
     utils.getRecipesComplex(req.query, function(error, body) {
       if (error) {
         res.send(error);
@@ -84,6 +84,7 @@ app.get('/recipes', (req, res) => {
     if (error) {
       res.send(error);
     }
+    console.log(body);
     res.send(body);
   });
 });

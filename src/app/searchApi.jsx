@@ -36,7 +36,7 @@ class SearchApiForm extends Component {
         number: 25,
         offset: 0,
         query: '', 
-        maxCalories: 0,
+        maxCalories: '',
         ranking: 2
       }
     }
