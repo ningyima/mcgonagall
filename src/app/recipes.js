@@ -15,8 +15,8 @@ class RecipeList extends Component {
         <Modal open={this.props.open} onClose={()=>{this.props.close()}} closeIcon>
           <Modal.Header>Ingredients lists</Modal.Header>
             {this.props.recipes.map((recipe)=>{
-                return <Modal.Content image>
-                  <Image wrapped size='medium' src={recipe.image} onClick={(e)=>{this.props.getRecipe(recipe.id,e); this.props.openDetails(e, recipe.image)}}/>
+                return <Modal.Content key={recipe.id} image>
+                  <Image  wrapped size='medium' src={recipe.image} onClick={(e)=>{this.props.getRecipe(recipe.id,e); this.props.openDetails(e, recipe.image)}}/>
                   <Modal.Description>
                     <Header>{recipe.title}</Header>
                     <p>Good flavor</p>
