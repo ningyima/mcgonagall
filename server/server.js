@@ -42,7 +42,11 @@ app.get('/', (req, res) => {
   console.log('inside index');
 });
 
-
+/**
+ * router to handle queries based on recipe id.
+ * Function is invoked when users click on a meal in the initial results list
+ * original dataset returned from the API is filtered by the helper function _filter to keep only the data that we find relevant to our app.  the reduced result set is returned to the client.
+ */
 app.get('/recipe', (req, res) => {
   utils.getRecipeById(req.query.recipeId, function (error, body) {
     if (error) {
@@ -53,7 +57,29 @@ app.get('/recipe', (req, res) => {
   });
 });
 
+/**
+ * test to see if the user is logged in.  if yes use their allergy info storedin the session variable {intolerances} to modify the query object before sending request to the API. If user recipe search requires calorie information send request to 'complex' query route (counts as 3 requests to the API) otherwise send request to standard recipes request route
+ */
 app.get('/recipes', (req, res) => {
+  console.log('logging the query ',req.query);
+  //initialize a session
+  // req.session.user = 'adnagee';
+  // req.session.intolerances = ['peanut', 'wheat'];
+  if (req.session.user/*'user is logged in'*/) {
+    console.log('we are in a session');
+    req.query['intolerances'] = req.session.intolerances
+  }
+  if (req.query.maxCalories !== 0) { //run complexquery
+    utils.getRecipesComplex(req.query, function(error, body) {
+      if (error) {
+        res.send(error);
+      }
+      else {
+        res.send(body);
+      }
+    });
+  }
+  else 
   utils.getRecipes(req.query, function (error, body) {
     if (error) {
       res.send(error);
@@ -62,6 +88,7 @@ app.get('/recipes', (req, res) => {
   });
 });
 
+/** process user recipe search based on ingredients submitted by the user in a comma delimited list */
 app.get('/ingredients', (req, res) => {
   utils.getRecipesByIngredients(req.query, function (error, body) {
     if (error) {
@@ -71,6 +98,7 @@ app.get('/ingredients', (req, res) => {
   });
 });
 
+/** process user meal plan serch based on calorie count.  3 meals per day are returned.  User can request meal plan for 1 day or 1 week */
 app.get('/calories', (req, res) => {
   utils.getRecipesByCalories(req.query, function(error, body) {
     if (error) {
