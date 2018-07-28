@@ -20,4 +20,5 @@ node_modules
 
 config.js
 
-dist/*
+dist/main.js
+dist/vendors~main.js
