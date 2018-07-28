@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
 const db = require('../database/db');
@@ -17,7 +18,7 @@ app.engine('html', require('ejs').renderFile);
 app.set('views', `${__dirname}/../src`);
 app.set('view engine', 'html');
 
-app.use(express.static(__dirname + '/../dist'));
+app.use(express.static(path.join(__dirname, '/../dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true,
@@ -48,11 +49,11 @@ app.get('/', (req, res) => {
  * original dataset returned from the API is filtered by the helper function _filter to keep only the data that we find relevant to our app.  the reduced result set is returned to the client.
  */
 app.get('/recipe', (req, res) => {
-  utils.getRecipeById(req.query.recipeId, function (error, body) {
+  utils.getRecipeById(req.query.recipeId, (error, body) => {
     if (error) {
       res.send(error);
     }
-    let temp = utils._filter(JSON.parse(body));
+    const temp = utils._filter(JSON.parse(body));
     res.send(temp);
   });
 });
@@ -80,7 +81,8 @@ app.get('/recipes', (req, res) => {
     });
   }
   else 
-  utils.getRecipes(req.query, function (error, body) {
+
+  utils.getRecipes(req.query, (error, body) => {
     if (error) {
       res.send(error);
     }
@@ -91,7 +93,7 @@ app.get('/recipes', (req, res) => {
 
 /** process user recipe search based on ingredients submitted by the user in a comma delimited list */
 app.get('/ingredients', (req, res) => {
-  utils.getRecipesByIngredients(req.query, function (error, body) {
+  utils.getRecipesByIngredients(req.query, (error, body) => {
     if (error) {
       res.send(error);
     }
@@ -101,7 +103,7 @@ app.get('/ingredients', (req, res) => {
 
 /** process user meal plan serch based on calorie count.  3 meals per day are returned.  User can request meal plan for 1 day or 1 week */
 app.get('/calories', (req, res) => {
-  utils.getRecipesByCalories(req.query, function(error, body) {
+  utils.getRecipesByCalories(req.query, (error, body) => {
     if (error) {
       res.send(error);
     }
