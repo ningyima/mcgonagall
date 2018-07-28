@@ -268,7 +268,7 @@ class HomepageLayout extends Component {
       recipes: [],
       open:false,
       openDetails:false,
-      recipe:{},
+      recipeSteps:[],
       image:''
     }
 
@@ -311,16 +311,16 @@ class HomepageLayout extends Component {
   getRecipe(id, e){
 
     this.setState({
-      recipe:{}
+      recipeSteps:[]
     });
 
     e.preventDefault();
     axios.get('/recipe', {params: {recipeId:id}})
     .then((data) =>  {
       this.setState({
-        recipe: data.data,
+        recipeSteps: data.data.analyzedInstructions
       });
-      console.log('Data successfully retrieved from server. ',this.state.recipe);
+      console.log('Data successfully retrieved from server. ',data.data.analyzedInstructions);
     })
     .catch((err) => {
       console.log('ERROR=== ', err);
@@ -337,8 +337,8 @@ class HomepageLayout extends Component {
     .then(({data}) =>  {
       console.log(data);
       this.setState({
-        recipes: (data.results !== undefined) ? data.results : 
-        (data.meals !== undefined) ? data.meals : 
+        recipes: (data.results !== undefined) ? data.results :
+        (data.meals !== undefined) ? data.meals :
         (data.items !== undefined) ? data.items : data,
       });
       console.log('Data successfully retrieved from server. ',this.state.recipes);
@@ -360,7 +360,7 @@ class HomepageLayout extends Component {
               getRecipes={this.getRecipes} openModal = {this.open}
             />
             <RecipesList recipes={this.state.recipes} open={this.state.open} openDetails={this.openDetails} close={this.close} getRecipe={this.getRecipe} />
-            <RecipeDetails recipe={this.state.recipe} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
+            <RecipeDetails recipe={this.state.recipeSteps} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
           </Grid.Column>
           </Grid.Row>
         </Grid>
