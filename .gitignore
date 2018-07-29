@@ -22,4 +22,6 @@ config.js
 
 dist/main.js
 dist/vendors~main.js
+dist/index.html
+dist/main.css
 
