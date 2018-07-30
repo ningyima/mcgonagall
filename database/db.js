@@ -13,13 +13,15 @@ mongoose.connect(mlab.mlabdb.mlab)
 const userSchema = new Schema({
   googleId: String,
   username: String,
+  savedRecipes: Array,
+  intolerances: Array,
   createdAt: Date,
   updatedAt: { type: Date, default: Date.now },
 });
 
 const User = mongoose.model('user', userSchema);
 userSchema.pre('save', (next) => {
-  let now = Date.now();
+  const now = Date.now();
   this.updatedAt = now;
 
   // set value for createdAt only if it is null
