@@ -85,9 +85,13 @@ app.get('/recipes', (req, res) => {
   utils.getRecipes(req.query, (error, body) => {
     if (error) {
       res.send(error);
-    }
-    console.log(body);
-    res.send(body);
+    } 
+    var temp = JSON.parse(body);
+    temp = temp.results;
+    temp.forEach ((meal) => {
+      meal.image = 'https://spoonacular.com/recipeImages/' + meal.image;
+    })
+    res.send(temp);
   });
 });
 
