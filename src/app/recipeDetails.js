@@ -17,6 +17,11 @@ class RecipeDetails extends Component {
                 <Modal.Content image>
                   <Image wrapped size='large' src={`https://spoonacular.com/recipeImages/`+this.props.image[0]}/>
                   <Modal.Description>
+                    <Header>Ingredients</Header>
+                    {/* {this.props.ingredients.map((ingredient)=>{
+                        return <span key={ingredient.id} >{ingredient.originalString} <br/></span>
+                      })}
+*/}
                     <Header>Instructions</Header>
                       <span>{'Calories: '+ this.props.calories}<br/><br/></span>
                       {this.props.recipe.map((step)=>{

@@ -265,12 +265,13 @@ class HomepageLayout extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: 25,
+      nutrients: {},
       recipes: [],
       open:false,
       openDetails:false,
       openMeal:false,
       recipeSteps:[],
+      recipeIngredients: [],
       calories:'',
       image:'',
       calorie:''
@@ -331,7 +332,8 @@ class HomepageLayout extends Component {
 
     this.setState({
       recipeSteps:[],
-      calories:''
+      calories:'',
+      recipeIngredients: []
     });
 
     e.preventDefault();
@@ -339,6 +341,7 @@ class HomepageLayout extends Component {
     .then((data) =>  {
       this.setState({
         recipeSteps: data.data.analyzedInstructions,
+        recipeIngredients: data.data.extendedIngredients,
         calories: data.data.calories
       });
       console.log('Data successfully retrieved from server. ',data.data.analyzedInstructions);
@@ -357,6 +360,11 @@ class HomepageLayout extends Component {
     axios.get(path, {params: param})
     .then(({data}) =>  {
       console.log(data);
+      if (data.nutrients !== undefined) {
+        this.setState({
+          nutrients: data.nutrients
+        })
+      }
       this.setState({
         recipes: (data.results !== undefined) ? data.results :
         (data.meals !== undefined) ? data.meals :
@@ -381,7 +389,7 @@ class HomepageLayout extends Component {
               getRecipes={this.getRecipes} openModal = {this.open}
             openMeal = {this.openMeal}/>
             <RecipesList recipes={this.state.recipes} open={this.state.open} openDetails={this.openDetails} close={this.close} getRecipe={this.getRecipe} />
-            <RecipeDetails calories={this.state.calories} recipe={this.state.recipeSteps} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
+            <RecipeDetails calories={this.state.calories} recipe={this.state.recipeSteps} ingredients={this.state.recipeIngredients} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
             <MealView recipes = {this.state.recipes} open={this.state.openMeal} close={this.closeMeal} getRecipe={this.getRecipe} openDetails={this.openDetails}/>
           </Grid.Column>
           </Grid.Row>
