@@ -16,9 +16,8 @@ class MealView extends Component {
         <Modal open={this.props.open} onClose={()=>{this.props.close()}} closeIcon>
           <Modal.Header>Meal plan per day</Modal.Header>
           {this.props.recipes.map((recipe)=>{
-                return
-                  <Modal.Content key={recipe.id} image>
-                    <Image  wrapped size='medium' src={recipe.image} onClick={(e)=>{this.props.getRecipe(recipe.id,e); this.props.openDetails(e, recipe.image, 'yes')}}/>
+            return <Modal.Content key={recipe.id} image>
+                    <Image  wrapped size='medium' src={`https://spoonacular.com/recipeImages/`+recipe.image} onClick={(e)=>{this.props.getRecipe(recipe.id,e); this.props.openDetails(e, recipe.image, 'yes')}}/>
                     <Modal.Description>
                       <Header>{recipe.title}</Header>
                       <p>{'Preparation time: ' + recipe.readyInMinutes}</p>

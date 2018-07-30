@@ -15,10 +15,10 @@ class RecipeDetails extends Component {
         (<Modal open={this.props.open} onClose={()=>{this.props.close()}} closeIcon>
           <Modal.Header>Recipe Details</Modal.Header>
                 <Modal.Content image>
-                  <Image wrapped size='large' src={this.props.image[0]}/>
+                  <Image wrapped size='large' src={`https://spoonacular.com/recipeImages/`+this.props.image[0]}/>
                   <Modal.Description>
                     <Header>Instructions</Header>
-                      <span>{'Calories: '+ this.props.recipe.calories}<br/><br/></span>
+                      <span>{'Calories: '+ this.props.calories}<br/><br/></span>
                       {this.props.recipe.map((step)=>{
                         return <span>{'Step ' + step.number + ': ' +step.step} <br/><br/></span>
                       })}
