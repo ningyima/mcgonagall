@@ -9,7 +9,6 @@ class RecipeList extends Component {
   }
 
   render() {
-    console.log('we are on recipes: ',this.props);
     return(
       <div className="">
         <Modal open={this.props.open} onClose={()=>{this.props.close()}} closeIcon>
