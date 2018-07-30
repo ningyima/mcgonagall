@@ -6,6 +6,7 @@ const cookieSession = require('cookie-session');
 const db = require('../database/db');
 const keys = require('../config');
 const passportSetup = require('../config/passport-setup');
+const FB_passportSetup = require('../config/fb-passport-setup');
 const authRoutes = require('../routes/auth-routes');
 const profileRoutes = require('../routes/profile');
 
