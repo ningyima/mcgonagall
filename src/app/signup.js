@@ -60,6 +60,7 @@ class ModalSignupForm extends Component {
             <Icon name='google plus' /> Google Plus
           </Button> </a>
         </Modal.Content>
+       <Modal.Content>
       <Form>
         <div className="two fields"> 
           <Form.Field>
