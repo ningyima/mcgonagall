@@ -373,7 +373,7 @@ class HomepageLayout extends Component {
     return (
     <ResponsiveContainer demoTest={this.state.data}>
       <Divider section />
-      <Segment style={{ padding: '10em 2em'}} vertical>
+      <Segment style={{ padding: '2em'}} vertical>
         <Grid celled='internally' columns='equal' stackable>
           <Grid.Row >
           <Grid.Column >

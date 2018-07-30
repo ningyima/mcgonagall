@@ -82,8 +82,8 @@ class SearchApiForm extends Component {
 
       <div>
         <form className="ui form">
-        <h3>Filter recipes by cuisine, diet, calories and meal interest.</h3>
-          <div className="five fields">
+        <h3>Filter recipes by meal interest, cuisine, diet and/or calories.</h3>
+          <div className="five fields"> 
             <div className="three wide field">
               <Input name="query" value={this.state.mealQuery.query}
                 onChange={(e) => this.updateMealQuery(e)} fluid placeholder='desired meal e.g. pasta, burger, smoothie, etc...' />
@@ -123,9 +123,10 @@ class SearchApiForm extends Component {
             </div>
 
             <div className="four wide field">
-              <Button  name="mainBtn"
-                onClick={(e) => {this.props.getRecipes('/recipes',this.state.mealQuery,e)}}
-                color="green" size='medium' animated content='Retrieve Recipes &nbsp; &nbsp; &nbsp; &nbsp;' />
+              <Button  name="mainBtn" className='btn'
+                onClick={(e) => {this.props.getRecipes('/recipes',this.state.mealQuery,e)}} 
+                inverted size='medium' animated content='Retrieve Recipes &nbsp; &nbsp; &nbsp; &nbsp;' />
+
             </div>
           </div>
         </form>
@@ -138,7 +139,7 @@ class SearchApiForm extends Component {
     */}
       <div style={{ padding: '2em 0em' }}>
         <form className="ui form">
-          <h3>Select meal plans by diet type and total daily calories.  Meal plans may be for one day or one full week (21 meals) </h3>
+          <h3>Select meal plans by diet type and total daily calories.&nbsp;&nbsp;Meal plans may be for one day or one full week (21 meals) </h3>
             <div className="four fields">
             <div className="four wide field">
               <select name="diet"
@@ -174,9 +175,11 @@ class SearchApiForm extends Component {
             </div>
 
             <div className="four wide field">
-              <Button name="calBtn" onClick={(e) => {this.props.getRecipes('/calories',this.state.calQuery,e); this.props.openMeal(e)}}
-                color="green" size='medium'
-                animated content='retrieve meal plan &nbsp; &nbsp; &nbsp; &nbsp;' />
+              <Button name="calBtn" className='btn'
+                onClick={(e) => {this.props.getRecipes('/calories',this.state.calQuery,e)}}
+                inverted size='medium' animated 
+                content='retrieve meal plan &nbsp; &nbsp; &nbsp; &nbsp;' />
+
             </div>
           </div>
         </form>
@@ -190,15 +193,15 @@ class SearchApiForm extends Component {
     */}
       <div>
         <form className="ui form">
-        <h3>Select meals by ingredient(s).  Use commas to separete multiple items</h3>
+        <h3>Select meals by ingredient(s).&nbsp;&nbsp;Use commas to separete multiple items</h3>
           <div className="two fields">
             <div className="twelve wide field">
               <Input onChange={(e) => this.updateIngredientQuery(e)} fluid placeholder='Ingredients...' />
             </div>
             <div className="four wide field">
-              <Button  name="btnIngredient"
+              <Button  name="btnIngredient" className='btn'
                 onClick={(e) => {this.props.getRecipes('/ingredients',this.state.ingredientQuery,e); this.props.openModal(e)}}
-                color="green" size='medium' animated
+                inverted size='medium' animated 
                 content="retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp; " />
             </div>
           </div>
