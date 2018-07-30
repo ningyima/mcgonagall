@@ -9,19 +9,35 @@ class RecipeDetails extends Component {
   }
 
   render() {
-    console.log('we are on recipesDetails: ',this.props);
     return(
       <div className="">
-        <Modal open={this.props.open} onClose={()=>{this.props.close()}} closeIcon>
-          <Modal.Header>Ingredients Details</Modal.Header>
+      { Array.isArray(this.props.image) ?
+        (<Modal open={this.props.open} onClose={()=>{this.props.close()}} closeIcon>
+          <Modal.Header>Recipe Details</Modal.Header>
                 <Modal.Content image>
-                  <Image wrapped size='medium' src={this.props.image}/>
+                  <Image wrapped size='large' src={`https://spoonacular.com/recipeImages/`+this.props.image[0]}/>
                   <Modal.Description>
                     <Header>Instructions</Header>
-                    <p>{this.props.recipe.instructions}</p>
+                      <span>{'Calories: '+ this.props.calories}<br/><br/></span>
+                      {this.props.recipe.map((step)=>{
+                        return <span>{'Step ' + step.number + ': ' +step.step} <br/><br/></span>
+                      })}
                   </Modal.Description>
                 </Modal.Content>
-        </Modal>
+        </Modal>):
+        (<Modal open={this.props.open} onClose={()=>{this.props.close()}} closeIcon>
+          <Modal.Header>Recipe Details</Modal.Header>
+                <Modal.Content image>
+                  <Image wrapped size='large' src={this.props.image}/>
+                  <Modal.Description>
+                    <Header>Instructions</Header>
+                      {this.props.recipe.map((step)=>{
+                        return <span>{'Step ' + step.number + ': ' +step.step} <br/><br/></span>
+                      })}
+                  </Modal.Description>
+                </Modal.Content>
+        </Modal>)
+      }
       </div>
     )
   }

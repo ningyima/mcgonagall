@@ -22,6 +22,7 @@ import ModalLoginForm from './login.js';
 import SearchApiForm from './searchApi.jsx';
 import RecipesList from './recipes.js';
 import RecipeDetails from './RecipeDetails';
+import MealView from './mealView.js';
 import data from './data.js';
 import $ from 'jquery';
 
@@ -268,15 +269,20 @@ class HomepageLayout extends Component {
       recipes: [],
       open:false,
       openDetails:false,
-      recipe:{},
-      image:''
+      openMeal:false,
+      recipeSteps:[],
+      calories:'',
+      image:'',
+      calorie:''
     }
 
     // this.handleDemoClick = this.handleDemoClick.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
     this.openDetails = this.openDetails.bind(this);
-    this.closeDetails = this.closeDetails.bind(this)
+    this.closeDetails = this.closeDetails.bind(this);
+    this.openMeal = this.openMeal.bind(this);
+    this.closeMeal = this.closeMeal.bind(this);
     this.getRecipes = this.getRecipes.bind(this);
     this.getRecipe = this.getRecipe.bind(this);
   }
@@ -300,27 +306,42 @@ class HomepageLayout extends Component {
     })
   }
 
-  openDetails(e, img){
+  openDetails(e, img, cal){
     e.preventDefault();
     this.setState({
       openDetails:true,
-      image:img
+      image: (cal!==undefined) ? [img, cal] : img
+    })
+  }
+
+  closeMeal(){
+    this.setState({
+      openMeal:false
+    })
+  }
+
+  openMeal(e){
+    e.preventDefault();
+    this.setState({
+      openMeal:true,
     })
   }
 
   getRecipe(id, e){
 
     this.setState({
-      recipe:{}
+      recipeSteps:[],
+      calories:''
     });
 
     e.preventDefault();
     axios.get('/recipe', {params: {recipeId:id}})
     .then((data) =>  {
       this.setState({
-        recipe: data.data,
+        recipeSteps: data.data.analyzedInstructions,
+        calories: data.data.calories
       });
-      console.log('Data successfully retrieved from server. ',this.state.recipe);
+      console.log('Data successfully retrieved from server. ',data.data.analyzedInstructions);
     })
     .catch((err) => {
       console.log('ERROR=== ', err);
@@ -337,8 +358,8 @@ class HomepageLayout extends Component {
     .then(({data}) =>  {
       console.log(data);
       this.setState({
-        recipes: (data.results !== undefined) ? data.results : 
-        (data.meals !== undefined) ? data.meals : 
+        recipes: (data.results !== undefined) ? data.results :
+        (data.meals !== undefined) ? data.meals :
         (data.items !== undefined) ? data.items : data,
       });
       console.log('Data successfully retrieved from server. ',this.state.recipes);
@@ -358,9 +379,10 @@ class HomepageLayout extends Component {
           <Grid.Column >
             <SearchApiForm className="call-to-action"
               getRecipes={this.getRecipes} openModal = {this.open}
-            />
+            openMeal = {this.openMeal}/>
             <RecipesList recipes={this.state.recipes} open={this.state.open} openDetails={this.openDetails} close={this.close} getRecipe={this.getRecipe} />
-            <RecipeDetails recipe={this.state.recipe} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
+            <RecipeDetails calories={this.state.calories} recipe={this.state.recipeSteps} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
+            <MealView recipes = {this.state.recipes} open={this.state.openMeal} close={this.closeMeal} getRecipe={this.getRecipe} openDetails={this.openDetails}/>
           </Grid.Column>
           </Grid.Row>
         </Grid>
