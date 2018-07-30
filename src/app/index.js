@@ -379,7 +379,7 @@ class HomepageLayout extends Component {
             openMeal = {this.openMeal}/>
             <RecipesList recipes={this.state.recipes} open={this.state.open} openDetails={this.openDetails} close={this.close} getRecipe={this.getRecipe} />
             <RecipeDetails recipe={this.state.recipeSteps} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
-            <MealView recipes = {this.state.recipes} open={this.state.openMeal} close={this.state.closeMeal}/>
+            <MealView recipes = {this.state.recipes} open={this.state.openMeal} close={this.closeMeal}/>
           </Grid.Column>
           </Grid.Row>
         </Grid>

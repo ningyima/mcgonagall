@@ -15,7 +15,7 @@ class RecipeDetails extends Component {
         (<Modal open={this.props.open} onClose={()=>{this.props.close()}} closeIcon>
           <Modal.Header>Recipe Details</Modal.Header>
                 <Modal.Content image>
-                  <Image wrapped size='large' src={this.props.image}/>
+                  <Image wrapped size='large' src={this.props.image[0]}/>
                   <Modal.Description>
                     <Header>Instructions</Header>
                       <span>{'Calories: '+ this.props.recipe.calories}<br/><br/></span>

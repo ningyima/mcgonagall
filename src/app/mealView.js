@@ -8,7 +8,7 @@ class MealView extends Component {
 
   render() {
     console.log('we are on MealView: ',this.props);
-    const mealName = ['Breakfast', 'Lunch', 'Dinner'];
+    const mealName = ['Day 1', 'Day 2', 'Day 3', 'Day 4','Day 5','Day 6','Day 7'];
     const ind = 0;
     return(
       <div className="">
@@ -21,7 +21,7 @@ class MealView extends Component {
                     <Image  wrapped size='medium' src={recipe.image} onClick={(e)=>{this.props.getRecipe(recipe.id,e); this.props.openDetails(e, recipe.image, 'yes')}}/>
                     <Modal.Description>
                       <Header>{recipe.title}</Header>
-                      <p>{'Preparation time:' + recipe.readyInMinutes}</p>
+                      <p>{'Preparation time: ' + recipe.readyInMinutes}</p>
                       <p>Let budgetLife be your guide</p>
                     </Modal.Description>
                   </Modal.Content>
@@ -29,6 +29,7 @@ class MealView extends Component {
         </Modal>:
         <Modal open={this.props.open}>
           <Modal.Header>Meal plan per week</Modal.Header>
+
         </Modal>
         }
       </div>
