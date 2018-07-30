@@ -12,6 +12,7 @@ mongoose.connect(mlab.mlabdb.mlab)
 
 const userSchema = new Schema({
   googleId: String,
+  facebookId: String,
   username: String,
   savedRecipes: Array,
   intolerances: Array,
