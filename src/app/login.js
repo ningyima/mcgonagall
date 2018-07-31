@@ -50,9 +50,10 @@ class ModalLoginForm extends Component {
         </Modal.Description>
         </Modal.Content>
         <Modal.Content>
-          <Button color='facebook' onClick={() => {this.props.fbHandler();}} >
+          <a href='auth/facebook' >
+          <Button color='facebook' >
             <Icon name='facebook' /> Facebook
-          </Button>
+          </Button> </a>
           <a href='auth/google' >
           <Button color='google plus'>
             <Icon name='google plus' /> Google Plus

@@ -32,10 +32,10 @@ let trimQryObj = (queryObj) => {
   return result;
 }
 
-/** _filter is a helper function used to trim undesired data from API results before transmitting final result to the client. Desired properties are recipe id, title, price er servine, time to prepare, numnber of servings, calorie count, total likes, detailed ingredients list, and detailed preparaion instructions  
+/** myFilter is a helper function used to trim undesired data from API results before transmitting final result to the client. Desired properties are recipe id, title, price er servine, time to prepare, numnber of servings, calorie count, total likes, detailed ingredients list, and detailed preparaion instructions  
 *  @param  {Object}   fullRecipe The complete recipe object returned from the API 
 */
-let _filter = (fullRecipe) => {
+let myFilter = (fullRecipe) => {
   var minRecipe = {};
   minRecipe['id'] = fullRecipe['id'];
   minRecipe['title'] = fullRecipe['title'];
@@ -115,6 +115,7 @@ let getRecipes = (searchObj, cb) => {
     cb(err, body);
   };
   var queryObj = trimQryObj(searchObj); //remove any uninitialized keys
+  console.log('Show trimmed queryOBJ: ', queryObj);
   let options = setOptions('recipes/search?', queryObj);
   request(options, callback);
 }
@@ -148,7 +149,7 @@ let getRecipeById = (recipeId, cb) => {
 }
 
 
-module.exports._filter = _filter;
+module.exports.myFilter = myFilter;
 module.exports.getRecipeById = getRecipeById;
 module.exports.getRecipesByCalories = getRecipesByCalories;
 module.exports.getRecipesComplex = getRecipesComplex;

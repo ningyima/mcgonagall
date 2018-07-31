@@ -10,15 +10,25 @@ mongoose.connect(mlab.mlabdb.mlab)
     (err) => { console.log('DB connection error: ', err); },
   );
 
+/**
+ * mongoose userSchema
+ */
 const userSchema = new Schema({
   googleId: String,
+  facebookId: String,
   username: String,
   savedRecipes: Array,
-  intolerances: Array,
+  intolerances: { type: String, default: 'egg, peanut' },
   createdAt: Date,
   updatedAt: { type: Date, default: Date.now },
 });
 
+/**
+ * The following User object is using a mongoose query
+ * 'hook' to get NOW time or instantiate it if not
+ * already done when the user model is being called on
+ * user creation in DB.
+ */
 const User = mongoose.model('user', userSchema);
 userSchema.pre('save', (next) => {
   const now = Date.now();
