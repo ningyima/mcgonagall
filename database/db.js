@@ -18,7 +18,7 @@ const userSchema = new Schema({
   facebookId: String,
   username: String,
   savedRecipes: Array,
-  intolerances: Array,
+  intolerances: { type: String, default: 'egg, peanut' },
   createdAt: Date,
   updatedAt: { type: Date, default: Date.now },
 });

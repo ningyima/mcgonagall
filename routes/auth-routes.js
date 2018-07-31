@@ -26,6 +26,7 @@ router.get('/google', passport.authenticate('google', {
 
 // callback route for google to redirect to
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+  console.log(req.session);
   // res.send(req.user);
   res.redirect('/');
 });
@@ -34,7 +35,8 @@ router.get('/google/callback', passport.authenticate('google'), (req, res) => {
 router.get('/facebook', passport.authenticate('facebook'));
 
 router.get('/facebook/callback', passport.authenticate('facebook'), (req, res) => {
-  // console.log(res);
+  req.session.passport.intolerances = req.user.intolerances;
+  console.log(req.session);
   // res.send(req.user);
   res.redirect('/');
 });
