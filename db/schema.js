@@ -11,15 +11,6 @@ const knex = require('knex')({
 const db = require('bookshelf')(knex);
 
 // Table Schemas
-// db.knex.schema.hasTable('').then((exists) => {
-//   if (!exists) {
-//     db.knex.schema.createTable(tableName, function(table) {
-//       console.log('I work');
-//           //column
-//     })
-//     .then((table) => console.log('Created Table: ', table));
-//   }
-// });
 
 db.knex.schema.hasTable('Users').then((exists) => {
   if (!exists) {
