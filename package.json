@@ -1,5 +1,5 @@
 {
-  "name": "BudgetLife",
+  "name": "budget-life",
   "version": "1.0.0",
   "description": "A quality of life improvement application, get your favorite recipes, ingrendient calories, filter-out food allergens all from one website",
   "main": ".eslintrc.js",
