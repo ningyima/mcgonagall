@@ -38,8 +38,10 @@ class SearchApiForm extends Component {
         query: '',
         maxCalories: '',
         ranking: 2
-      }
+      },
+      zipcode: ''
     }
+
     this.updateCalQuery = this.updateCalQuery.bind(this);
     this.updateIngredientQuery = this.updateIngredientQuery.bind(this);
     this.updateMealQuery = this.updateMealQuery.bind(this);
@@ -58,6 +60,14 @@ class SearchApiForm extends Component {
     temp['ingredients'] = event.target.value;
     this.setState({
       ingredientQuery: temp
+    })
+  }
+
+  updateZipcode (event) {
+    const previousZipcode = this.state.zipcode;
+
+    this.setState({
+      zipcode: event.target.value
     })
   }
 
@@ -200,6 +210,25 @@ class SearchApiForm extends Component {
             <div className="four wide field">
               <Button  name="btnIngredient" className='btn'
                 onClick={(e) => {this.props.getRecipes('/ingredients',this.state.ingredientQuery,e); this.props.openModal(e)}}
+                inverted size='medium' animated
+                content="retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp; " />
+            </div>
+          </div>
+        </form>
+      </div>
+
+      {/* This is the field for user to input zipcode to return a modal with a pie chart of most popular cuisines in the db of that zipcode
+    */}
+      <div>
+        <form className="ui form">
+        <h3>Check cuisine popularity by zip code</h3>
+          <div className="two fields">
+            <div className="twelve wide field">
+              <Input onChange={(e) => this.updateZipcode(e)} fluid placeholder='Zip code...' />
+            </div>
+            <div className="four wide field">
+              <Button  name="btnIngredient" className='btn'
+                onClick={(e) => {this.props.getZipcodeData('/zipData',this.state.zipcode,e); this.props.openModal(e)}}
                 inverted size='medium' animated
                 content="retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp; " />
             </div>

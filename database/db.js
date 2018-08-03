@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const mlab = require('../config.js');
 // This could also be || if config doesnt exist;
 
-mongoose.connect(mlab.mlabdb.mlab)
+mongoose.connect(`mongodb://localhost/recipetest`)
   .then(
     () => { console.log('mongoose connected'); },
     (err) => { console.log('DB connection error: ', err); },

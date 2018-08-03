@@ -274,7 +274,8 @@ class HomepageLayout extends Component {
       recipeIngredients: [],
       calories:'',
       image:'',
-      calorie:''
+      calorie:'',
+      zipcodeData: []
     }
 
     // this.handleDemoClick = this.handleDemoClick.bind(this);
@@ -377,6 +378,26 @@ class HomepageLayout extends Component {
     });
   }
 
+  getZipcodeData (path, param, e) {
+    e.preventDefault();
+    axios.get(path, {params: param})
+    .then(({data}) => {
+      console.log('what are the fav cuisines', data);
+      //depends if there is a table with that zipcode in db
+        //if not then return some sort of message
+      //also check structure of data
+      if (data.zipcodeData !== undefined) {
+        this.setState({
+          zipcodeData: data.zipcodeData
+        })
+        //now the favorite cuisines info is ready to be passed to the popup modal to show to user as a pie chart
+      }
+    })
+    .catch((err) => {
+      console.log('error...could not get top favs by zip', err.response.data)
+    });
+  }
+
   render () {
     return (
     <ResponsiveContainer demoTest={this.state.data}>
@@ -386,8 +407,10 @@ class HomepageLayout extends Component {
           <Grid.Row >
           <Grid.Column >
             <SearchApiForm className="call-to-action"
-              getRecipes={this.getRecipes} openModal = {this.open}
-            openMeal = {this.openMeal}/>
+              getRecipes={this.getRecipes}
+              openModal = {this.open}
+              openMeal = {this.openMeal}
+              getZipcodeData={this.getZipcodeData} />
             <RecipesList recipes={this.state.recipes} open={this.state.open} openDetails={this.openDetails} close={this.close} getRecipe={this.getRecipe} />
             <RecipeDetails calories={this.state.calories} recipe={this.state.recipeSteps} ingredients={this.state.recipeIngredients} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
             <MealView recipes = {this.state.recipes} open={this.state.openMeal} close={this.closeMeal} getRecipe={this.getRecipe} openDetails={this.openDetails}/>
