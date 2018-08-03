@@ -22,6 +22,7 @@ import ModalLoginForm from './login.js';
 import SearchApiForm from './searchApi.jsx';
 import RecipesList from './recipes.js';
 import RecipeDetails from './RecipeDetails';
+import ZipPieChart from './zipPieChart.js'
 import MealView from './mealView.js';
 import data from './data.js';
 import $ from 'jquery';
@@ -275,7 +276,8 @@ class HomepageLayout extends Component {
       calories:'',
       image:'',
       calorie:'',
-      zipcodeData: []
+      zipcodeData: [],
+      view: ''
     }
 
     // this.handleDemoClick = this.handleDemoClick.bind(this);
@@ -287,6 +289,8 @@ class HomepageLayout extends Component {
     this.closeMeal = this.closeMeal.bind(this);
     this.getRecipes = this.getRecipes.bind(this);
     this.getRecipe = this.getRecipe.bind(this);
+    this.setToZip = this.setToZip.bind(this);
+    this.openZipModal = this.openZipModal.bind(this);
   }
 
   close(){
@@ -398,6 +402,23 @@ class HomepageLayout extends Component {
     });
   }
 
+   setToZip (e) {
+    e.preventDefault();
+    this.setState({
+        view: 'zip'
+    });
+    console.log('is zip showing', this.state.view)
+  }
+
+  openZipModal() {
+    if (this.state.view === 'zip') {
+      console.log('show the zip fav')
+      return (
+        <ZipPieChart />
+        )
+    }
+  }
+
   render () {
     return (
     <ResponsiveContainer demoTest={this.state.data}>
@@ -410,10 +431,15 @@ class HomepageLayout extends Component {
               getRecipes={this.getRecipes}
               openModal = {this.open}
               openMeal = {this.openMeal}
-              getZipcodeData={this.getZipcodeData} />
+              getZipcodeData={this.getZipcodeData}
+              openZipModal = {this.openZipModal}
+              setToZip={this.setToZip}/>
             <RecipesList recipes={this.state.recipes} open={this.state.open} openDetails={this.openDetails} close={this.close} getRecipe={this.getRecipe} />
             <RecipeDetails calories={this.state.calories} recipe={this.state.recipeSteps} ingredients={this.state.recipeIngredients} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
             <MealView recipes = {this.state.recipes} open={this.state.openMeal} close={this.closeMeal} getRecipe={this.getRecipe} openDetails={this.openDetails}/>
+             <div className="openZipModal">
+              {this.openZipModal()}
+            </div>
           </Grid.Column>
           </Grid.Row>
         </Grid>

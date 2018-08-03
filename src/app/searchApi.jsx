@@ -228,9 +228,9 @@ class SearchApiForm extends Component {
             </div>
             <div className="four wide field">
               <Button  name="btnIngredient" className='btn'
-                onClick={(e) => {this.props.getZipcodeData('/zipData',this.state.zipcode,e); this.props.openModal(e)}}
+                onClick={(e) => { this.props.setToZip(e); this.props.openZipModal()}}
                 inverted size='medium' animated
-                content="retrieve recipes &nbsp; &nbsp; &nbsp; &nbsp; " />
+                content="What's zippy? &nbsp; &nbsp; &nbsp; &nbsp; " />
             </div>
           </div>
         </form>
