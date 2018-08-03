@@ -20,6 +20,7 @@ passport.use(
     clientSecret: GoogleOAuth.googlecredential.clientSecret,
     callbackURL: '/auth/google/callback',
   }, (accessToken, refreshToken, profile, done) => {
+    console.log('accessToken, refreshToken, profile: ', accessToken, refreshToken, profile);
     // passport cb function
     console.log('Passport Callback Function Fired');
     // check if user already exist in DB
