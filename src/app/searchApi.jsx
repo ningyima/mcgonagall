@@ -38,8 +38,7 @@ class SearchApiForm extends Component {
         query: '',
         maxCalories: '',
         ranking: 2
-      },
-      zipcode: ''
+      }
     }
 
     this.updateCalQuery = this.updateCalQuery.bind(this);
@@ -60,14 +59,6 @@ class SearchApiForm extends Component {
     temp['ingredients'] = event.target.value;
     this.setState({
       ingredientQuery: temp
-    })
-  }
-
-  updateZipcode (event) {
-    const previousZipcode = this.state.zipcode;
-
-    this.setState({
-      zipcode: event.target.value
     })
   }
 
@@ -228,7 +219,7 @@ class SearchApiForm extends Component {
             </div>
             <div className="four wide field">
               <Button  name="btnIngredient" className='btn'
-                onClick={(e) => { this.props.setToZip(e); this.props.openZipModal()}}
+                onClick={(e) => { this.props.setToZip(e)}}
                 inverted size='medium' animated
                 content="What's zippy? &nbsp; &nbsp; &nbsp; &nbsp; " />
             </div>
