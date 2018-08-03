@@ -35,6 +35,7 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
 // setup prefix for routes
 app.use('/auth', authRoutes);
 app.use('/profile', profileRoutes);
