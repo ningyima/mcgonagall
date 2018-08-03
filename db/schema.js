@@ -78,20 +78,19 @@ db.knex.schema.hasTable('LocalFavorites').then((exists) => {
       favorite.integer('Mediterranean');
       favorite.integer('French');
       favorite.integer('Korean');
-      favorite.integer('distance');
       favorite.timestamps();
     })
       .then(table => console.log('Created Table: ', table));
   }
 });
 
-db.knex.schema.hasTable('LocalFavorites').then((exists) => {
+db.knex.schema.hasTable('Recipes').then((exists) => {
   if (!exists) {
-    db.knex.schema.createTable('LocalFavorites', (favorite) => {
-      favorite.increments('id').primary();
-      favorite.integer('spoon_id');
-      favorite.integer('likes');
-      favorite.timestamps();
+    db.knex.schema.createTable('Recipes', (recipe) => {
+      recipe.increments('id').primary();
+      recipe.integer('spoon_id');
+      recipe.integer('likes');
+      recipe.timestamps();
     })
       .then(table => console.log('Created Table: ', table));
   }
