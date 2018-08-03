@@ -88,13 +88,14 @@ db.knex.schema.hasTable('Recipes').then((exists) => {
   if (!exists) {
     db.knex.schema.createTable('Recipes', (recipe) => {
       recipe.increments('id').primary();
-      recipe.integer('spoon_id');
+      recipe.integer('yummly_id');
       recipe.integer('likes');
       recipe.timestamps();
     })
       .then(table => console.log('Created Table: ', table));
   }
 });
+
 
 // ALTER TABLE `Events` ADD FOREIGN KEY (user_id) REFERENCES `User` (`id`);
 // ALTER TABLE `Events` ADD FOREIGN KEY (business_id) REFERENCES `Businesses` (`id`);
