@@ -25,6 +25,7 @@ import RecipeDetails from './RecipeDetails';
 import ZipPieChart from './zipPieChart.js'
 import MealView from './mealView.js';
 import data from './data.js';
+import dummyData from './../dummyData.js';
 import $ from 'jquery';
 
 /*HEADING*/
@@ -276,7 +277,8 @@ class HomepageLayout extends Component {
       calories:'',
       image:'',
       calorie:'',
-      zipcodeData: [],
+      zipcodeData: dummyData,
+      zipcode: '',
       view: ''
     }
 
@@ -291,6 +293,7 @@ class HomepageLayout extends Component {
     this.getRecipe = this.getRecipe.bind(this);
     this.setToZip = this.setToZip.bind(this);
     this.openZipModal = this.openZipModal.bind(this);
+    this.updateZipcode = this.updateZipcode.bind(this);
   }
 
   close(){
@@ -414,9 +417,17 @@ class HomepageLayout extends Component {
     if (this.state.view === 'zip') {
       console.log('show the zip fav')
       return (
-        <ZipPieChart />
+        <ZipPieChart data={this.state.zipcodeData}/>
         )
     }
+  }
+
+  updateZipcode (event) {
+    const previousZipcode = this.state.zipcode;
+
+    this.setState({
+      zipcode: event.target.value
+    })
   }
 
   render () {
@@ -432,7 +443,7 @@ class HomepageLayout extends Component {
               openModal = {this.open}
               openMeal = {this.openMeal}
               getZipcodeData={this.getZipcodeData}
-              openZipModal = {this.openZipModal}
+              updateZipcode={this.updateZipcode}
               setToZip={this.setToZip}/>
             <RecipesList recipes={this.state.recipes} open={this.state.open} openDetails={this.openDetails} close={this.close} getRecipe={this.getRecipe} />
             <RecipeDetails calories={this.state.calories} recipe={this.state.recipeSteps} ingredients={this.state.recipeIngredients} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
