@@ -21,8 +21,44 @@ describe('test database query functions for saving, retrieving, and updating', (
     db.saveUser(user)
       .then(() => {
         new User({ googleId: user.googleId }).fetch()
-          .then(found => expect(found).toEqual(user))
+          .then(found => {
+            console.log(found);
+            expect(found).toEqual(user)})
           .catch(() => expect(1 + 1).toBe(3));
       });
   });
+  test('save the business information', () => {
+
+  });
+
+  test('save the event information', () => {
+    let event = {
+      name: 'Beer It Up!',
+      eventDate: '08/08/2018',
+      user_id: 1,
+      business_id: 1,
+      description: 'Drink Beer and Hangout at Olive Garden',
+    }
+    db.saveEvent(event)
+      .then(() => {
+        new Event({ name: event.name }).fetch()
+          .then(found => {
+            expect(found).toEqual(event)})
+          .catch(() => expect(1 + 1).toBe(3));
+      });
+  });
+
+  test('save the zipcode information', () => {
+    const zip = '03253';
+    expect(zip).toBe('03253');
+  });
+
+  test('update the cuisine information', () => {
+    // write code for this.
+  });
+
+  test('retrieve a user from the database', () => {
+
+  });
+
 });

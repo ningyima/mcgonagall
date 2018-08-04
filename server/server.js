@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-const db = require('../database/db');
+const db = require('../db/schema');
 const keys = require('../config');
 const passportSetup = require('../config/passport-setup');
 const FB_passportSetup = require('../config/fb-passport-setup');
@@ -66,18 +66,6 @@ app.get('/recipes', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-/** process user meal plan serch based on calorie count.
- * 3 meals per day are returned.  User can request meal plan for 1 day or 1 week */
-app.get('/calories', (req, res) => {
-  utils.getRecipesByCalories(req.query, (error, body) => {
-    if (error) {
-      res.send(error);
-    }
-    res.send(body);
-  });
-});
-
 app.get('/business', (req, res) => {
   console.log('Business Request: ', req.query);
 });
@@ -120,32 +108,7 @@ app.put('/event', (req, res) => {
 
 //= ===================================================
 // SAMPLE DATA. DATA STRUCTURE
-//
 
-// let recipeId = 507593;
-
-// let search = {
-//       diet: 'vegetarian',
-//       instructionsRequired: true,
-//       excludeIngredients: 'coconut',
-//       intolerances: ['egg', 'gluten'],
-//       number: 12,
-//       offset: 0,
-//       query: 'burger',
-//       type: 'main course'
-//   };
-
-// let calSearch = {
-//       targetCalories: 2000,
-//       timeFrame: 'week'
-//   };
-
-// let ingredients = {
-//   fillIngredients: false,
-//   ingredients: 'apples,flour,sugar'
-// };
-=======
->>>>>>> Completed server routes, options and getRecipes
 const port = 3000;
 
 app.listen(port, () => {
@@ -154,4 +117,3 @@ app.listen(port, () => {
 
 //= ===================================================
 //*SAMPLE DATA SHAPE
-

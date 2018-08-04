@@ -37,6 +37,12 @@ const saveFavorite = favorite =>
 
 //* TODO: Create Recipe fetch for grocery list.  
 
+const updateFavorite = favorite => 
+  new Promise((resolve, reject) => {
+    Favorite().query()
+      .where('zipcode', favorite.zipcode)
+      .increment(favorite.cuisine, 1)
+});
 //  const saveRecipe = recipe =>
 //  new Promise(function(resolve, reject) {
 // new Recipe({ yummly_id: recipe.id }).fetch()
@@ -74,3 +80,6 @@ const getFavorite = favorite =>
 // Update table functionality
 
 module.exports.saveUser = saveUser;
+module.exports.saveBusiness = saveBusiness;
+module.exports.saveEvent = saveEvent;
+module.exports.saveFavorite = saveFavorite;
