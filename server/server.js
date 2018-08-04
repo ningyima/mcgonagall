@@ -28,7 +28,8 @@ app.use(bodyParser.urlencoded({
 // use session key to create session cookie
 app.use(cookieSession({
   maxAge: 24 * 60 * 60 * 1000,
-  keys: [keys.session.cookieKey],
+  keys: ['cookie', 'egg', 'milk'],
+  name: 'unlock',
 }));
 
 // initialize passport for app
@@ -44,6 +45,7 @@ app.get('/', (req, res) => {
   res.render('index');
   console.log('inside index');
 });
+
 
 /**
  * router to handle queries based on recipe id.
@@ -72,8 +74,8 @@ app.get('/recipe', (req, res) => {
  */
 app.get('/recipes', (req, res) => {
   if (req.session) { /* 'user is logged in' */
-    console.log('we are in a session', req.session.passport);
-    // req.query.intolerances = req.session.passport.intolerances;
+    console.log('we are in a session', req.session);
+    req.query.intolerances = req.session.passport.intolerances;
   }
   if (req.query.maxCalories !== '') { // run complex query
     utils.getRecipesComplex(req.query, function(error, body) {
@@ -85,15 +87,14 @@ app.get('/recipes', (req, res) => {
       }
     });
   }
-  else
+  else 
 
   utils.getRecipes(req.query, (error, body) => {
     if (error) {
       res.send(error);
-    }
-    // var temp = JSON.parse(body);
-    var temp = [1,2,3]
-    // temp = temp.results;
+    } 
+    var temp = JSON.parse(body);
+    temp = temp.results;
     temp.forEach ((meal) => {
       meal.image = 'https://spoonacular.com/recipeImages/' + meal.image;
     })

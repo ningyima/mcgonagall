@@ -17,6 +17,8 @@ router.get('/login', (req, res) => {
 router.get('/logout', (req, res) => {
   // handle with passport
   console.log('Logging out?')
+  req.session = null; 
+  res.clearCookie('unlock');
   req.logout();
   res.redirect('/');
   res.send('logged out');
