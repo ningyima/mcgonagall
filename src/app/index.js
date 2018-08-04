@@ -27,6 +27,7 @@ import MealView from './mealView.js';
 import data from './data.js';
 import dummyData from './../dummyData.js';
 import $ from 'jquery';
+import { Link } from 'react-router-dom';
 
 /*HEADING*/
 
@@ -131,25 +132,37 @@ class DesktopContainer extends Component {
               secondary={!fixed}
               size='large'
             >
-              <Container>
-               <Menu.Item>
-                <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
-                </Menu.Item>
-                <Menu.Item href='#' as='a' active>
-                  Home
-                </Menu.Item>
-                <Menu.Item href='#' as='a'>About</Menu.Item>
-                <Menu.Item href='#' as='a'>Features</Menu.Item>
-                <Menu.Item position='right'>
-                  <SearchExampleStandard fluid/>
-                  <ModalLoginForm loginHandler={this.handleLoginClick} />
-                  <ModalSignupForm signupHandler={this.handleSignupClick} />
-                </Menu.Item>
-              </Container>
+              <Router>
+                <Container>
+                  <Menu.Item>
+                  <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
+                  </Menu.Item>
+                  {/*<Menu.Item href='#' as='a' active>
+                    Home
+                  </Menu.Item>
+                  <Menu.Item href='#' as='a'>About</Menu.Item>
+                  <Menu.Item href='#' as='a'>Features</Menu.Item>*/}
+
+                  <Menu.Item name='home' to='/' as={Link} active>
+                    Home
+                  </Menu.Item>
+                  <Menu.Item name='about' to='/about'>About</Menu.Item>
+                  <Menu.Item name='features' to='/features'>Features</Menu.Item>
+
+                  <Menu.Item position='right'>
+                    <SearchExampleStandard fluid/>
+                    <ModalLoginForm loginHandler={this.handleLoginClick} />
+                    <ModalSignupForm signupHandler={this.handleSignupClick} />
+                  </Menu.Item>
+                  <Route path='/' component={DesktopContainer} />
+
+                </Container>
+              </Router>
             </Menu>
             <HomepageHeading />
           </Segment>
         </Visibility>
+
 
         {children}
       </Responsive>

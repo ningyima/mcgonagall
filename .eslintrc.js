@@ -1,5 +1,5 @@
 process.chdir(__dirname);
- 
+
 module.exports = {
   root: true,
   parser: 'babel-eslint',
@@ -8,6 +8,6 @@ module.exports = {
     codeFrame: false
   },
   extends: [
-    'airbnb-bundle',
-  ],
+    // 'airbnb-bundle',
+  ]
 };
