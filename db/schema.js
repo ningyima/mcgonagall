@@ -68,16 +68,16 @@ db.knex.schema.hasTable('LocalFavorites').then((exists) => {
     db.knex.schema.createTable('LocalFavorites', (favorite) => {
       favorite.increments('id').primary();
       favorite.string('zipcode');
-      favorite.integer('Italian');
-      favorite.integer('Chinese');
-      favorite.integer('Mexican');
-      favorite.integer('Indian');
-      favorite.integer('Thai');
-      favorite.integer('American');
-      favorite.integer('Japanese');
-      favorite.integer('Mediterranean');
-      favorite.integer('French');
-      favorite.integer('Korean');
+      favorite.integer('Italian').defaultTo(0);
+      favorite.integer('Chinese').defaultTo(0);
+      favorite.integer('Mexican').defaultTo(0);
+      favorite.integer('Indian').defaultTo(0);
+      favorite.integer('Thai').defaultTo(0);
+      favorite.integer('American').defaultTo(0);
+      favorite.integer('Japanese').defaultTo(0);
+      favorite.integer('Mediterranean').defaultTo(0);
+      favorite.integer('French').defaultTo(0);
+      favorite.integer('Korean').defaultTo(0);
       favorite.timestamps();
     })
       .then(table => console.log('Created Table: ', table));
