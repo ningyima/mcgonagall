@@ -21,7 +21,6 @@ router.get('/logout', (req, res) => {
   res.clearCookie('unlock');
   req.logout();
   res.redirect('/');
-  res.send('logged out');
 });
 
 // auth google
