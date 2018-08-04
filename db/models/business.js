@@ -5,4 +5,4 @@ const Business = db.Model.extend({
   hasTimeStamps: true,
 });
 
-module.exports = db.model('Business', Business);
+module.exports = Business;

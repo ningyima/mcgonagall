@@ -5,4 +5,4 @@ const Favorite = db.Model.extend({
   hasTimeStamps: true,
 });
 
-module.exports = db.model('Favorite', Favorite);
+module.exports = Favorite;

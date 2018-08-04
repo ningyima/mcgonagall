@@ -13,7 +13,7 @@ const Recipe = require('./models/recipe');
 // Save to table functionality
 const saveUser = user =>
   new Promise(function (resolve, reject) {
-    new User({ username: user.username }).fetch()
+    new User({ googleId: user.googleId }).fetch()
     .then(found => (found ? reject() : Users.create(user).then(resolve)));
 });
 
@@ -46,7 +46,7 @@ const saveFavorite = favorite =>
 
 const getUser = user =>
   new Promise(function(resolve, reject) {
-    new User({ username: user.username }).fetch()
+    new User({ googleId: user.googleId }).fetch()
     .then(found => resolve(found.attributes));
 });
 
@@ -72,3 +72,5 @@ const getFavorite = favorite =>
 });
 
 // Update table functionality
+
+module.exports.saveUser = saveUser;
