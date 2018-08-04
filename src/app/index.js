@@ -21,7 +21,7 @@ import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
 import SearchApiForm from './searchApi.jsx';
 import RecipesList from './recipes.js';
-import RecipeDetails from './RecipeDetails';
+import RecipeDetails from './recipeDetails.js';
 import ZipPieChart from './zipPieChart.js'
 import MealView from './mealView.js';
 import data from './data.js';

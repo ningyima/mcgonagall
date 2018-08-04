@@ -17,10 +17,8 @@ db.knex.schema.hasTable('Users').then((exists) => {
     db.knex.schema.createTable('Users', (user) => {
       user.increments('id').primary();
       user.string('googleId');
-      user.string('googleToken');
-      user.string('facebookId');
-      user.string('facebookToken');
       user.string('username');
+      user.string('profileImageUrl');
       user.string('intolerances');
       user.string('zipcode');
       user.timestamps();
@@ -57,6 +55,7 @@ db.knex.schema.hasTable('Events').then((exists) => {
       event.dateTime('eventDate');
       event.integer('user_id');
       event.integer('business_id');
+      event.string('description');
       event.timestamps();
     })
       .then(table => console.log('Created Table: ', table));
