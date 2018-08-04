@@ -46,24 +46,6 @@ app.get('/', (req, res) => {
   console.log('inside index');
 });
 
-
-/**
- * router to handle queries based on recipe id.
- * Function is invoked when users click on a meal in the initial results list
- * original dataset returned from the API is filtered by the helper
- * function _filter to keep only the data that we find relevant
- * to our app.  the reduced result set is returned to the client.
- */
-app.get('/recipe', (req, res) => {
-  utils.getRecipeById(req.query.recipeId, (error, body) => {
-    if (error) {
-      res.send(error);
-    }
-    const temp = utils.myFilter(JSON.parse(body));
-    res.send(temp);
-  });
-});
-
 /**
  * test to see if the user is logged in.  if yes
  * use their allergy info storedin the session variable {intolerances}
@@ -73,46 +55,18 @@ app.get('/recipe', (req, res) => {
  * otherwise send request to standard recipes request route
  */
 app.get('/recipes', (req, res) => {
-  if (req.session) { /* 'user is logged in' */
-    console.log('we are in a session', req.session);
-    req.query.intolerances = req.session.passport.intolerances;
-  }
-  if (req.query.maxCalories !== '') { // run complex query
-    utils.getRecipesComplex(req.query, function(error, body) {
-      if (error) {
-        res.send(error);
-      }
-      else {
-        res.send(body);
-      }
-    });
-  }
-  else 
-
-  utils.getRecipes(req.query, (error, body) => {
+  console.log(req.query)
+  utils.getRecipes(req.query, (error, results) => {
     if (error) {
       res.send(error);
     } 
-    var temp = JSON.parse(body);
-    temp = temp.results;
-    temp.forEach ((meal) => {
-      meal.image = 'https://spoonacular.com/recipeImages/' + meal.image;
-    })
-    res.send(temp);
+    console.log('body: ', JSON.parse(results));
+    let parsed = JSON.parse(results);
+    res.json(parsed.matches);
   });
 });
 
-/** process user recipe search based on ingredients submitted by
- * the user in a comma delimited list */
-app.get('/ingredients', (req, res) => {
-  utils.getRecipesByIngredients(req.query, (error, body) => {
-    if (error) {
-      res.send(error);
-    }
-    res.send(body);
-  });
-});
-
+<<<<<<< HEAD
 /** process user meal plan serch based on calorie count.
  * 3 meals per day are returned.  User can request meal plan for 1 day or 1 week */
 app.get('/calories', (req, res) => {
@@ -190,8 +144,14 @@ app.put('/event', (req, res) => {
 //   fillIngredients: false,
 //   ingredients: 'apples,flour,sugar'
 // };
+=======
+>>>>>>> Completed server routes, options and getRecipes
 const port = 3000;
 
 app.listen(port, () => {
   console.log(`BudgetLife listening on port: ${port}`);
 });
+
+//= ===================================================
+//*SAMPLE DATA SHAPE
+
