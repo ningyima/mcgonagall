@@ -13,7 +13,7 @@ const Recipe = require('./models/recipe');
 // Save to table functionality
 const saveUser = user =>
   new Promise(function (resolve, reject) {
-    new User({ username: user.username }).fetch()
+    new User({ googleId: user.googleId }).fetch()
     .then(found => (found ? reject() : Users.create(user).then(resolve)));
 });
 
@@ -37,6 +37,18 @@ const saveFavorite = favorite =>
 
 //* TODO: Create Recipe fetch for grocery list.  
 
+const updateFavorite = favorite => 
+  new Promise((resolve, reject) => {
+    new Favorite({ zipcode: favorite.zipcode }).fetch()
+      .then((found => {
+        console.log(found.attributes)
+        if (found) {
+          resolve
+        } else {
+          reject();
+        }
+      }))
+});
 //  const saveRecipe = recipe =>
 //  new Promise(function(resolve, reject) {
 // new Recipe({ yummly_id: recipe.id }).fetch()
@@ -46,7 +58,7 @@ const saveFavorite = favorite =>
 
 const getUser = user =>
   new Promise(function(resolve, reject) {
-    new User({ username: user.username }).fetch()
+    new User({ googleId: user.googleId }).fetch()
     .then(found => resolve(found.attributes));
 });
 
@@ -68,7 +80,19 @@ const getEvent = event =>
 const getFavorite = favorite =>
   new Promise(function(resolve, reject) {
     new Favorite({ zipcode: favorite.zipcode }).fetch()
-    .then(found => resolve(found.attributes));
+    .then(found => {
+      console.log(found);
+      resolve(found.attributes)});
 });
 
 // Update table functionality
+
+module.exports.saveUser = saveUser;
+module.exports.saveBusiness = saveBusiness;
+module.exports.saveEvent = saveEvent;
+module.exports.saveFavorite = saveFavorite;
+module.exports.updateFavorite = updateFavorite;
+module.exports.getUser = getUser;
+module.exports.getBusiness = getBusiness;
+module.exports.getEvent = getEvent;
+module.exports.getFavorite = getFavorite;

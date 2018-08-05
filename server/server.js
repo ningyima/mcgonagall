@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-const db = require('../database/db');
+const db = require('../db/schema');
 const keys = require('../config');
 const passportSetup = require('../config/passport-setup');
 const FB_passportSetup = require('../config/fb-passport-setup');
@@ -66,18 +66,6 @@ app.get('/recipes', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-/** process user meal plan serch based on calorie count.
- * 3 meals per day are returned.  User can request meal plan for 1 day or 1 week */
-app.get('/calories', (req, res) => {
-  utils.getRecipesByCalories(req.query, (error, body) => {
-    if (error) {
-      res.send(error);
-    }
-    res.send(body);
-  });
-});
-
 app.get('/business', (req, res) => {
   console.log('Business Request: ', req.query);
 });
@@ -93,7 +81,13 @@ app.post('/business', (req, res) => {
 app.get('/favorites', (req, res) => {
   // simple retrieval from DB by zipcode
   // meaning this will expect req.param or req.query 
-  // to contain a zipcode to fetch from the DB table. 
+  // to contain a zipcode to fetch from the DB table.
+  console.log(req.query);
+  utils.retrieveFavorites(req.query, (err, result) => {
+    if (err) res.sendStatus(500);
+    console.log(result);
+    res.status(200).send(result);
+  });
 });
 
 app.put('/favorites', (req, res) => {
@@ -102,6 +96,19 @@ app.put('/favorites', (req, res) => {
   // search will be by cuisine, or cuisine will be an option selector. 
   // will call to a helper function in another file to query the DB.
   //! This function expects req.body to contain a zipcode and the cuisine to update.
+});
+
+app.post('/favorites', (req, res) => {
+  // route for creating an event in the DB.
+  // should post with zipcode to initialize entry in db
+  // zipcode should be a string on a key zipcode in req.body
+  utils.saveZipcode(req.body, (err, result) => {
+    if (err) {
+      res.sendStatus(500);
+    }
+    console.log(result);
+    res.status(201).send(result);
+  });
 });
 
 app.get('/event', (req, res) => {
@@ -120,32 +127,7 @@ app.put('/event', (req, res) => {
 
 //= ===================================================
 // SAMPLE DATA. DATA STRUCTURE
-//
 
-// let recipeId = 507593;
-
-// let search = {
-//       diet: 'vegetarian',
-//       instructionsRequired: true,
-//       excludeIngredients: 'coconut',
-//       intolerances: ['egg', 'gluten'],
-//       number: 12,
-//       offset: 0,
-//       query: 'burger',
-//       type: 'main course'
-//   };
-
-// let calSearch = {
-//       targetCalories: 2000,
-//       timeFrame: 'week'
-//   };
-
-// let ingredients = {
-//   fillIngredients: false,
-//   ingredients: 'apples,flour,sugar'
-// };
-=======
->>>>>>> Completed server routes, options and getRecipes
 const port = 3000;
 
 app.listen(port, () => {
@@ -154,4 +136,3 @@ app.listen(port, () => {
 
 //= ===================================================
 //*SAMPLE DATA SHAPE
-

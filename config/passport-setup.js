@@ -1,7 +1,7 @@
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GoogleOAuth = require('../config');
-const User = require('../database/db');
+const User = require('../db/helpers');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -20,25 +20,23 @@ passport.use(
     clientSecret: GoogleOAuth.googlecredential.clientSecret,
     callbackURL: '/auth/google/callback',
   }, (accessToken, refreshToken, profile, done) => {
-    console.log('accessToken, refreshToken, profile: ', accessToken, refreshToken, profile);
-    // passport cb function
+        // passport cb function
     console.log('Passport Callback Function Fired');
     // check if user already exist in DB
-    User.findOne({ googleId: profile.id }).then((currentUser) => {
-      if (currentUser) {
-        // user exist
-        console.log('user exist: ', currentUser);
-        done(null, currentUser);
-      } else {
-        // create user in DB
-        new User({
-          googleId: profile.id,
-          username: profile.displayName,
-        }).save().then((newUser) => {
-          console.log('New user created: ', newUser);
-          done(null, newUser);
-        });
-      }
+
+    // create user object based on google info
+    // pass to db.saveUser
+    const userObj = {
+      googleId: profile.id,
+      username: profile.displayName,
+      profileImageUrl: profile.photos[0].value,
+    }
+    User.saveUser(userObj).then((currentUser) => {
+      console.log('user exist: ', currentUser);
+      done(null, currentUser);
+    }).catch(error => {
+      console.log('myerror', error);
+      done(error, null);
     });
   }),
 );

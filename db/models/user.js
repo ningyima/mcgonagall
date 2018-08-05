@@ -6,4 +6,4 @@ const User = db.Model.extend({
   hasTimeStamps: true,
 });
 
-module.exports = db.model('User', User);
+module.exports = User;

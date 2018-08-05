@@ -19,8 +19,8 @@ db.knex.schema.hasTable('Users').then((exists) => {
       user.string('googleId');
       user.string('username');
       user.string('profileImageUrl');
-      user.string('intolerances');
-      user.string('zipcode');
+      user.string('intolerances').defaultTo('none');
+      user.string('zipcode').defaultTo('No Zip');
       user.timestamps();
     })
       .then(table => console.log('Created Table: ', table));
@@ -35,7 +35,7 @@ db.knex.schema.hasTable('Businesses').then((exists) => {
       business.string('imgUrl', 100);
       business.string('category', 50);
       business.float('rating');
-      business.integer('price');
+      business.string('price');
       business.string('address');
       business.string('latitude');
       business.string('longitude');

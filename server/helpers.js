@@ -1,5 +1,6 @@
 const request = require('request');
-const keys = require('../config.js')
+const keys = require('../config.js');
+const db = require('../db/helpers');
 
 
 /**
@@ -20,10 +21,6 @@ let setOptions = (search) => {
   return fullUrl;
 }
 
-var test = setOptions({recipeQuery: 'onion soup', cuisine: null})
-
-console.log(test);
-
 let getRecipes = (search, cb) => {
   var callback = function(err, res, body) {
     cb(err, body);
@@ -32,5 +29,29 @@ let getRecipes = (search, cb) => {
   request(options, callback);
 }
 
+// function to save business to db
+// or function to hit yelp api, convert yelp info to the proper
+// object keys for saving to db, then call db.saveBusiness()
+
+// function to save zipcode
+const saveZipcode = (zipObj, cb) => {
+  db.saveFavorite(zipObj)
+    .then(data => cb(null, data))
+    .catch(err => cb(err, null));
+};
+// function to retrieve favorites by zipcode
+const retrieveFavorites = (zipcode, cb) => {
+  db.getFavorite(zipcode)
+    .then(data => cb(null, data))
+    .catch(err => cb(err, null));
+};
+// function to update zipcode
+
+// function to save event
+
+//
+
 
 module.exports.getRecipes = getRecipes;
+module.exports.saveZipcode = saveZipcode;
+module.exports.retrieveFavorites = retrieveFavorites;

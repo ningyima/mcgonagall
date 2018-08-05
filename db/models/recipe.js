@@ -5,4 +5,4 @@ const Recipe = db.Model.extend({
   hasTimeStamps: true,
 });
 
-module.exports = db.model('Recipe', Recipe);
+module.exports = Recipe;
