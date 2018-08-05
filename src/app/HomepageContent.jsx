@@ -18,16 +18,19 @@ import {
 } from 'semantic-ui-react';
 
 import { Link } from 'react-router-dom';
+import DesktopContainer from './DesktopContainer.jsx';
+import MobileContainer from './MobileContainer.jsx';
 
-class HomepageLayout extends Component {
-  constructor(props) {
-   super(props);
-  }
 
-  render() {
-    return (
-      <HomepageContent />
-    )
-  };
+const HomepageContent = () => (
+  <div>
+    <DesktopContainer />
+    <MobileContainer />
+  </div>
+)
+
+HomepageContent.propTypes = {
+  children: PropTypes.node,
 }
-export default HomepageLayout;
+
+export default HomepageContent;
