@@ -39,7 +39,12 @@ const saveZipcode = (zipObj, cb) => {
     .then(data => cb(null, data))
     .catch(err => cb(err, null));
 };
-
+// function to retrieve favorites by zipcode
+const retrieveFavorites = (zipcode, cb) => {
+  db.getFavorite(zipcode)
+    .then(data => cb(null, data))
+    .catch(err => cb(err, null));
+};
 // function to update zipcode
 
 // function to save event
@@ -49,3 +54,4 @@ const saveZipcode = (zipObj, cb) => {
 
 module.exports.getRecipes = getRecipes;
 module.exports.saveZipcode = saveZipcode;
+module.exports.retrieveFavorites = retrieveFavorites;

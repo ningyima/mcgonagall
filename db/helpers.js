@@ -80,7 +80,9 @@ const getEvent = event =>
 const getFavorite = favorite =>
   new Promise(function(resolve, reject) {
     new Favorite({ zipcode: favorite.zipcode }).fetch()
-    .then(found => resolve(found.attributes));
+    .then(found => {
+      console.log(found);
+      resolve(found.attributes)});
 });
 
 // Update table functionality
