@@ -20,10 +20,6 @@ let setOptions = (search) => {
   return fullUrl;
 }
 
-var test = setOptions({recipeQuery: 'onion soup', cuisine: null})
-
-console.log(test);
-
 let getRecipes = (search, cb) => {
   var callback = function(err, res, body) {
     cb(err, body);
@@ -31,6 +27,18 @@ let getRecipes = (search, cb) => {
   let options = setOptions(search);
   request(options, callback);
 }
+
+// function to save business to db
+// or function to hit yelp api, convert yelp info to the proper
+// object keys for saving to db, then call db.saveBusiness()
+
+// function to save zipcode
+
+// function to update zipcode
+
+// function to save event
+
+//
 
 
 module.exports.getRecipes = getRecipes;

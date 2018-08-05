@@ -42,6 +42,11 @@ const updateFavorite = favorite =>
     Favorite().query()
       .where('zipcode', favorite.zipcode)
       .increment(favorite.cuisine, 1)
+      .fetch()
+      .then(model => {
+        console.log(model);
+        resolve;
+      });
 });
 //  const saveRecipe = recipe =>
 //  new Promise(function(resolve, reject) {
