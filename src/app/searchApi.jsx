@@ -12,7 +12,7 @@ class SearchApiForm extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      cuisine: [ 'African', 'American', 'British', 'Cajun', 'Caribbean', 'Chinese', 'Eastern European', 'French', 'German', 'Greek', 'Indian', 'Irish', 'Italian', 'Japanese', 'Jewish', 'Korean', 'Latin American', 'Mexican', 'Middle Eastern', 'Nordic', 'Southern', 'Spanish', 'Thai', 'Vietnamese' ],
+      cuisine: ["American", "Asian", "Barbecue", "Cajun & Creole", "Chinese", "Cuban", "English", "French", "German", "Greek", "Hawaiian", "Hungarian", "Indian", "Irish", "Italian", "Japanese", "Mediterranean", "Mexican", "Moroccan", "Portugese", "Southern & Soul Food", "Southwestern", "Spanish", "Swedish", "Thai"],
       calorieRange: ['400', '600', '800', '1000','1200', '1400', '1600', '1800', '2000', '2200', '2400' ],
       calQuery: {
         diet: '',
@@ -83,9 +83,9 @@ class SearchApiForm extends Component {
 
       <div>
         <form className="ui form">
-        <h3>Filter recipes by meal interest, cuisine, diet and/or calories.</h3>
+        <h3>Filter recipes by meal interest and/or cuisine.</h3>
           <div className="five fields">
-            <div className="three wide field">
+            <div className="nine wide field">
               <Input name="query" value={this.state.mealQuery.query}
                 onChange={(e) => this.updateMealQuery(e)} fluid placeholder='desired meal e.g. pasta, burger, smoothie, etc...' />
             </div>
@@ -98,88 +98,13 @@ class SearchApiForm extends Component {
                   return <option key={type} value={type}>{type}</option>})}
               </select>
             </div>
-            <div className="three wide field">
-              <select name="diet"
-                className="ui fluid search selection dropdown"
-                onChange={(e) => this.updateMealQuery(e)} >
-                <option>Select Diet Type</option>
-                <option>Ketogenic</option>
-                <option>Paleo</option>
-                <option>Primal</option>
-                <option>Vegan</option>
-                <option>Vegetarian</option>
-                <option>Whole 30</option>
-              </select>
-            </div>
-            <div className="three wide field">
-              <select name="maxCalories"
-                onChange={(e) => this.updateMealQuery(e)}
-                className="ui fluid search selection dropdown" >
-                <option>max calories</option>
-                  {this.state.mealCalorieRange.map((range) => {
-                    return <option key={range} value={range}>{range}</option>})}
-                  })
-                }
-              </select>
-            </div>
+
 
             <div className="four wide field">
               <Button  name="mainBtn" className='btn'
                 onClick={(e) => {this.props.getRecipes('/recipes',this.state.mealQuery,e); this.props.openModal(e)}}
                 inverted size='medium' animated content='Retrieve Recipes &nbsp; &nbsp; &nbsp; &nbsp;' />
 
-            </div>
-          </div>
-        </form>
-      </div>
-
-    {/* RECIPES BY MEAL PLAN
-        Diet type and maximum daily calories are used to retrieve recipes either for a day or a month so that users can have full mean plan ideas.
-        - state variable calQuery is updated based on changes to controls
-        - on submit the button name, routing path and event name are sent to the parent comonent to be used in the ajax request
-    */}
-      <div style={{ padding: '2em 0em' }}>
-        <form className="ui form">
-          <h3>Select meal plans by diet type and total daily calories.&nbsp;&nbsp;Meal plans may be for one day or one full week (21 meals) </h3>
-            <div className="four fields">
-            <div className="four wide field">
-              <select name="diet"
-                onChange={(e) => this.updateCalQuery(e)}
-                className="ui fluid search selection dropdown">
-                <option>Select Diet Type</option>
-                <option>Ketogenic</option>
-                <option>Paleo</option>
-                <option>Primal</option>
-                <option>Vegan</option>
-                <option>Vegetarian</option>
-                <option>Whole 30</option>
-              </select>
-            </div>
-            <div className="four wide field">
-              <select name="targetCalories"
-                onChange={(e) => this.updateCalQuery(e)}
-                className="ui fluid search selection dropdown" >
-                <option>Meal Plan by Calories</option>
-                  {this.state.calorieRange.map((range) => {
-                    return <option key={range} value={range}>{range}</option>})}
-                  })
-                }
-              </select>
-            </div>
-
-            <div className="four wide field">
-              <select name="timeFrame" onChange={(e) => this.updateCalQuery(e)} className="ui fluid search selection dropdown" >
-                <option>Plan Type</option>
-                <option>day</option>
-                <option>week</option>
-              </select>
-            </div>
-
-            <div className="four wide field">
-              <Button name="calBtn" className='btn'
-                onClick={(e) => {this.props.getRecipes('/calories',this.state.calQuery,e); this.props.openMeal(e)}}
-                inverted size='medium' animated
-                content='retrieve meal plan &nbsp; &nbsp; &nbsp; &nbsp;' />
             </div>
           </div>
         </form>
@@ -193,7 +118,7 @@ class SearchApiForm extends Component {
     */}
       <div>
         <form className="ui form">
-        <h3>Select meals by ingredient(s).&nbsp;&nbsp;Use commas to separete multiple items</h3>
+        <h3>Select meals by ingredient(s).&nbsp;&nbsp;Use commas to separate multiple items</h3>
           <div className="two fields">
             <div className="twelve wide field">
               <Input onChange={(e) => this.updateIngredientQuery(e)} fluid placeholder='Ingredients...' />

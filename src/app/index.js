@@ -29,8 +29,6 @@ import dummyData from './../dummyData.js';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
 
-import ResponsiveContainer from './ResponsiveContainer.jsx';
-
 class HomepageLayout extends Component {
   constructor(props) {
     super(props);
