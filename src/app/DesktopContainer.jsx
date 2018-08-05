@@ -27,8 +27,10 @@ import MealView from './mealView.js';
 import data from './data.js';
 import dummyData from './../dummyData.js';
 import $ from 'jquery';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import HomepageHeading from './HomepageHeading.jsx';
+import About from './About.jsx';
+import Features from './Features.jsx';
 
 class DesktopContainer extends Component {
   constructor(props) {
@@ -79,31 +81,35 @@ class DesktopContainer extends Component {
               secondary={!fixed}
               size='large'
             >
+              <Router>
                 <Container>
-                  <Menu.Item>
+                  {/*<Menu.Item>
                   <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
                   </Menu.Item>
                   <Menu.Item href='#' as='a' active>
                     Home
                   </Menu.Item>
                   <Menu.Item href='#' as='a'>About</Menu.Item>
-                  <Menu.Item href='#' as='a'>Features</Menu.Item>
+                  <Menu.Item href='#' as='a'>Features</Menu.Item>*/}
 
-                  {/*<Menu.Item name='home' to='/' as={Link} active>
+                  <Menu.Item name='home' to='/' as={ Link } active>
                     Home
                   </Menu.Item>
-                  <Menu.Item name='about' to='/about'>About</Menu.Item>
-                  <Menu.Item name='features' to='/features'>Features</Menu.Item>
+                  <Menu.Item name='about' to='/about' as={ Link }>About</Menu.Item>
+                  <Menu.Item name='features' to='/features' as={ Link }>Features</Menu.Item>
 
                   <Menu.Item position='right'>
                     <SearchExampleStandard fluid/>
                     <ModalLoginForm loginHandler={this.handleLoginClick} />
                     <ModalSignupForm signupHandler={this.handleSignupClick} />
                   </Menu.Item>
-                  <Route path='/' component={DesktopContainer} />*/}
-
+                  <Route exact path='/' component={DesktopContainer} />
+                  <Route path='/about' component={About} />
+                  <Route path='/features' component={Features} />
                 </Container>
+              </Router>
             </Menu>
+
             <HomepageHeading />
           </Segment>
         </Visibility>
