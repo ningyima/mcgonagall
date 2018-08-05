@@ -1,5 +1,6 @@
 const request = require('request');
-const keys = require('../config.js')
+const keys = require('../config.js');
+const db = require('../db/helpers');
 
 
 /**
@@ -33,6 +34,11 @@ let getRecipes = (search, cb) => {
 // object keys for saving to db, then call db.saveBusiness()
 
 // function to save zipcode
+const saveZipcode = (zipObj, cb) => {
+  db.saveFavorite(zipObj)
+    .then(data => cb(null, data))
+    .catch(err => cb(err, null));
+};
 
 // function to update zipcode
 
@@ -42,3 +48,4 @@ let getRecipes = (search, cb) => {
 
 
 module.exports.getRecipes = getRecipes;
+module.exports.saveZipcode = saveZipcode;

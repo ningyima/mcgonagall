@@ -35,7 +35,7 @@ db.knex.schema.hasTable('Businesses').then((exists) => {
       business.string('imgUrl', 100);
       business.string('category', 50);
       business.float('rating');
-      business.integer('price');
+      business.string('price');
       business.string('address');
       business.string('latitude');
       business.string('longitude');

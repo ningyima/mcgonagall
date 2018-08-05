@@ -92,6 +92,19 @@ app.put('/favorites', (req, res) => {
   //! This function expects req.body to contain a zipcode and the cuisine to update.
 });
 
+app.post('/favorites', (req, res) => {
+  // route for creating an event in the DB.
+  // should post with zipcode to initialize entry in db
+  // zipcode should be a string on a key zipcode in req.body
+  utils.saveZipcode(req.body, (err, result) => {
+    if (err) {
+      res.sendStatus(500);
+    }
+    console.log(result);
+    res.status(201).send(result);
+  });
+});
+
 app.get('/event', (req, res) => {
   // Route to call function to retrieve single event
   // from db.

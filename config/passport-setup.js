@@ -33,6 +33,10 @@ passport.use(
     }
     User.saveUser(userObj).then((currentUser) => {
       console.log('user exist: ', currentUser);
+      done(null, currentUser);
+    }).catch(error => {
+      console.log('myerror', error);
+      done(error, null);
     });
   }),
 );

@@ -39,14 +39,15 @@ const saveFavorite = favorite =>
 
 const updateFavorite = favorite => 
   new Promise((resolve, reject) => {
-    Favorite().query()
-      .where('zipcode', favorite.zipcode)
-      .increment(favorite.cuisine, 1)
-      .fetch()
-      .then(model => {
-        console.log(model);
-        resolve;
-      });
+    new Favorite({ zipcode: favorite.zipcode }).fetch()
+      .then((found => {
+        console.log(found.attributes)
+        if (found) {
+          resolve
+        } else {
+          reject();
+        }
+      }))
 });
 //  const saveRecipe = recipe =>
 //  new Promise(function(resolve, reject) {
@@ -88,3 +89,8 @@ module.exports.saveUser = saveUser;
 module.exports.saveBusiness = saveBusiness;
 module.exports.saveEvent = saveEvent;
 module.exports.saveFavorite = saveFavorite;
+module.exports.updateFavorite = updateFavorite;
+module.exports.getUser = getUser;
+module.exports.getBusiness = getBusiness;
+module.exports.getEvent = getEvent;
+module.exports.getFavorite = getFavorite;
