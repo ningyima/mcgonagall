@@ -19,16 +19,10 @@ import {
 import SearchExampleStandard from './search.js';
 import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
-import SearchApiForm from './searchApi.jsx';
-import RecipesList from './recipes.js';
-import RecipeDetails from './recipeDetails.js';
-import ZipPieChart from './zipPieChart.js'
-import MealView from './mealView.js';
-import data from './data.js';
-import dummyData from './../dummyData.js';
-import $ from 'jquery';
+
 import { Link } from 'react-router-dom';
 import HomepageHeading from './HomepageHeading.jsx';
+import ResponsiveContainer from './ResponsiveContainer.jsx';
 
 class MobileContainer extends Component {
   constructor(props) {
@@ -40,8 +34,6 @@ class MobileContainer extends Component {
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleSignupClick = this.handleSignupClick.bind(this);
   }
-
-
 
   handlePusherClick() {
     const { sidebarOpened } = this.state
@@ -64,7 +56,6 @@ class MobileContainer extends Component {
 
 
   render() {
-    const { children } = this.props
     const { sidebarOpened } = this.state
 
     return (
@@ -106,8 +97,7 @@ class MobileContainer extends Component {
               </Container>
               <HomepageHeading mobile />
             </Segment>
-
-            {children}
+            <ResponsiveContainer />
           </Sidebar.Pusher>
         </Sidebar.Pushable>
       </Responsive>

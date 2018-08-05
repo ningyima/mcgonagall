@@ -28,19 +28,319 @@ import data from './data.js';
 import dummyData from './../dummyData.js';
 import $ from 'jquery';
 import { Link } from 'react-router-dom';
-import HomepageHeading from './HomepageHeading.jsx';
-import DesktopContainer from './DesktopContainer.jsx';
-import MobileContainer from './MobileContainer.jsx';
 
-const ResponsiveContainer = ({ demoTest, children }) => (
-  <div>
-    <DesktopContainer demoTest={demoTest}>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
-  </div>
-)
+class ResponsiveContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nutrients: {},
+      recipes: [],
+      open:false,
+      openDetails:false,
+      openMeal:false,
+      recipeSteps:[],
+      recipeIngredients: [],
+      calories:'',
+      image:'',
+      calorie:'',
+      zipcodeData: dummyData,
+      zipcode: '',
+      view: ''
+    }
 
-ResponsiveContainer.propTypes = {
-  children: PropTypes.node,
+    // this.handleDemoClick = this.handleDemoClick.bind(this);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
+    this.openDetails = this.openDetails.bind(this);
+    this.closeDetails = this.closeDetails.bind(this);
+    this.openMeal = this.openMeal.bind(this);
+    this.closeMeal = this.closeMeal.bind(this);
+    this.getRecipes = this.getRecipes.bind(this);
+    this.getRecipe = this.getRecipe.bind(this);
+    this.setToZip = this.setToZip.bind(this);
+    this.openZipModal = this.openZipModal.bind(this);
+    this.updateZipcode = this.updateZipcode.bind(this);
+  }
+
+  close(){
+    this.setState({
+      open:false
+    })
+  }
+
+  open(e){
+    e.preventDefault();
+    this.setState({
+      open:true
+    })
+  }
+
+  closeDetails(){
+    this.setState({
+      openDetails:false
+    })
+  }
+
+  openDetails(e, img, cal){
+    e.preventDefault();
+    this.setState({
+      openDetails:true,
+      image: (cal!==undefined) ? [img, cal] : img
+    })
+  }
+
+  closeMeal(){
+    this.setState({
+      openMeal:false
+    })
+  }
+
+  openMeal(e){
+    e.preventDefault();
+    this.setState({
+      openMeal:true,
+    })
+  }
+
+  getRecipe(id, e){
+
+    this.setState({
+      recipeSteps:[],
+      calories:'',
+      recipeIngredients: []
+    });
+
+    e.preventDefault();
+    axios.get('/recipe', {params: {recipeId:id}})
+    .then((data) =>  {
+      this.setState({
+        recipeSteps: data.data.analyzedInstructions,
+        recipeIngredients: data.data.extendedIngredients,
+        calories: data.data.calories
+      });
+      console.log('Data successfully retrieved from server. ',data.data.analyzedInstructions);
+    })
+    .catch((err) => {
+      console.log('ERROR=== ', err);
+    });
+  }
+
+  getRecipes (path, param, e) {
+    this.setState({
+        recipes:[],
+    });
+
+    e.preventDefault();
+    axios.get(path, {params: param})
+    .then(({data}) =>  {
+      console.log(data);
+      if (data.nutrients !== undefined) {
+        this.setState({
+          nutrients: data.nutrients
+        })
+      }
+      this.setState({
+        recipes: (data.results !== undefined) ? data.results :
+        (data.meals !== undefined) ? data.meals :
+        (data.items !== undefined) ? data.items : data,
+      });
+      console.log('Data successfully retrieved from server. ',this.state.recipes);
+    })
+    .catch((err) => {
+      console.log('ERROR=== ', err.response.data);
+    });
+  }
+
+  getZipcodeData (path, param, e) {
+    e.preventDefault();
+    axios.get(path, {params: param})
+    .then(({data}) => {
+      console.log('what are the fav cuisines', data);
+      //depends if there is a table with that zipcode in db
+        //if not then return some sort of message
+      //also check structure of data
+      if (data.zipcodeData !== undefined) {
+        this.setState({
+          zipcodeData: data.zipcodeData
+        })
+        //now the favorite cuisines info is ready to be passed to the popup modal to show to user as a pie chart
+      }
+    })
+    .catch((err) => {
+      console.log('error...could not get top favs by zip', err.response.data)
+    });
+  }
+
+   setToZip (e) {
+    e.preventDefault();
+    this.setState({
+        view: 'zip'
+    });
+    console.log('is zip showing', this.state.view)
+  }
+
+  openZipModal() {
+    if (this.state.view === 'zip') {
+      console.log('show the zip fav')
+      return (
+        <ZipPieChart data={this.state.zipcodeData}/>
+        )
+    }
+  }
+
+  updateZipcode (event) {
+    const previousZipcode = this.state.zipcode;
+
+    this.setState({
+      zipcode: event.target.value
+    })
+  }
+
+  render() {
+    return (
+      <Container>
+      
+      <Divider section />
+      
+      <Segment style={{ padding: '2em'}} vertical>
+        <Grid celled='internally' columns='equal' stackable>
+          <Grid.Row >
+          <Grid.Column >
+            <SearchApiForm className="call-to-action"
+              getRecipes={this.getRecipes}
+              openModal = {this.open}
+              openMeal = {this.openMeal}
+              getZipcodeData={this.getZipcodeData}
+              updateZipcode={this.updateZipcode}
+              setToZip={this.setToZip}/>
+            <RecipesList recipes={this.state.recipes} open={this.state.open} openDetails={this.openDetails} close={this.close} getRecipe={this.getRecipe} />
+            <RecipeDetails calories={this.state.calories} recipe={this.state.recipeSteps} ingredients={this.state.recipeIngredients} image={this.state.image} open={this.state.openDetails} close={this.closeDetails}/>
+            <MealView recipes = {this.state.recipes} open={this.state.openMeal} close={this.closeMeal} getRecipe={this.getRecipe} openDetails={this.openDetails}/>
+             <div className="openZipModal">
+              {this.openZipModal()}
+            </div>
+          </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
+      <Segment style={{ padding: '8em 0em' }} vertical>
+        <Grid container stackable verticalAlign='middle'>
+          <Grid.Row>
+            <Grid.Column width={8}>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                Healthier, Informed, Affordable meal prep.
+              </Header>
+              <p style={{ fontSize: '1.33em' }}>
+                Some Description....
+              </p>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                Easy to use on the go!...
+              </Header>
+              <p style={{ fontSize: '1.33em' }}>
+              paragraph description...
+              </p>
+            </Grid.Column>
+            <Grid.Column floated='right' width={6}>
+              <Image bordered rounded size='large' src='' />
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
+            <Grid.Column textAlign='center'>
+              <Button  color="green" href='#'size='huge'>Check Them Out</Button>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
+      <Segment style={{ padding: '0em' }} vertical>
+        <Grid celled='internally' columns='equal' stackable>
+          <Grid.Row textAlign='center'>
+            <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                "What a Company"
+              </Header>
+              <p style={{ fontSize: '1.33em' }}>That is what they all say about us (We can maybe put a comment stream here)</p>
+            </Grid.Column>
+            <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+                "Fake user comment here."
+              </Header>
+              <p style={{ fontSize: '1.33em' }}>
+                <b>Nan</b> Fake user name and picture
+              </p>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
+      </Segment>
+      <Segment style={{ padding: '8em 0em' }} vertical>
+        <Container text>
+          <Header as='h3' style={{ fontSize: '2em' }}>
+            List of Features
+          </Header>
+          <p style={{ fontSize: '1.33em' }}>
+          - Allergens <br />
+          - Recipes <br />
+          - Prices <br />
+          Short description...
+          </p>
+          <Button color="green" href='#' as='a' size='large'>
+            Read More
+          </Button>
+          <Divider
+            as='h4'
+            className='header'
+            horizontal
+            style={{ margin: '3em 0em', textTransform: 'uppercase' }}
+          >
+            <a href='#'>Case Studies</a>
+          </Divider>
+          <Header as='h3' style={{ fontSize: '2em' }}>
+            Did We Tell You About Our Bananas?
+          </Header>
+          <p style={{ fontSize: '1.33em' }}>
+            Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
+            it's really true. It took years of gene splicing and combinatory DNA research, but our
+            bananas can really dance.
+          </p>
+          <Button color="green" href='#' as='a' size='large'>
+            I'm Still Quite Interested
+          </Button>
+        </Container>
+      </Segment>
+      <Segment inverted vertical style={{ padding: '5em 0em' }}>
+        <Container>
+          <Grid divided inverted stackable>
+            <Grid.Row>
+              <Grid.Column width={3}>
+                <Header inverted as='h4' content='About' />
+                <List link inverted>
+                  <List.Item href='#' as='a'>Sitemap</List.Item>
+                  <List.Item href='#' as='a'>Contact Us</List.Item>
+                  <List.Item href='#' as='a'>Team hours</List.Item>
+                </List>
+              </Grid.Column>
+              <Grid.Column width={3}>
+                <Header inverted as='h4' content='Services' />
+                <List link inverted>
+                  <List.Item href='#' as='a'>Feature List</List.Item>
+                  <List.Item href='#' as='a'>Membership</List.Item>
+                  <List.Item href='#' as='a'>Renown recipes</List.Item>
+                </List>
+              </Grid.Column>
+              <Grid.Column width={7}>
+                <Header as='h4' inverted>
+                  Footer Header
+                </Header>
+                <p>
+                  Extra space for a call to action inside the footer that could help re-engage users.
+                </p>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </Container>
+      </Segment>      
+      </Container>
+    )
+  }
 }
 
 export default ResponsiveContainer;
