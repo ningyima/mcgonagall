@@ -144,7 +144,7 @@ class SearchApiForm extends Component {
             </div>
             <div className="four wide field">
               <Button  name="btnIngredient" className='btn'
-                onClick={(e) => { this.props.setToZip(e)}}
+                onClick={(e) => {this.props.getZipcodeData('/favorites', this.props.zip, e); this.props.setToZip(e)}}
                 inverted size='medium' animated
                 content="What's zippy? &nbsp; &nbsp; &nbsp; &nbsp; " />
             </div>
