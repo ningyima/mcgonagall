@@ -199,9 +199,9 @@ class ResponsiveContainer extends Component {
   render() {
     return (
       <Container>
-      
+
       <Divider section />
-      
+
       <Segment style={{ padding: '2em'}} vertical>
         <Grid celled='internally' columns='equal' stackable>
           <Grid.Row >
@@ -223,94 +223,39 @@ class ResponsiveContainer extends Component {
           </Grid.Row>
         </Grid>
       </Segment>
-      <Segment style={{ padding: '8em 0em' }} vertical>
+      <Segment style={{ padding: '1em 0em' }} vertical>
         <Grid container stackable verticalAlign='middle'>
           <Grid.Row>
-            <Grid.Column width={8}>
+            <Grid.Column width={15}>
               <Header as='h3' style={{ fontSize: '2em' }}>
-                Healthier, Informed, Affordable meal prep.
+                "I can always rely on Budget Life to elevate  $5 of basic ingredients into a rustic dish fit for a three Michelin star restaurant."
               </Header>
               <p style={{ fontSize: '1.33em' }}>
-                Some Description....
+                G. Ramsay, average user of Budget Life
               </p>
-              <Header as='h3' style={{ fontSize: '2em' }}>
-                Easy to use on the go!...
-              </Header>
-              <p style={{ fontSize: '1.33em' }}>
-              paragraph description...
-              </p>
-            </Grid.Column>
-            <Grid.Column floated='right' width={6}>
-              <Image bordered rounded size='large' src='' />
             </Grid.Column>
           </Grid.Row>
+        </Grid>
+      </Segment>
+      <Segment style={{ padding: '1em 0em' }} vertical>
+         <Grid container stackable verticalAlign='middle'>
           <Grid.Row>
-            <Grid.Column textAlign='center'>
-              <Button  color="green" href='#'size='huge'>Check Them Out</Button>
+            <Grid.Column width={15}>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+           Powered By:
+          </Header>
+          <p style={{ fontSize: '1.33em' }}>
+          <img src='https://i.imgur.com/htRUN4o.png' width={1000} height={250}/>
+         </p>
             </Grid.Column>
           </Grid.Row>
         </Grid>
       </Segment>
-      <Segment style={{ padding: '0em' }} vertical>
-        <Grid celled='internally' columns='equal' stackable>
-          <Grid.Row textAlign='center'>
-            <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-              <Header as='h3' style={{ fontSize: '2em' }}>
-                "What a Company"
-              </Header>
-              <p style={{ fontSize: '1.33em' }}>That is what they all say about us (We can maybe put a comment stream here)</p>
-            </Grid.Column>
-            <Grid.Column style={{ paddingBottom: '5em', paddingTop: '5em' }}>
-              <Header as='h3' style={{ fontSize: '2em' }}>
-                "Fake user comment here."
-              </Header>
-              <p style={{ fontSize: '1.33em' }}>
-                <b>Nan</b> Fake user name and picture
-              </p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Segment>
-      <Segment style={{ padding: '8em 0em' }} vertical>
-        <Container text>
-          <Header as='h3' style={{ fontSize: '2em' }}>
-            List of Features
-          </Header>
-          <p style={{ fontSize: '1.33em' }}>
-          - Allergens <br />
-          - Recipes <br />
-          - Prices <br />
-          Short description...
-          </p>
-          <Button color="green" href='#' as='a' size='large'>
-            Read More
-          </Button>
-          <Divider
-            as='h4'
-            className='header'
-            horizontal
-            style={{ margin: '3em 0em', textTransform: 'uppercase' }}
-          >
-            <a href='#'>Case Studies</a>
-          </Divider>
-          <Header as='h3' style={{ fontSize: '2em' }}>
-            Did We Tell You About Our Bananas?
-          </Header>
-          <p style={{ fontSize: '1.33em' }}>
-            Yes I know you probably disregarded the earlier boasts as non-sequitur filler content, but
-            it's really true. It took years of gene splicing and combinatory DNA research, but our
-            bananas can really dance.
-          </p>
-          <Button color="green" href='#' as='a' size='large'>
-            I'm Still Quite Interested
-          </Button>
-        </Container>
-      </Segment>
-      <Segment inverted vertical style={{ padding: '5em 0em' }}>
+      <Segment inverted vertical style={{ padding: '1em 0em' }}>
         <Container>
           <Grid divided inverted stackable>
             <Grid.Row>
-              <Grid.Column width={3}>
+              <Grid.Column width={7}>
                 <Header inverted as='h4' content='About' />
                 <List link inverted>
                   <List.Item href='#' as='a'>Sitemap</List.Item>
@@ -318,7 +263,7 @@ class ResponsiveContainer extends Component {
                   <List.Item href='#' as='a'>Team hours</List.Item>
                 </List>
               </Grid.Column>
-              <Grid.Column width={3}>
+              <Grid.Column width={7}>
                 <Header inverted as='h4' content='Services' />
                 <List link inverted>
                   <List.Item href='#' as='a'>Feature List</List.Item>
@@ -337,7 +282,7 @@ class ResponsiveContainer extends Component {
             </Grid.Row>
           </Grid>
         </Container>
-      </Segment>      
+      </Segment>
       </Container>
     )
   }
