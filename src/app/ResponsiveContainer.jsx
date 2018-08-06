@@ -19,6 +19,7 @@ import {
 import SearchExampleStandard from './search.js';
 import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
+import HomepageHeading from './HomepageHeading.jsx'
 import SearchApiForm from './searchApi.jsx';
 import RecipesList from './recipes.js';
 import RecipeDetails from './recipeDetails.js';
@@ -199,7 +200,7 @@ class ResponsiveContainer extends Component {
   render() {
     return (
       <Container>
-      
+      <HomepageHeading />
       <Divider section />
       
       <Segment style={{ padding: '2em'}} vertical>

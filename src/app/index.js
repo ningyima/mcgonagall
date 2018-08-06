@@ -17,26 +17,13 @@ import {
   Visibility,
 } from 'semantic-ui-react';
 
-import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import HomepageContent from './HomepageContent.jsx';
-import Navbar from './Navbar.jsx';
-import About from './About.jsx';
-import Features from './Features.jsx';
+import DesktopContainer from './DesktopContainer.jsx';
+import MobileContainer from './MobileContainer.jsx';
 
-class HomepageLayout extends Component {
-  constructor(props) {
-    super(props);
+const HomepageLayout = () => 
+  <div>
+    <DesktopContainer />
+    <MobileContainer />
+  </div>;
 
-    this.state = {
-      activeItem: 'home'
-    }
-  }
-
-  render() {
-    return (
-      <HomepageContent />
-      
-    )
-  };
-}
 export default HomepageLayout;

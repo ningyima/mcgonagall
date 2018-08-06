@@ -16,22 +16,10 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react';
-import SearchExampleStandard from './search.js';
-import ModalSignupForm from './signup.js';
-import ModalLoginForm from './login.js';
-import SearchApiForm from './searchApi.jsx';
-import RecipesList from './recipes.js';
-import RecipeDetails from './recipeDetails.js';
-import ZipPieChart from './zipPieChart.js'
-import MealView from './mealView.js';
-import data from './data.js';
-import dummyData from './../dummyData.js';
-import $ from 'jquery';
-import { Link } from 'react-router-dom';
 
 const HomepageHeading = ({ mobile }) => (
   <Container text>
-  <Image src="https://www.ppt-backgrounds.net/uploads/food-template-presentation.jpg" style={{
+  <Image src="images/food-template-presentation.jpg" style={{
     position: 'absolute',
     height: 'auto',
     width: mobile ? '99%' : '104%',
