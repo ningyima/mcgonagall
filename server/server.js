@@ -59,7 +59,7 @@ app.get('/recipes', (req, res) => {
   utils.getRecipes(req.query, (error, results) => {
     if (error) {
       res.send(error);
-    } 
+    }
     console.log('body: ', JSON.parse(results));
     let parsed = JSON.parse(results);
     res.json(parsed.matches);
@@ -93,6 +93,7 @@ app.get('/favorites', (req, res) => {
 app.put('/favorites', (req, res) => {
   // this is how we will handle updating the favorite cuisine by zipcode
   // the DB will default all categories to 0. Puts from the Front End will happen each search
+
   // search will be by cuisine, or cuisine will be an option selector. 
   // will call to a helper function in another file to query the DB.
   //! This function expects req.body to contain a zipcode and the cuisine to update.
