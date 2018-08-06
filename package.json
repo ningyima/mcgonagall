@@ -60,6 +60,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.3",
     "express-sessions": "^1.0.6",
+    "google-maps-react": "^2.0.2",
     "jquery": "^3.3.1",
     "knex": "^0.15.2",
     "lodash": "^4.17.10",

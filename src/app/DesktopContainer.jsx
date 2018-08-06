@@ -18,21 +18,48 @@ import {
 } from 'semantic-ui-react';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import HomepageHeading from './HomepageHeading.jsx';
+import SearchExampleStandard from './search.js';
+import ModalSignupForm from './signup.js';
+import ModalLoginForm from './login.js';
 import About from './About.jsx';
 import Features from './Features.jsx';
+import Events from './Events.jsx';
 import ResponsiveContainer from './ResponsiveContainer.jsx';
+import HomepageHeading from './HomepageHeading.jsx';
+import Footer from './Footer.jsx';
 
 class DesktopContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      view: 'home',
+      // fixed: true
     };
+    this.changeView = this.changeView.bind(this);
     this.hideFixedMenu = this.hideFixedMenu.bind(this);
     this.showFixedMenu = this.showFixedMenu.bind(this);
     this.handleLoginClick = this.handleLoginClick.bind(this);
     this.handleSignupClick = this.handleSignupClick.bind(this);
-    //alert ('in the Desktop COntainer with '+ props.demoTest);
+  }
+
+  changeView(option) {
+    this.setState({
+      view: option
+    });
+  }
+
+  renderView() {
+    const {view} = this.state;
+    console.log(this.state);
+    if (view === 'home') {
+      return <ResponsiveContainer />;
+    } else if (view === 'about') {
+      return <About />
+    } else if (view === 'features') {
+      return <Features />
+    } else {
+      return <Events />
+    }
   }
 
   handleLoginClick (){
@@ -70,42 +97,33 @@ class DesktopContainer extends Component {
               pointing={!fixed}
               secondary={!fixed}
               size='large'
-            >
-              
-                <Container>
-                  <Menu.Item>
-                  <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
-                  </Menu.Item>
-                  <Menu.Item href='/' as='a' active>
-                    Home
-                  </Menu.Item>
-                  <Menu.Item href='/about' as='a'>About</Menu.Item>
-                  <Menu.Item href='/features' as='a'>Features</Menu.Item>
-                </Container>
-              {/*<Router>
-                <Container>
-                  <Menu.Item name='home' to='/' as={ Link } active>
-                    Home
-                  </Menu.Item>
-                  <Menu.Item name='about' to='/about' as={ Link }>About</Menu.Item>
-                  <Menu.Item name='features' to='/features' as={ Link }>Features</Menu.Item>
-
-                  <Menu.Item position='right'>
-                    <SearchExampleStandard fluid/>
-                    <ModalLoginForm loginHandler={this.handleLoginClick} />
-                    <ModalSignupForm signupHandler={this.handleSignupClick} />
-                  </Menu.Item>
-
-                  <Route exact path='/' component={DesktopContainer} />
-                  <Route path='/about' component={About} />
-                  <Route path='/features' component={Features} />
-                </Container>
-              </Router>*/}
+            >             
+              <Container>
+                <Menu.Item>
+                <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
+                </Menu.Item>
+                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('home')} className={this.state.view === 'home' ? 'active' : ''}>
+                  Home
+                </Menu.Item>
+                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('about')} className={this.state.view === 'about' ? 'active' : ''}>About</Menu.Item>
+                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('features')} className={this.state.view === 'features' ? 'active' : ''}>Features</Menu.Item>
+                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('events')} className={this.state.view === 'events' ? 'active' : ''}>Events</Menu.Item>
+                <Menu.Item position='right'>
+                  <SearchExampleStandard fluid/>
+                  <ModalLoginForm loginHandler={this.handleLoginClick} />
+                  <ModalSignupForm signupHandler={this.handleSignupClick} />
+                </Menu.Item>
+              </Container>            
             </Menu>
             <HomepageHeading />
           </Segment>
         </Visibility>
-        <ResponsiveContainer />        
+      
+        <div className="main">
+          {this.renderView()}
+        </div>
+
+        <Footer />
       </Responsive>
     )
   }

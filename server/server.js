@@ -80,7 +80,7 @@ app.post('/business', (req, res) => {
 
 app.get('/favorites', (req, res) => {
   // simple retrieval from DB by zipcode
-  // meaning this will expect req.param or req.query
+  // meaning this will expect req.param or req.query 
   // to contain a zipcode to fetch from the DB table.
   console.log(req.query);
   utils.retrieveFavorites(req.query, (err, result) => {
@@ -93,7 +93,8 @@ app.get('/favorites', (req, res) => {
 app.put('/favorites', (req, res) => {
   // this is how we will handle updating the favorite cuisine by zipcode
   // the DB will default all categories to 0. Puts from the Front End will happen each search
-  // search will be by cuisine, or cuisine will be an option selector.
+
+  // search will be by cuisine, or cuisine will be an option selector. 
   // will call to a helper function in another file to query the DB.
   //! This function expects req.body to contain a zipcode and the cuisine to update.
 });

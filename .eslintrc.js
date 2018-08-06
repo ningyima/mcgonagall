@@ -8,6 +8,6 @@ module.exports = {
     codeFrame: false
   },
   extends: [
-     'airbnb-bundle',
+    //  'airbnb-bundle',
   ]
 };

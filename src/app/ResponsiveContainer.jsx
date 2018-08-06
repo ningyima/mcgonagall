@@ -19,6 +19,7 @@ import {
 import SearchExampleStandard from './search.js';
 import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
+import HomepageHeading from './HomepageHeading.jsx'
 import SearchApiForm from './searchApi.jsx';
 import RecipesList from './recipes.js';
 import RecipeDetails from './recipeDetails.js';
@@ -199,9 +200,7 @@ class ResponsiveContainer extends Component {
   render() {
     return (
       <Container>
-
       <Divider section />
-
       <Segment style={{ padding: '2em'}} vertical>
         <Grid celled='internally' columns='equal' stackable>
           <Grid.Row >
@@ -222,68 +221,8 @@ class ResponsiveContainer extends Component {
           </Grid.Column>
           </Grid.Row>
         </Grid>
-      </Segment>
-      <Segment style={{ padding: '1em 0em' }} vertical>
-        <Grid container stackable verticalAlign='middle'>
-          <Grid.Row>
-            <Grid.Column width={15}>
-              <Header as='h3' style={{ fontSize: '2em' }}>
-                "I can always rely on Budget Life to elevate  $5 of basic ingredients into a rustic dish fit for a three Michelin star restaurant."
-              </Header>
-              <p style={{ fontSize: '1.33em' }}>
-                G. Ramsay, average user of Budget Life
-              </p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Segment>
-      <Segment style={{ padding: '1em 0em' }} vertical>
-         <Grid container stackable verticalAlign='middle'>
-          <Grid.Row>
-            <Grid.Column width={15}>
-              <Header as='h3' style={{ fontSize: '2em' }}>
-           Powered By:
-          </Header>
-          <p style={{ fontSize: '1.33em' }}>
-          <img src='https://i.imgur.com/htRUN4o.png' width={1000} height={250}/>
-         </p>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
-      </Segment>
-      <Segment inverted vertical style={{ padding: '1em 0em' }}>
-        <Container>
-          <Grid divided inverted stackable>
-            <Grid.Row>
-              <Grid.Column width={7}>
-                <Header inverted as='h4' content='About' />
-                <List link inverted>
-                  <List.Item href='#' as='a'>Sitemap</List.Item>
-                  <List.Item href='#' as='a'>Contact Us</List.Item>
-                  <List.Item href='#' as='a'>Team hours</List.Item>
-                </List>
-              </Grid.Column>
-              <Grid.Column width={7}>
-                <Header inverted as='h4' content='Services' />
-                <List link inverted>
-                  <List.Item href='#' as='a'>Feature List</List.Item>
-                  <List.Item href='#' as='a'>Membership</List.Item>
-                  <List.Item href='#' as='a'>Renown recipes</List.Item>
-                </List>
-              </Grid.Column>
-              <Grid.Column width={7}>
-                <Header as='h4' inverted>
-                  Footer Header
-                </Header>
-                <p>
-                  Extra space for a call to action inside the footer that could help re-engage users.
-                </p>
-              </Grid.Column>
-            </Grid.Row>
-          </Grid>
-        </Container>
-      </Segment>
-      </Container>
+      </Segment>            
+    </Container>
     )
   }
 }

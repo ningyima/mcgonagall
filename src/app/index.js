@@ -16,18 +16,15 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
-import HomepageContent from './HomepageContent.jsx';
 
-class HomepageLayout extends Component {
-  constructor(props) {
-   super(props);
-  }
+import DesktopContainer from './DesktopContainer.jsx';
+import MobileContainer from './MobileContainer.jsx';
 
-  render() {
-    return (
-      <HomepageContent />
-    )
-  };
-}
+const HomepageLayout = () => (
+  <Container>
+    <DesktopContainer />
+    <MobileContainer />
+  </Container>;
+);
+
 export default HomepageLayout;
