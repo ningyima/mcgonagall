@@ -237,17 +237,21 @@ class ResponsiveContainer extends Component {
           </Grid.Row>
         </Grid>
       </Segment>
-      <Segment style={{ padding: '8em 0em' }} vertical>
-        <Container text>
-          <Header as='h3' style={{ fontSize: '2em' }}>
-           Tech Stack
+      <Segment style={{ padding: '1em 0em' }} vertical>
+         <Grid container stackable verticalAlign='middle'>
+          <Grid.Row>
+            <Grid.Column width={15}>
+              <Header as='h3' style={{ fontSize: '2em' }}>
+           Powered By:
           </Header>
           <p style={{ fontSize: '1.33em' }}>
-          image goes here
-          </p>
-        </Container>
+          <img src='https://i.imgur.com/htRUN4o.png' width={1000} height={250}/>
+         </p>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </Segment>
-      <Segment inverted vertical style={{ padding: '5em 0em' }}>
+      <Segment inverted vertical style={{ padding: '1em 0em' }}>
         <Container>
           <Grid divided inverted stackable>
             <Grid.Row>
