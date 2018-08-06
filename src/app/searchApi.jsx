@@ -140,7 +140,7 @@ class SearchApiForm extends Component {
         <h3>Check cuisine popularity by zip code</h3>
           <div className="two fields">
             <div className="twelve wide field">
-              <Input onChange={(e) => this.updateZipcode(e)} fluid placeholder='Zip code...' />
+              <Input onChange={(e) => this.props.updateZipcode(e)} fluid placeholder='Zip code...' />
             </div>
             <div className="four wide field">
               <Button  name="btnIngredient" className='btn'

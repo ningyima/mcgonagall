@@ -16,7 +16,6 @@ import {
   Sidebar,
   Visibility,
 } from 'semantic-ui-react';
-
 import { Link } from 'react-router-dom';
 
 class HomepageLayout extends Component {
