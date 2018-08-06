@@ -66,8 +66,6 @@ app.get('/recipes', (req, res) => {
   });
 });
 
-<<<<<<< HEAD
-=======
 app.get('/business', (req, res) => {
   console.log('Business Request: ', req.query);
 });
@@ -82,7 +80,7 @@ app.post('/business', (req, res) => {
 
 app.get('/favorites', (req, res) => {
   // simple retrieval from DB by zipcode
-  // meaning this will expect req.param or req.query 
+  // meaning this will expect req.param or req.query
   // to contain a zipcode to fetch from the DB table.
   console.log(req.query);
   utils.retrieveFavorites(req.query, (err, result) => {
@@ -129,7 +127,7 @@ app.put('/event', (req, res) => {
 
 //= ===================================================
 // SAMPLE DATA. DATA STRUCTURE
->>>>>>> small updates to local favorites feature
+
 const port = 3000;
 
 app.listen(port, () => {

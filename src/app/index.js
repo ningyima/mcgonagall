@@ -17,6 +17,7 @@ import {
   Visibility,
 } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import HomepageContent from './HomepageContent.jsx';
 
 class HomepageLayout extends Component {
   constructor(props) {
