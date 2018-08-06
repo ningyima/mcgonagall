@@ -24,12 +24,15 @@ import ModalLoginForm from './login.js';
 import About from './About.jsx';
 import Features from './Features.jsx';
 import ResponsiveContainer from './ResponsiveContainer.jsx';
+import HomepageHeading from './HomepageHeading.jsx';
+import Footer from './Footer.jsx';
 
 class DesktopContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'home'
+      view: 'home',
+      // fixed: true
     };
     this.changeView = this.changeView.bind(this);
     this.hideFixedMenu = this.hideFixedMenu.bind(this);
@@ -108,13 +111,15 @@ class DesktopContainer extends Component {
                 </Menu.Item>
               </Container>            
             </Menu>
-            
+            <HomepageHeading />
           </Segment>
         </Visibility>
       
         <div className="main">
           {this.renderView()}
         </div>
+
+        <Footer />
       </Responsive>
     )
   }

@@ -21,9 +21,9 @@ import DesktopContainer from './DesktopContainer.jsx';
 import MobileContainer from './MobileContainer.jsx';
 
 const HomepageLayout = () => 
-  <div>
+  <Container>
     <DesktopContainer />
     <MobileContainer />
-  </div>;
+  </Container>;
 
 export default HomepageLayout;
