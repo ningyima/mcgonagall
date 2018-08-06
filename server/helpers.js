@@ -10,9 +10,10 @@ const db = require('../db/helpers');
  * @return {Object}      The complete set of options to be used in our respective API get requests
  */
 let setOptions = (search) => {
+  console.log('what is search', search.query, search.cuisine)
   let baseUrl = `http://api.yummly.com/v1/api/recipes?_app_id=${keys.API_KEYS.YummlyID}&_app_key=${keys.API_KEYS.YummlyKey}`;
   let querybase = '&q=';
-  let query = search.recipeQuery.split(' ').join('+');
+  let query = search.query.split(' ').join('+');
   let baseCuisine = '&allowedCuisine[]=cuisine^cuisine-'
   let cuisine = search.cuisine ? search.cuisine.toLowerCase() : null;
   let cuisineExists = cuisine ? baseCuisine + cuisine : 'git st';

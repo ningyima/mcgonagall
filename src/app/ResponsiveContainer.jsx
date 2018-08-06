@@ -200,9 +200,7 @@ class ResponsiveContainer extends Component {
   render() {
     return (
       <Container>
-     
       <Divider section />
-      
       <Segment style={{ padding: '2em'}} vertical>
         <Grid celled='internally' columns='equal' stackable>
           <Grid.Row >

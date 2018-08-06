@@ -20,10 +20,11 @@ import {
 import DesktopContainer from './DesktopContainer.jsx';
 import MobileContainer from './MobileContainer.jsx';
 
-const HomepageLayout = () => 
+
+const HomepageLayout = () => (
   <Container>
     <DesktopContainer />
     <MobileContainer />
   </Container>;
-
+);
 export default HomepageLayout;

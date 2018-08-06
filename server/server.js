@@ -59,7 +59,7 @@ app.get('/recipes', (req, res) => {
   utils.getRecipes(req.query, (error, results) => {
     if (error) {
       res.send(error);
-    } 
+    }
     console.log('body: ', JSON.parse(results));
     let parsed = JSON.parse(results);
     res.json(parsed.matches);
