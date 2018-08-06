@@ -85,22 +85,28 @@ class Events extends React.Component {
   render() {
     console.log(this.state.events);
     return (
-      <Segment style={{ padding: '8em 0em' }} vertical>
-        <Container text className='events'>
-          <Header as='h3' style={{ fontSize: '2em' }}>
+      <Segment style={{ paddingBottom: '2em', marginTop: '2em'}} vertical>
+        <div className='events'>
+          <Header as='h3' style={{ fontSize: '1.5em', marginLeft: '-1em' }}>
             Throw a party with friends based on your favorite recipes
           </Header>
-         <Segment style={{ padding: '2em'}} vertical>
+         <Segment vertical>
             {/*<SearchEvent onSearch={this.searchEvent.bind(this)} />*/}
-            <EventList 
-              events={this.state.events}
-            />
-            <GMap 
-              position={this.state.position}
-              events={this.state.events} 
-            />
+            <div className="ui grid" style={{ fontSize: '1em' }}>
+              <div className="eight wide column">
+                <EventList 
+                  events={this.state.events}
+                />
+              </div>
+              <div className="eight wide column">
+                <GMap 
+                  position={this.state.position}
+                  events={this.state.events} 
+                />
+              </div>
+            </div>
           </Segment>
-        </Container>
+        </div>
       </Segment>
     );
   }

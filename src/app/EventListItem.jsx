@@ -2,16 +2,16 @@ import React from 'react';
 
 const EventListItem = props =>
   <div>
-    <li>
-      <div className="avatar-wrapper">
-        <img width="150" src={props.event.image_url} />
+    <li style={{backgroundColor: 'wheat', padding:'1em', marginBottom: '1em'}}>
+      <div className="avatar-wrapper" style={{float:'left'}}>
+        <img width="130" src={props.event.image_url} />
       </div>
-      <div className="business-details">
+      <div className="business-details" style={{float:'right', width: '300px'}}>
         <div>
           <span className="business-detail-text">
             {props.event.title}
           </span>
-          <div className="clear-fix" />
+          <div className="clear-fix"/>
         </div>
         <div className="media-title">
           <a className="subtle-text" href={props.event.url} target="_blank">
@@ -54,7 +54,7 @@ const EventListItem = props =>
           </span>
           <div className="clear-fix" />
         </div>
-        <div>
+        {/*<div>
           <button
             className="margin-right-10"
             onClick={() => {
@@ -70,9 +70,9 @@ const EventListItem = props =>
           >
             Remove
           </button>
-        </div>
+        </div>*/}
       </div>
-      <div className="clear-fix" />
+      <div className="clear-fix" style={{marginBottom: '1em', clear: 'both'}}/>
     </li>
   </div>;
 
