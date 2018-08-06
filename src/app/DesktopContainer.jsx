@@ -23,6 +23,7 @@ import ModalSignupForm from './signup.js';
 import ModalLoginForm from './login.js';
 import About from './About.jsx';
 import Features from './Features.jsx';
+import Events from './Events.jsx';
 import ResponsiveContainer from './ResponsiveContainer.jsx';
 import HomepageHeading from './HomepageHeading.jsx';
 import Footer from './Footer.jsx';
@@ -54,8 +55,10 @@ class DesktopContainer extends Component {
       return <ResponsiveContainer />;
     } else if (view === 'about') {
       return <About />
-    } else {
+    } else if (view === 'features') {
       return <Features />
+    } else {
+      return <Events />
     }
   }
 
@@ -99,11 +102,12 @@ class DesktopContainer extends Component {
                 <Menu.Item>
                 <Image size="mini" src="https://image.flaticon.com/icons/svg/424/424067.svg" />
                 </Menu.Item>
-                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('home')} active>
+                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('home')} className={this.state.view === 'home' ? 'active' : ''}>
                   Home
                 </Menu.Item>
-                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('about')}>About</Menu.Item>
-                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('features')}>Features</Menu.Item>
+                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('about')} className={this.state.view === 'about' ? 'active' : ''}>About</Menu.Item>
+                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('features')} className={this.state.view === 'features' ? 'active' : ''}>Features</Menu.Item>
+                <Menu.Item as='a' href='javascript:void(0)' onClick={() => this.changeView('events')} className={this.state.view === 'events' ? 'active' : ''}>Events</Menu.Item>
                 <Menu.Item position='right'>
                   <SearchExampleStandard fluid/>
                   <ModalLoginForm loginHandler={this.handleLoginClick} />
